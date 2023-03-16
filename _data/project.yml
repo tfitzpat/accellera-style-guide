@@ -1,17 +1,17 @@
 # The name of the organisation or entity that owns this project
-organisation: "Electric Book Works"
+organisation: "Accellera Systems Initiative"
 
 # A live web address for the organisation
-url: "http://ebw.co/template"
+url: "https://www.accellera.org/"
 
 # The default contact email address
-email: "support@electricbookworks.com"
+email: ""
 
 # The name of the project of books in this folder.
-name: "The Electric Book template"
+name: "Accellera style guide"
 
 # A one-liner about this project. Useful for Open Graph metadata.
-description: "This is Electric Book template, a way to build websites, books and ebooks from the same master content. Created and maintained by Electric Book Works."
+description: "Accellera Systems Initiative is an independent, not-for profit organization dedicated to create, support, promote, and advance system-level design, modeling, and verification standards for use by the worldwide electronics industry. This template, created and maintained by Electric Book Works, is a way to build websites, books and ebooks from the same master content."
 
 # The logo of the organisation, saved web-ready in /assets
 logo: "logo.svg"
