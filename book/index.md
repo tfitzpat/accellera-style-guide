@@ -1,9 +1,5 @@
 ---
-style: index
+style: cover
 ---
 
-# Index
-
-- Training
-{:.reference-index}
-
+{% include cover %}
