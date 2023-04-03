@@ -1,10 +1,11 @@
 ---
 title: "Annex A. Guidelines and best practices for the creation and maintenance of IEEE standards terms and definitions"
+style: annex
 ---
 
-# Annex A. Guidelines and best practices for the creation and maintenance of IEEE standards terms and definitions
+# Annex A. **(normative)** Guidelines and best practices for the creation and maintenance of IEEE standards terms and definitions
 
-(normative)
+## A.1 The IEEE Standards Dictionary Online
 
 All terms defined in approved IEEE standards are automatically included in the *IEEE Standards Dictionary Online*, which is updated on a regular basis.
 
@@ -29,7 +30,7 @@ Suggestions for oversight (at the working group, committee, or society/standards
 
 * It is recommended that every standards-developing society/standards committee have a definitions group of some kind. If a society has multiple groups (whether at the committee or working group levels), there should be one ruling group responsible for making ultimate decisions and resolving any differences.
 * Working groups should be advised to ask themselves to technically justify new terms and their definitions before proposing them.
-* New terms and definitions should be examined in consideration of: subject matter; existing terms in the IEEE Standards Dictionary Online and general-usage dictionaries; usage within other IEEE societies/IEEE SA committees; comparable international terms; usage in relevant literature; etc.
+* New terms and definitions should be examined in consideration of: subject matter; existing terms in the *IEEE Standards Dictionary Online* and general-usage dictionaries; usage within other IEEE societies/IEEE SA committees; comparable international terms; usage in relevant literature; etc.
 * The creation of new terms can be time consuming and may take place either before or after working group meetings and may take place in a subgroup before presenting to the working group.
 
 ## A.3 Revision of existing terms and definitions

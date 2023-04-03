@@ -9,7 +9,7 @@ The IEEE Standards Style Manual (PDF) establishes preferred style for the prepar
 
 The standards committee of an IEEE Standards project is responsible for providing the IEEE SA Standards Board with a complete, technically accurate draft of the standard, and this manual serves as a reference for working groups during the IEEE standards development lifecycle, particularly when drafting the standard.
 
-IEEE SA also provides useful templates available in Adobe® FrameMaker® or Microsoft® Word.[^adobe]<sup>,</sup> [^microsoft] The styles and format are built into the templates, which help reduce IEEE post-approval production time.
+IEEE SA also provides useful templates available in Adobe® FrameMaker® or Microsoft® Word.[^adobe]<sup>, </sup>[^microsoft] The styles and format are built into the templates, which help reduce IEEE post-approval production time.
 
 [^adobe]: Adobe and FrameMaker are registered trademarks of Adobe Systems Incorporated.
 [^microsoft]: Microsoft is a registered trademark of Microsoft Corporation in the United States and/or other countries.
