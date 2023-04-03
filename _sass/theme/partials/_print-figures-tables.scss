@@ -29,7 +29,11 @@ table {
 
 th, td {
   border: 0.5pt solid $black;
-  vertical-align: middle;
+  
+  &.vertical-middle {
+    vertical-align: middle;
+  }
+
 }
 
 th {
