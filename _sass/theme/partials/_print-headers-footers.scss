@@ -1,0 +1,78 @@
+// HEADERS
+
+@page chapter:left {
+  @top-center {
+    text-transform: none;
+  }
+}
+@page chapter:right {
+  @top-center {
+    text-transform: none;
+  }
+}
+@page frontmatter:left {
+  @top-center {
+    text-transform: none;
+  }
+}
+@page frontmatter:right {
+  @top-center {
+    text-transform: none;
+  }
+}
+@page contents-page:left {
+  @top-center {
+    text-transform: none;
+  }
+}
+@page contents-page:right {
+  @top-center {
+    text-transform: none;
+  }
+}
+
+// FOOTERS
+
+@page chapter:left {
+  @bottom-center {
+    white-space: pre-wrap;
+    text-transform: none;
+  }
+}
+@page chapter:right {
+  @bottom-center {
+    white-space: pre-wrap;
+    text-transform: none;
+  }
+}
+@page frontmatter:left {
+  @bottom-center {
+    white-space: pre-wrap;
+    text-transform: none;
+  }
+}
+@page frontmatter:right {
+  @bottom-center {
+    white-space: pre-wrap;
+    text-transform: none;
+  }
+}
+@page contents-page:left {
+  @bottom-center {
+    @include footer-style();
+    @include footer-position();
+    content: $verso-bottom;
+    white-space: pre-wrap;
+    text-transform: none;
+  }
+}
+@page contents-page:right {
+  @bottom-center {
+    @include footer-style();
+    @include footer-position();
+    content: $recto-bottom;
+    white-space: pre-wrap;
+    text-transform: none;
+  }
+}
+

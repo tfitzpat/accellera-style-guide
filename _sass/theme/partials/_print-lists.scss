@@ -1,0 +1,50 @@
+// LISTS
+
+.wrapper:not(.contents-page) {
+  ol {
+    counter-reset: list;
+    margin-left: 2 * $paragraph-indent;
+  }
+  ol > li {
+    list-style: none;
+    margin-top: $line-height-default / 2;
+    margin-left: $line-height-default;
+  }
+  ol > li:before {
+    content: counter(list, lower-alpha) ") ";
+    counter-increment: list;
+    position: absolute;
+    left: 10pt;
+  }
+
+  ul {
+    margin-left: 2 * $paragraph-indent;
+  }
+
+  ul > li {
+    list-style: none;
+    margin-top: $line-height-default * 0.7;
+  }
+
+  ul > li:before {
+    content: "―";
+    position: absolute;
+    left: 10pt;
+  }
+
+  li li:before {
+    left: 2 * $paragraph-indent + $line-height-default;
+  }
+  
+  li {
+    margin-bottom: $font-size-default;
+  }
+
+  li:last-of-type {
+    margin-bottom: 1.2 * $line-height-default;
+  }
+
+  ol p, ul p {
+    margin-bottom: 1.2 * $line-height-default;
+  }
+}

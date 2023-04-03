@@ -1,0 +1,37 @@
+// FIGURES
+
+.figure .figure-body {
+  margin-bottom: 1.5 * $line-height-default;
+
+  .caption {
+    font-family: $font-text-secondary;
+    font-weight: bold;
+    font-size: $font-size-default;
+    text-align: center;
+  
+    .figure-reference::after {
+      content: "—";
+    }
+  }
+
+  .figure-images {
+    margin-bottom: 0;
+  }
+}
+
+// TABLES
+
+table {
+  margin-top: $line-height-default / 2;
+  font-family: $font-text-main;
+  border: 0.5pt solid $black;
+}
+
+th, td {
+  border: 0.5pt solid $black;
+  vertical-align: middle;
+}
+
+th {
+  text-align: center;
+}
