@@ -1,0 +1,26 @@
+// TOC
+
+.contents-page {
+  .content > .toc-list > .toc-entry-title {
+    margin-top: $line-height-default;
+  }
+  li {
+    a {
+      .toc-entry-text {
+        display: inline;
+        max-width: 90%;
+      }
+    }
+    a::after { 
+      content: leader(".") " " target-counter(attr(href), page);
+    }
+    a.frontmatter-reference::after {
+      content: leader(".") " " target-counter(attr(href), page, $frontmatter-reference-style);
+    }
+    &.frontmatter-entry, &.frontmatter-reference {
+      a::after {
+        content: leader(".") " " target-counter(attr(href), page, $frontmatter-reference-style);
+      }
+    }
+  }
+}
