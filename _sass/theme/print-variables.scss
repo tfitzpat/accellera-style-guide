@@ -34,3 +34,6 @@ $recto-bottom-frontmatter: counter(page);
 
 $footer-space-from-bottom: $margin-bottom / 4 !default;
 $footer-space-from-text: $line-height-default / 2 !default;
+
+$header-letter-spacing: 0 !default;
+$footer-letter-spacing: 0 !default;
