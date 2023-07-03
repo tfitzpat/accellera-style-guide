@@ -80,8 +80,7 @@ MathJax = {
     }
   },
   tex: {
-    packages: argv.packages.replace('*', PACKAGES).split(/\s*,\s*/),
-    tags: 'ams'
+    packages: argv.packages.replace('*', PACKAGES).split(/\s*,\s*/)
   },
   'adaptors/liteDOM': {
     fontSize: argv.em
