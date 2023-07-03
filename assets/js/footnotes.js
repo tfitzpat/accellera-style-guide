@@ -56,7 +56,21 @@ function ebMoveEndnoteToFootnote (noteReference) {
 
   // Make a div.page-footnote
   var pageFootnote = document.createElement('div')
+
+  // We need to look at the value of [data-page-footnotes] and
+  // be a bit clever about which class we apply here,
+  // so that we know which counter to increment in the CSS
+  var pageFootnoteClass = 'page-footnote-manual'
+  if (wrapper.hasAttribute('data-page-footnotes')) {
+    if (wrapper.getAttribute('data-page-footnotes') === 'book') {
+      pageFootnoteClass = 'page-footnote-book'
+    } else {
+      pageFootnoteClass = 'page-footnote-page'
+    }
+  }
+
   pageFootnote.classList.add('page-footnote')
+  pageFootnote.classList.add(pageFootnoteClass)
   pageFootnote.id = footnoteReferenceID
 
   // Add and increment the manual-footnote counter

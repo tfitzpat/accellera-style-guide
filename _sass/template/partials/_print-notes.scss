@@ -26,6 +26,7 @@ $print-notes: true !default;
             text-indent: 0;
         }
     }
+    
     // Hide the link back to the footnote reference from the footnote text.
     .reversefootnote {
         display: none;
@@ -35,6 +36,7 @@ $print-notes: true !default;
     .sidenote {
         @include sidenote();
     }
+    
     // Sidenotes that appear at the bottom of the page, aka footer notes.
     .bottom {
         float: bottom;
@@ -99,16 +101,35 @@ $print-notes: true !default;
         margin-left: $paragraph-indent;
     }
 
-    // Footnotes created with one-by-one 'move-to-footnote'
-    // class need a different kind of counter, because
-    // in a document with some endnotes and some manual footnotes,
-    // they need to have a different numbering system.
-    // Otherwise, they'll appear at the bottom of the page
-    // but be numbered in order with the endnotes.
+    // Specific cases for different categories of footnote
 
+    // In the case where it's specified in settings to use footnotes
+    // in the entire book, start the footnote counter at the beginning
+    // of the book and don't reset it
+    body {
+        counter-reset: book-footnote;
+    }
+
+    // In the case where footnotes are specified per markdown file,
+    // reset footnote counter per page
+    .wrapper[data-page-footnotes="page"] {
+        @page {
+            counter-reset: page-footnote;
+        }    
+    }
+
+    // In the case where manual footnotes are specified individually,
+    // reset footnote counter once per page to avoid unnecessarily
+    // long strings of asterisks
+    @page {
+        counter-reset: manual-footnote;
+    }
+
+    // Specify the appearance of on-page footnotes
+    // Default case is manual footnotes, counted with asterisks
     .page-footnote {
         counter-increment: manual-footnote;
-
+        
         &::footnote-call {
             content: counter(manual-footnote, asterisks);
             font-size: $font-size-default * 0.7;
@@ -122,6 +143,32 @@ $print-notes: true !default;
 
         &::footnote-marker {
             content: counter(manual-footnote, asterisks);
+        }
+    }
+
+    // Use the other counters for the other cases,
+    // with default (decimal) counters
+    .page-footnote.page-footnote-page {
+        counter-increment: page-footnote;
+
+        &::footnote-call {
+            content: counter(page-footnote);
+        }
+        
+        &::footnote-marker {
+            content: counter(page-footnote);
+        }
+    }
+
+    .page-footnote.page-footnote-book {
+        counter-increment: book-footnote;
+
+        &::footnote-call {
+            content: counter(book-footnote);
+        }
+        
+        &::footnote-marker {
+            content: counter(book-footnote);
         }
     }
 }
