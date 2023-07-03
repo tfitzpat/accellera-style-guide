@@ -42,8 +42,14 @@ Adjust HTML based on output format.
 {% else %}
 
 {% if site.output == "screen-pdf" %}
+
 {% comment %}Add the cover to the PDF bookmarks without displaying it{% endcomment %}
+{% if site.data.settings.screen-pdf.cover.bookmark == 'title' %}
+<h1 style="position: absolute; z-index: -1">{{ title }}</h1>
+{% else %}
 <h1 style="position: absolute; z-index: -1">{{ locale.pdf.cover }}</h1>
+{% endif %}
+
 {% endif %}
 
 <div class="cover">
