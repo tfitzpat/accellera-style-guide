@@ -46,8 +46,6 @@ $print-notes: true !default;
 
     // The page-footnotes area
     @page {
-        counter-reset: manual-footnote;
-
         @footnote {
             border-top: $rule-thickness solid $color-text-main;
             margin-top: $line-height-default / 2;
@@ -81,7 +79,7 @@ $print-notes: true !default;
     }
 
     .page-footnote {
-        float: footnote;
+        float: footnote page;
         font-size: $font-size-default * $font-size-smaller;
         footnote-style-position: inside; // a prince-only property
         text-indent: -($paragraph-indent);
