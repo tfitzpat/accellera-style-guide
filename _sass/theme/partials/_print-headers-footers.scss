@@ -37,24 +37,28 @@
   @bottom-center {
     white-space: pre-wrap;
     text-transform: none;
+    line-height: $line-height-default;
   }
 }
 @page chapter:right {
   @bottom-center {
     white-space: pre-wrap;
     text-transform: none;
+    line-height: $line-height-default;
   }
 }
 @page frontmatter:left {
   @bottom-center {
     white-space: pre-wrap;
     text-transform: none;
+    line-height: $line-height-default;
   }
 }
 @page frontmatter:right {
   @bottom-center {
     white-space: pre-wrap;
     text-transform: none;
+    line-height: $line-height-default;
   }
 }
 @page contents-page:left {
@@ -64,6 +68,7 @@
     content: $verso-bottom;
     white-space: pre-wrap;
     text-transform: none;
+    line-height: $line-height-default;
   }
 }
 @page contents-page:right {
@@ -73,6 +78,7 @@
     content: $recto-bottom;
     white-space: pre-wrap;
     text-transform: none;
+    line-height: $line-height-default;
   }
 }
 

@@ -31,3 +31,6 @@ $verso-bottom: counter(page) "\A Copyright © 2021 IEEE. All rights reserved.";
 $recto-bottom: counter(page) "\A Copyright © 2021 IEEE. All rights reserved.";
 $verso-bottom-frontmatter: counter(page);
 $recto-bottom-frontmatter: counter(page);
+
+$footer-space-from-bottom: $margin-bottom / 4 !default;
+$footer-space-from-text: $line-height-default / 2 !default;
