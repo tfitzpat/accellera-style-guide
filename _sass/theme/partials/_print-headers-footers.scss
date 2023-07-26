@@ -1,84 +1,54 @@
 // HEADERS
 
-@page chapter:left {
+@page {
   @top-center {
-    text-transform: none;
-  }
-}
-@page chapter:right {
-  @top-center {
-    text-transform: none;
-  }
-}
-@page frontmatter:left {
-  @top-center {
-    text-transform: none;
-  }
-}
-@page frontmatter:right {
-  @top-center {
-    text-transform: none;
-  }
-}
-@page contents-page:left {
-  @top-center {
-    text-transform: none;
-  }
-}
-@page contents-page:right {
-  @top-center {
-    text-transform: none;
+    text-transform: none !important;
   }
 }
 
 // FOOTERS
 
-@page chapter:left {
+@page {
   @bottom-center {
     white-space: pre-wrap;
-    text-transform: none;
-    line-height: $line-height-default;
+    text-transform: none !important;
+    line-height: $line-height-default !important;
   }
 }
-@page chapter:right {
-  @bottom-center {
-    white-space: pre-wrap;
-    text-transform: none;
-    line-height: $line-height-default;
-  }
-}
-@page frontmatter:left {
-  @bottom-center {
-    white-space: pre-wrap;
-    text-transform: none;
-    line-height: $line-height-default;
-  }
-}
-@page frontmatter:right {
-  @bottom-center {
-    white-space: pre-wrap;
-    text-transform: none;
-    line-height: $line-height-default;
-  }
-}
-@page contents-page:left {
+
+@page contents-page {
   @bottom-center {
     @include footer-style();
     @include footer-position();
     content: $verso-bottom;
-    white-space: pre-wrap;
-    text-transform: none;
-    line-height: $line-height-default;
-  }
-}
-@page contents-page:right {
-  @bottom-center {
-    @include footer-style();
-    @include footer-position();
-    content: $recto-bottom;
-    white-space: pre-wrap;
-    text-transform: none;
-    line-height: $line-height-default;
   }
 }
 
+// Exceptions
+.chapter { 
+  prince-page-group: auto;
+  margin-top: 0;
+}
+
+.document-title-page {
+  prince-page-group: start;
+}
+
+// Add header to annex page
+.annex {
+  page: annex;
+}
+
+@page annex {
+  @top-center {
+    content: $verso-top;
+    @include header-style();
+    @include header-position();
+  }
+  
+  @bottom-center {
+    content: $verso-bottom;
+    @include footer-style();
+    @include footer-position();
+  }
+}

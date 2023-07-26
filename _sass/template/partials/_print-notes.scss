@@ -51,18 +51,12 @@ $print-notes: true !default;
             margin-top: $line-height-default / 2;
             padding-top: $line-height-default / 2;
             font-size: $font-size-default * $font-size-smaller;
+            border-clip: 0.25 * $page-width;
         }
     }
 
     // True footnotes (we call them page-footnotes for clarity)
     // For styling see https://www.princexml.com/doc-prince/#footnote-calls
-
-    // The numbers in front of footnote text
-    *::footnote-marker {
-        float: left;
-        font-size: $font-size-default * $font-size-smaller;
-        width: 0;
-    }
 
     // The page-footnote references in body text
     // Note that other <sup> styling is defined in
@@ -72,31 +66,26 @@ $print-notes: true !default;
         font-size: $font-size-default * 0.7;
         vertical-align: super;
         line-height: none;
+    }
 
-        // Shift down
-        top: $font-size-default / 4;
-        position: relative;
+    // The numbers in front of footnote text
+    *::footnote-marker {
+        float: left;
+        font-size: $font-size-default * 0.7;
+        vertical-align: super;
+        line-height: none;
+        margin-right: 0.5em;
     }
 
     .page-footnote {
         float: footnote page;
         font-size: $font-size-default * $font-size-smaller;
         footnote-style-position: inside; // a prince-only property
-        text-indent: -($paragraph-indent);
-        margin-left: $paragraph-indent;
 
         p {
             margin-bottom: 0;
             text-indent: 0;
         }
-    }
-
-    // Avoid page-footnotes created by footnotes.js
-    // from inheriting blockquote indentation by
-    // reiterating properties that blockquote might override.
-    blockquote .page-footnote {
-        text-indent: -($paragraph-indent);
-        margin-left: $paragraph-indent;
     }
 
     // Specific cases for different categories of footnote
@@ -130,13 +119,6 @@ $print-notes: true !default;
         
         &::footnote-call {
             content: counter(manual-footnote, asterisks);
-            font-size: $font-size-default * 0.7;
-            vertical-align: super;
-            line-height: none;
-
-            // Shift down
-            top: $font-size-default / 4;
-            position: relative;
         }
 
         &::footnote-marker {

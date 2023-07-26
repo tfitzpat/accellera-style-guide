@@ -80,7 +80,8 @@ MathJax = {
     }
   },
   tex: {
-    packages: argv.packages.replace('*', PACKAGES).split(/\s*,\s*/)
+    packages: argv.packages.replace('*', PACKAGES).split(/\s*,\s*/),
+    tagIndent: '15cm'
   },
   'adaptors/liteDOM': {
     fontSize: argv.em
@@ -110,3 +111,12 @@ MathJax.startup.promise.then(() => {
     if (err) throw err
   })
 }).catch(err => console.log(err))
+
+// MathJax.startup.promise.then(() => {
+//   MathJax.tex2mmlPromise(argv._[0] || '', {
+//       display: !argv.inline,
+//       em: argv.em,
+//       ex: argv.ex,
+//       containerWidth: argv.width
+//   }).then(mml => console.log(mml));
+// }).catch(err => console.log(err));

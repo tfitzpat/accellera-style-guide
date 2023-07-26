@@ -1,0 +1,10 @@
+@for $i from 1 through 5 {
+  $add-space: $i * 1.5 * $paragraph-indent;
+  .indent-#{$i} {
+    margin-left: $add-space;
+  }
+}
+
+.no-space-below {
+  margin-bottom: 0;
+}

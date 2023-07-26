@@ -1,5 +1,27 @@
 // MATHS
 
 math[display="block"] {
-  margin-bottom: $line-height-default;
+  border: 2px solid red;
+
+  // margin-bottom: $line-height-default;
+  margin-left: 2 * $paragraph-indent;
+  
+  width: 100%;
+
+
+  // mtable {
+  //   display: block;
+
+  //   mlabeledtr {
+  //     display: flex;
+  //     flex-direction: row-reverse;
+  //     align-items: center;
+  //     justify-content: space-between;
+  //     width: 100%;
+
+  //     mtd {
+  //       display: block;
+  //     }
+  //   }
+  // }
 }
