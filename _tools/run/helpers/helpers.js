@@ -16,6 +16,8 @@ const childProcess = require('child_process') // creates child processes
 const JSZip = require('jszip') // epub-friendly zip utility
 const buildReferenceIndex = require('./reindex/build-reference-index.js')
 const buildSearchIndex = require('./reindex/build-search-index.js')
+const buildTOC = require('./reindex/build-toc-nav.js')
+const buildTocNav = require('./reindex/build-toc-nav.js')
 const options = require('./options.js').options
 
 // Output spawned-process data to console
@@ -1435,6 +1437,20 @@ async function refreshIndexes (argv) {
   }
 }
 
+// Build TOC
+async function outputTOC (argv) {
+  'use strict'
+
+  try {
+    await fs.emptyDir(process.cwd() + '/_site')
+    await jekyll(argv)
+
+    buildTocNav(argv.format)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 // Copy a book to create a new one
 function newBook (argv) {
   'use strict'
@@ -1490,6 +1506,7 @@ module.exports = {
   mathjaxEnabled,
   newBook,
   openOutputFile,
+  outputTOC,
   pathExists,
   processImages,
   refreshIndexes,
