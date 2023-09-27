@@ -58,6 +58,11 @@ screen-pdf:
   # (You can also set this per markdown file with notes: footnotes,
   # or per endnote by adding .move-to-footnote to it.)
   notes: footnotes
+  # Choose what to display as the title for the cover page in the
+  # PDF bookmarks. Default is locales.pdf.cover. Setting this to
+  # title will use the title from default.yml
+  cover:
+    bookmark: title
 
 # ----------------------------------------------------------
 # Web settings

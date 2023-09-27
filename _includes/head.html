@@ -37,7 +37,11 @@ separate HTML files are merged into one body element.
         {% if page.header-left %} data-header-left="{{ page.header-left }}"{% else %} data-header-left="{{ page.title }}"{% endif %}
         {% if page.header-right %} data-header-right="{{ page.header-right }}"{% else %} data-header-right="{{ page.title }}"{% endif %}
         data-page-info="{% unless site.data.settings.redact == true %}{{ title | truncate: 20 }}: {{ page.title | truncate: 20 }} • {{ page.url | split: "/" | last | split: "." | first | truncate: 20 }} • {% endunless %}{{ site.time | date: "%-d %b %Y, %H:%M" }}"
-        {% if site.data.settings.print-pdf.notes == "footnotes" or page.notes == "footnotes" %} data-page-footnotes{% endif %}
+        {% if site.data.settings.print-pdf.notes == "footnotes" %}
+            data-page-footnotes="book"
+        {% elsif page.notes == "footnotes" %}
+            data-page-footnotes="page"
+        {% endif %}
         data-title="{% if title %}{{ title }}{% else %}{{ page.title }}{% endif %}"
         data-creator="{% if creator %}{{ creator }}{% else %}{{ project.project-organisation }}{% endif %}"
         {% if is-translation %} data-translation="{{ language }}"{% endif %}>
@@ -73,7 +77,11 @@ separate HTML files are merged into one body element.
         {% if page.header-left %} data-header-left="{{ page.header-left }}"{% else %} data-header-left="{{ page.title }}"{% endif %}
         {% if page.header-right %} data-header-right="{{ page.header-right }}"{% else %} data-header-right="{{ page.title }}"{% endif %}
         data-page-info="{{ title | truncate: 20 }}: {{ page.title | truncate: 20 }} • {{ page.url | split: "/" | last | split: "." | first }} • {{ site.time | date: "%-d %b %Y, %H:%M" }}"
-        {% if site.data.settings.screen-pdf.notes == "footnotes" or page.notes == "footnotes" %} data-page-footnotes{% endif %}
+        {% if site.data.settings.screen-pdf.notes == "footnotes" %}
+            data-page-footnotes="book"
+        {% elsif page.notes == "footnotes" %}
+            data-page-footnotes="page"
+        {% endif %}
         data-title="{% if title %}{{ title }}{% else %}{{ page.title }}{% endif %}"
         data-creator="{% if creator %}{{ creator }}{% else %}{{ project.project-organisation }}{% endif %}"
         {% if is-translation %} data-translation="{{ language }}"{% endif %}>
