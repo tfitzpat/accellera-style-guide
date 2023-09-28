@@ -2,21 +2,17 @@ const puppeteer = require('puppeteer')
 const fs = require('fs')
 const fsPath = require('path')
 const fsPromises = require('fs/promises')
+const yaml = require('js-yaml')
 
-
-
-// The main process for generating an index of targets.
-async function buildTocNav (outputFormat) {
+// The main process for generating TOC YAML
+async function buildTocNav (outputFormat, headingLevels) {
   'use strict'
 
-  // Initialise an array that will store an index
-  // or 'database' of the book-index targets.
   const tocObj = {
     toc: []
   }
 
   // Get the store.
-  // TODO: READ THIS FROM FORMAT FILE LIST
   const searchStore = require(process.cwd() +
     '/_site/assets/js/search-engine.js').store
 
@@ -27,10 +23,6 @@ async function buildTocNav (outputFormat) {
   let count = 0
   for (i = 0; i < searchStore.length; i += 1) {
     const path = process.cwd() + '/_site/' + searchStore[i].url
-
-    // Get the filename from the path.
-    // const file = path.split('/').pop().split('.')[0]
-    // console.log('FILENAME', file)
 
     // User feedback
     console.log('Getting TOC items in ' + path)
@@ -53,15 +45,13 @@ async function buildTocNav (outputFormat) {
 
     // Note: we can only pass serialized data
     // back to the parent process.
-    let tocEntries = await page.evaluate(function () {
-      // For each page, we first want to get all of the relevant headings
-      const headingLevels = ['h1', 'h2']
+    const tocEntries = await page.evaluate(function (headingLevels) {
       const allHeadings = document.querySelectorAll(headingLevels.join(', '))
 
       const file = window.location.href.split('/').pop().split('.')[0]
 
       // Object for holding this page's info
-      const pageObj = {}
+      let pageObj = {}
       const pageList = []
 
       // Then we need to travel down the list of headings
@@ -69,45 +59,32 @@ async function buildTocNav (outputFormat) {
         const heading = allHeadings[i]
         const id = heading.id
         const label = heading.innerHTML
-
-        const dataObj = {
-          file: file,
-          id: id,
-          label: label
-        }
-
         const thisLevel = parseInt(heading.nodeName[1])
 
-        if (allHeadings[i + 1]) {
-          const nextLevel = parseInt(allHeadings[i + 1].nodeName[1])
-          if (thisLevel + 1 === nextLevel) {
-            dataObj.children = []
-          }
+        const dataObj = {
+          file: `${file}`,
+          id: `${id}`,
+          label: `${label}`,
+          level: thisLevel
         }
 
-        if (allHeadings[i - 1]) {
-          const prevLevel = parseInt(allHeadings[i - 1].nodeName[1])
-        }
         pageList.push(dataObj)
       }
 
-      // Now we have a list of objects, some of which have a children: [] field
+      const outputList = pageList.reduce((arr, { level, ...rest }) => {
+        const value = { ...rest, children: [] }
+        arr[level] = value.children
+        arr[level - 1].push(value)
+        return arr
+      }, [[]]).shift()
 
-      pageList.reduce((pageObj, thisEntry, thisIndex) => {
-        if ()
-      }, {})
+      pageObj = { ...pageObj, ...outputList[0] }
 
-      pageObj.toc = pageList
+      return pageObj
+    }, headingLevels)
 
-      return JSON.stringify(pageObj)
-    })
-
-    tocEntries = JSON.parse(tocEntries)
-    console.log(tocEntries)
-
-    // // Add the entries to the master index,
-    // // if there are any.
-    if (tocEntries.toc.length > 0) {
+    // Add the entries to the master index, if there are any.
+    if (Object.keys(tocEntries).length !== 0) {
       tocObj.toc.push(tocEntries)
     }
 
@@ -123,8 +100,6 @@ async function buildTocNav (outputFormat) {
     browser.close()
   }
 
-  console.log(tocObj)
-
   // Create empty output file to write to, if it doesn't exist
   const outputFilePath = fsPath.normalize(process.cwd() +
       '/_output/toc.yml')
@@ -133,12 +108,21 @@ async function buildTocNav (outputFormat) {
     await fsPromises.writeFile(outputFilePath, '')
   }
 
+  const yamlOutput = yaml.dump(tocObj, {
+    lineWidth: -1,
+    forceQuotes: true,
+    quotingType: '"'
+  }).replace(/\s*children: \[\]\n/g, '\n')
+
   // Write to the output file
-  fs.writeFile('/_output/toc.yml',
-    'yaml output',
-    function () {
-      console.log('Writing ' + outputFilePath)
-      console.log('Done.')
+  fs.writeFile(fsPath.normalize(process.cwd() + '/_output/toc.yml'),
+    yamlOutput,
+    (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('File written successfully')
+      }
     }
   )
 }

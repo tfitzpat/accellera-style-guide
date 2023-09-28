@@ -16,7 +16,6 @@ const childProcess = require('child_process') // creates child processes
 const JSZip = require('jszip') // epub-friendly zip utility
 const buildReferenceIndex = require('./reindex/build-reference-index.js')
 const buildSearchIndex = require('./reindex/build-search-index.js')
-const buildTOC = require('./reindex/build-toc-nav.js')
 const buildTocNav = require('./reindex/build-toc-nav.js')
 const options = require('./options.js').options
 
@@ -1445,7 +1444,8 @@ async function outputTOC (argv) {
     await fs.emptyDir(process.cwd() + '/_site')
     await jekyll(argv)
 
-    buildTocNav(argv.format)
+    const headingLevels = projectSettings()[argv.format].toc['heading-levels']
+    buildTocNav(argv.format, headingLevels)
   } catch (error) {
     console.log(error)
   }
