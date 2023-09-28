@@ -1,9 +1,6 @@
 // For more on yargs command modules like this one, see
 // https://github.com/yargs/yargs/blob/main/docs/advanced.md#providing-a-command-module
 
-// This file is called 'reindex.js' to avoid confusion
-// with a conventional entry-point 'index.js' file.
-
 // Modules
 
 const helpers = require('../helpers/helpers')

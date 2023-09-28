@@ -5,6 +5,7 @@ $print-smallcaps: true !default;
     .smallcaps {
         letter-spacing: 0.025em;
         font-variant: prince-opentype(smcp, onum);
+        font-variant: small-caps;
         font-style: inherit;
         font-weight: inherit;
         line-height: 100%;
@@ -20,6 +21,7 @@ $print-smallcaps: true !default;
     .allsmallcaps { 
         letter-spacing: 0.025em;
         font-variant: prince-opentype(c2sc, smcp, onum);
+        font-variant: all-small-caps;
         font-style: inherit;
         font-weight: inherit;
         line-height: 100%;

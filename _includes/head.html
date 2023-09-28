@@ -37,7 +37,11 @@ separate HTML files are merged into one body element.
         {% if page.header-left %} data-header-left="{{ page.header-left }}"{% else %} data-header-left="{{ page.title }}"{% endif %}
         {% if page.header-right %} data-header-right="{{ page.header-right }}"{% else %} data-header-right="{{ page.title }}"{% endif %}
         data-page-info="{% unless site.data.settings.redact == true %}{{ title | truncate: 20 }}: {{ page.title | truncate: 20 }} • {{ page.url | split: "/" | last | split: "." | first | truncate: 20 }} • {% endunless %}{{ site.time | date: "%-d %b %Y, %H:%M" }}"
-        {% if site.data.settings.print-pdf.notes == "footnotes" or page.notes == "footnotes" %} data-page-footnotes{% endif %}
+        {% if site.data.settings.print-pdf.notes == "footnotes" %}
+            data-page-footnotes="book"
+        {% elsif page.notes == "footnotes" %}
+            data-page-footnotes="page"
+        {% endif %}
         data-title="{% if title %}{{ title }}{% else %}{{ page.title }}{% endif %}"
         data-creator="{% if creator %}{{ creator }}{% else %}{{ project.project-organisation }}{% endif %}"
         {% if is-translation %} data-translation="{{ language }}"{% endif %}>
@@ -73,7 +77,11 @@ separate HTML files are merged into one body element.
         {% if page.header-left %} data-header-left="{{ page.header-left }}"{% else %} data-header-left="{{ page.title }}"{% endif %}
         {% if page.header-right %} data-header-right="{{ page.header-right }}"{% else %} data-header-right="{{ page.title }}"{% endif %}
         data-page-info="{{ title | truncate: 20 }}: {{ page.title | truncate: 20 }} • {{ page.url | split: "/" | last | split: "." | first }} • {{ site.time | date: "%-d %b %Y, %H:%M" }}"
-        {% if site.data.settings.screen-pdf.notes == "footnotes" or page.notes == "footnotes" %} data-page-footnotes{% endif %}
+        {% if site.data.settings.screen-pdf.notes == "footnotes" %}
+            data-page-footnotes="book"
+        {% elsif page.notes == "footnotes" %}
+            data-page-footnotes="page"
+        {% endif %}
         data-title="{% if title %}{{ title }}{% else %}{{ page.title }}{% endif %}"
         data-creator="{% if creator %}{{ creator }}{% else %}{{ project.project-organisation }}{% endif %}"
         {% if is-translation %} data-translation="{{ language }}"{% endif %}>
@@ -209,9 +217,14 @@ separate HTML files are merged into one body element.
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    {% comment %}Set canonical URL{% endcomment %}
+    {% comment %}
+    Self referencing canonicals help tell search engines
+    a specific URL is the master copy of a page avoiding problems
+    caused by ‘duplicate’ content appearing on multiple URLs.
+    https://developers.google.com/search/docs/advanced/crawling/consolidate-duplicate-urls
+    {% endcomment %}
     {% if site.canonical-url and site.canonical-url != "" %}
-        <link rel="canonical" href="{{ site.canonical-url }}">
+        <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.canonical-url }}">
     {% endif %}
 
     {% comment %}Add favicon{% endcomment %}

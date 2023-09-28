@@ -1,10 +1,20 @@
-// PAGE BREAKS
+// // PAGE BREAKS
 
-.wrapper { 
-  prince-page-group: auto;
-  margin-top: 0;
+// .keep-with-next {
+//   page-break-after: avoid !important;
+// }
 
-  &:not(.annex) {
+.break-on-items {
+  li:first-of-type {
+    page-break-after: auto;
+  }
+  
+  li:last-of-type {
     page-break-before: auto;
   }
+
+  li {
+    page-break-inside: avoid;
+  }
 }
+
