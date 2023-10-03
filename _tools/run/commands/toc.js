@@ -8,10 +8,11 @@ const helpers = require('../helpers/helpers')
 // Exports
 
 exports.command = 'toc'
-exports.desc = 'Build the TOC for this book'
+exports.desc = 'Build TOC'
 exports.handler = function (argv) {
   'use strict'
 
-  console.log('Building TOC')
-  helpers.toc(argv)
+  console.log('Building TOC for ' + argv.format + '\n' +
+    'Remember to build TOC separately for each output format.')
+  helpers.outputTOC(argv)
 }

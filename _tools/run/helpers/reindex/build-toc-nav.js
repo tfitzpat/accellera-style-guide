@@ -2,25 +2,17 @@ const puppeteer = require('puppeteer')
 const fs = require('fs')
 const fsPath = require('path')
 const fsPromises = require('fs/promises')
+const yaml = require('js-yaml')
 
-
-
-// The main process for generating the TOC.
-async function buildTOC (outputFormat, bookDirectory) {
+// The main process for generating TOC YAML
+async function buildTocNav (outputFormat, headingLevels) {
   'use strict'
 
-  // Initialise an object that will store the
-  // TOC in JSON format
   const tocObj = {
     toc: []
   }
 
-  // TODO: REFINE THIS FILE LIST
-  // There's a filelist method in helpers that'll be enought for a prototype
-
-  // Get the store. We do this here, not at the top,
-  // so that it'll get required after it's freshly built
-  // by Jekyll. I.e. not the _site from the last build.
+  // Get the store.
   const searchStore = require(process.cwd() +
     '/_site/assets/js/search-engine.js').store
 
@@ -32,8 +24,8 @@ async function buildTOC (outputFormat, bookDirectory) {
   for (i = 0; i < searchStore.length; i += 1) {
     const path = process.cwd() + '/_site/' + searchStore[i].url
 
-    // Get the filename from the path.
-    const filename = path.split('/').pop().replace('.html', '')
+    // User feedback
+    console.log('Getting TOC items in ' + path)
 
     // Open a new tab.
     const page = await browser.newPage()
@@ -53,49 +45,48 @@ async function buildTOC (outputFormat, bookDirectory) {
 
     // Note: we can only pass serialized data
     // back to the parent process.
-    let tocEntries = await page.evaluate(function () {
-      //
-      function nest (data, parentLevel = 1) {
-        return data.reduce((arr, element) => {
-          const obj = Object.assign({}, element)
-          if (parentLevel + 1 === element.level) {
-            const children = nest(data, element.level)
-            if (children.length) obj.children = children
-          }
-          arr.push(obj)
-          return arr
-        }, [])
+    const tocEntries = await page.evaluate(function (headingLevels) {
+      const allHeadings = document.querySelectorAll(headingLevels.join(', '))
+
+      const file = window.location.href.split('/').pop().split('.')[0]
+
+      // Object for holding this page's info
+      let pageObj = {}
+      const pageList = []
+
+      // Then we need to travel down the list of headings
+      for (let i = 0; i < allHeadings.length; i++) {
+        const heading = allHeadings[i]
+        const id = heading.id
+        const label = heading.innerHTML
+        const thisLevel = parseInt(heading.nodeName[1])
+
+        const dataObj = {
+          file: `${file}`,
+          id: `${id}`,
+          label: `${label}`,
+          level: thisLevel
+        }
+
+        pageList.push(dataObj)
       }
 
-      // TODO: Call this in from args or maybe settings?
-      const headings = 'h1, h2'
-      const headingLevels = headings.replace(/\s/g, '').split(',').sort()
+      const outputList = pageList.reduce((arr, { level, ...rest }) => {
+        const value = { ...rest, children: [] }
+        arr[level] = value.children
+        arr[level - 1].push(value)
+        return arr
+      }, [[]]).shift()
 
-      const headingElements = Array.from(document.querySelectorAll(headings))
+      pageObj = { ...pageObj, ...outputList[0] }
 
-      // map headingElements to something easier to digest
-      const objectArray = headingElements.map(function (element) {
-        return {
-          id: element.id,
-          label: element.innerText,
-          level: parseInt(element.nodeName[1])
-        }
-      })
+      return pageObj
+    }, headingLevels)
 
-      // console.log(JSON.stringify(objectArray))
-
-      // then we process this using our fancy function
-      const newArray = nest(objectArray, 1)
-      // console.log(JSON.stringify(newArray))
-      return JSON.stringify(newArray)
-    })
-
-    tocEntries = JSON.parse(tocEntries)
-    tocEntries.forEach(function (entry) {
-      entry.file = filename
-    })
-
-    tocObj.toc.push(tocEntries)
+    // Add the entries to the master index, if there are any.
+    if (Object.keys(tocEntries).length !== 0) {
+      tocObj.toc.push(tocEntries)
+    }
 
     // Increment counter.
     count += 1
@@ -109,25 +100,32 @@ async function buildTOC (outputFormat, bookDirectory) {
     browser.close()
   }
 
-  console.log(JSON.stringify(tocObj))
-
-  // Create empty TOC file to write to, if it doesn't exist
-  const TOCFilePath = fsPath.normalize(process.cwd() +
-      '/output/' + bookDirectory + '/book-toc-' + outputFormat + '.yml')
-  if (!fs.existsSync(TOCFilePath)) {
-    console.log('Creating ' + TOCFilePath)
-    await fsPromises.writeFile(TOCFilePath, '')
+  // Create empty output file to write to, if it doesn't exist
+  const outputFilePath = fsPath.normalize(process.cwd() +
+      '/_output/toc.yml')
+  if (!fs.existsSync(outputFilePath)) {
+    console.log('Creating ' + outputFilePath)
+    await fsPromises.writeFile(outputFilePath, '')
   }
 
-  // Write the file.
-  fs.writeFile('/output/' + bookDirectory + '/book-toc-' + outputFormat + '.yml',
-    JSON.stringify(tocObj),
-    function () {
-      console.log('Writing ' + TOCFilePath)
-      console.log('Done.')
+  const yamlOutput = yaml.dump(tocObj, {
+    lineWidth: -1,
+    forceQuotes: true,
+    quotingType: '"'
+  }).replace(/\s*children: \[\]\n/g, '\n')
+
+  // Write to the output file
+  fs.writeFile(fsPath.normalize(process.cwd() + '/_output/toc.yml'),
+    yamlOutput,
+    (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('File written successfully')
+      }
     }
   )
 }
 
 // Run the rendering process.
-module.exports = buildTOC
+module.exports = buildTocNav
