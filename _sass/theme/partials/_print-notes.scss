@@ -1,0 +1,154 @@
+// Footnotes
+
+// kramdown gives footnote references the class .footnote
+// and the div containing the footnotes .footnotes.
+// In books, we call these endnotes. To avoid confusion,
+// here we will call true footnotes 'page-footnotes'.
+// Styling for sup and sub is in base typography
+
+$print-notes: true !default;
+@if $print-notes {
+
+    // Footnote reference in text, and see
+    // *::footnote-call below
+    .footnote {
+        line-height: inherit;
+        // Ensure footnote refs in headings are small
+        font-size: $font-size-default * $font-size-smaller;
+    }
+
+    // Footnotes section
+    .footnotes {
+        margin: $line-height-default 0 0 0;
+        font-size: $font-size-default * $font-size-smaller;
+        line-height: $line-height-default * $font-size-smaller;
+        p {
+            text-indent: 0;
+        }
+    }
+    
+    // Hide the link back to the footnote reference from the footnote text.
+    .reversefootnote {
+        display: none;
+    }
+
+    // Sidenotes
+    .sidenote {
+        @include sidenote();
+    }
+    
+    // Sidenotes that appear at the bottom of the page, aka footer notes.
+    .bottom {
+        float: bottom;
+        max-width: 100%;
+        margin: ($line-height-default * 0.75) 0 0 0;
+    }
+
+    // The page-footnotes area
+    @page {
+        @footnote {
+            border-top: $rule-thickness solid $color-text-main;
+            margin-top: $line-height-default / 2;
+            padding-top: $line-height-default / 2;
+            font-size: $font-size-default * $font-size-smaller;
+            border-clip: 0.25 * $page-width;
+        }
+    }
+
+    // True footnotes (we call them page-footnotes for clarity)
+    // For styling see https://www.princexml.com/doc-prince/#footnote-calls
+
+    // The page-footnote references in body text
+    // Note that other <sup> styling is defined in
+    // _print-base-typography.scss
+    *::footnote-call {
+        content: counter(footnote);
+        font-size: $font-size-default * 0.7;
+        vertical-align: super;
+        line-height: none;
+        top: 0 !important;
+    }
+
+    // The numbers in front of footnote text
+    *::footnote-marker {
+        float: left;
+        font-size: $font-size-default * 0.7;
+        vertical-align: super;
+        line-height: none;
+    }
+
+    .page-footnote {
+        float: footnote page;
+        font-size: $font-size-default * $font-size-smaller;
+        footnote-style-position: inside; // a prince-only property
+
+        p {
+            margin-bottom: 0;
+            text-indent: 0;
+        }
+    }
+
+    // Specific cases for different categories of footnote
+
+    // In the case where it's specified in settings to use footnotes
+    // in the entire book, start the footnote counter at the beginning
+    // of the book and don't reset it
+    body {
+        counter-reset: book-footnote;
+    }
+
+    // In the case where footnotes are specified per markdown file,
+    // reset footnote counter per page
+    .wrapper[data-page-footnotes="page"] {
+        @page {
+            counter-reset: page-footnote;
+        }    
+    }
+
+    // In the case where manual footnotes are specified individually,
+    // reset footnote counter once per page to avoid unnecessarily
+    // long strings of asterisks
+    @page {
+        counter-reset: manual-footnote;
+    }
+
+    // Specify the appearance of on-page footnotes
+    // Default case is manual footnotes, counted with asterisks
+    .page-footnote {
+        counter-increment: manual-footnote;
+        
+        &::footnote-call {
+            content: counter(manual-footnote, asterisks);
+        }
+
+        &::footnote-marker {
+            content: counter(manual-footnote, asterisks);
+        }
+    }
+
+    // Use the other counters for the other cases,
+    // with default (decimal) counters
+    .page-footnote.page-footnote-page {
+        counter-increment: page-footnote;
+
+        &::footnote-call {
+            content: counter(page-footnote);
+        }
+        
+        &::footnote-marker {
+            content: counter(page-footnote);
+        }
+    }
+
+    .page-footnote.page-footnote-book {
+        counter-increment: book-footnote;
+
+        &::footnote-call {
+            content: counter(book-footnote);
+        }
+        
+        &::footnote-marker {
+            content: counter(book-footnote);
+        }
+    }
+}
