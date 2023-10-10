@@ -29,7 +29,7 @@ You can output print PDFs for sending to high-end printers, or screen PDFs, for 
 We often have to create print PDFs for Ingram Spark, Lightning Source and similar print-on-demand providers. Their needs are unusual and specific. In most cases, you can get a Lightning Source-compatible PDF by turning on the Lightning Source setting in your book's `print-pdf.scss` file:
 
 ``` scss
-$print-page-setup-lightning-source: true;
+$pdf-page-setup-lightning-source: true;
 ```
 
 This is set off (`false`) by default. This setting:
@@ -53,6 +53,16 @@ You will doubtless want to refine your print layout by editing your markdown and
 For instance, to save widows and orphans, you can tighten letter-spacing by adding `{:.tighten-5}` and `{:.loosen-5}` tags to the lines after paragraphs. The number in the tag refers to how many thousands of an em you're affecting letter-spacing by. For instance, `{:.tighten-10}` will tighten letter-spacing by 10/1000 em. In good typography, you should avoid tightening or loosening by more than 10/1000 wherever possible.
 
 And to add manual hyphens to improve spacing, use discretionary hyphens (aka soft hyphens) by adding the HTML entity `&shy;` where you want the soft hyphen.
+
+### Baseline-grid alignment
+
+Most elements will be automatically aligned to the baseline grid, which is the book's default line height. (This is done by `assets/js/baseline-grid.js`.)
+
+Our baseline grid works a little differently to what you might have seen in InDesign. Here, if an element's height is not a multiple of the baseline grid, we add space (as `margin-bottom`) to the bottom of the element to make its height a multiple of the default line height. This means the *next* element will begin on the baseline grid.
+
+If an element is not being automatically adjusted in this way (e.g. it's a `div` with a custom class that `baseline-grid.js` doesn't know about), you can trigger alignment by giving it the class `align-to-baseline`.
+
+If an element *is* being aligned but you don't want it to be, you can give it the class `release-from-baseline-grid` to turn off its alignment.
 
 ### Faster print refinement
 

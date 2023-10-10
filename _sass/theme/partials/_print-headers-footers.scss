@@ -18,9 +18,9 @@
 
 @page contents-page {
   @bottom-center {
-    @include footer-style();
-    @include footer-position();
     content: $verso-bottom;
+    font-family: $font-text-secondary;
+    font-size: $footer-font-size;
   }
 }
 
@@ -42,13 +42,13 @@
 @page annex {
   @top-center {
     content: $verso-top;
-    @include header-style();
-    @include header-position();
+    font-family: $font-text-secondary;
+    font-size: $footer-font-size;
   }
   
   @bottom-center {
     content: $verso-bottom;
-    @include footer-style();
-    @include footer-position();
+    font-family: $font-text-secondary;
+    font-size: $footer-font-size;
   }
 }
