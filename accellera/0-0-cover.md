@@ -3,4 +3,4 @@ title: "Cover"
 style: cover
 ---
 
-{% include cover %}
+Accellera Cover Page

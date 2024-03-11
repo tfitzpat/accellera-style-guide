@@ -5,7 +5,7 @@ style: frontmatter
 
 # Abstract
 
-The Accelera Style Guide defines the recommended structure, formatting and style to develop and publish Accellera (Draft) Standards, User Guides and other standard-related documentation. This style guide serves as a reference for Accellera working groups in the technical editing process when drafting a standard-related document. 
+The Accelera Style Guide defines the recommended structure, formatting and style to develop and publish Accellera (Draft) Standards, User Guides and other standard-related documentation. This style guide serves as a reference for Accellera working groups in the technical editing process when drafting a standard-related document.
 
 The Accellera Style Guide is compatible with the IEEE Standards Style Manual, such that Accellera standards can be transferred to the IEEE Standardization Association, without the need to make fundamental changes to a document.
 Note that the Accellera Style Guide defines additional guidelines which are not explicitly documented in the IEEE Standards Style Manual, to ease the creation of Accellera and IEEE standard compatible documents.
