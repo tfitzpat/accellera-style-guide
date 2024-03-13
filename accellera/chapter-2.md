@@ -5,7 +5,7 @@ style: chapter
 
 # 2. Document authoring and formatting
 
-This chapter explains the document authoring and formatting.  
+This chapter explains the document authoring and formatting.
 
 ## 2.1 Use of Markdown and Kramdown
 
@@ -35,7 +35,7 @@ This is a the first paragraph.
 This is the second
 paragraph.
 
-Explicit line breaks in a paragraph can be made by using two spaces or two backslashes at the end of a line. 
+Explicit line breaks in a paragraph can be made by using two spaces or two backslashes at the end of a line.
 
 Note---It is recommended to use the two backslashes for a line break as some editors are not showing spaces. For the technical editor the use of two backslashes are clearly recognizable.
 
@@ -89,7 +89,7 @@ When setting the option `auto_ids` to `false`, then the automatic header ID gene
 
 #### Level-4 header without an ID
 
-### 2.1.3 Italics 
+### 2.1.3 Italics
 
 Use a star character (\*\) before and after the italicised words.
 
@@ -174,47 +174,133 @@ This sentence is part of the same line.
 
 ### 2.1.6 Tables
 
-Tables can be created by using pipe characters (\|), dash characters (-) and the equal sign character (=).
+#### 2.1.6.1 Simple table using Markdown format
 
-A table row starts with a pipe character (\|) followed by a space and the text of the column. Multiple columns are added by repeating this pattern. There is no need to vertically align the text and columns, however, for readability this is recommended.
+Simple tables can be created by using the Markdown format: pipe characters (\|), dash characters (-) and the equal sign character (=).
 
-If a pipe characters is immediately followed by a dash (-), a horizontal separator line is created to mark the end of the table header. If the pipe character is followed by an equal sign (=), the tables rows below it are part of the table footer.
+A table row starts with a pipe character (\|) followed by a space and the text of the column. Multiple columns are added by repeating this pattern. There is no need to vertically align the text and columns, however, for readability this is recommended. If a pipe characters is immediately followed by a dash (-), a horizontal separator line is created to mark the end of the table header. If the pipe character is followed by an equal sign (=), the tables rows below it are part of the table footer.
+
+To specify the table reference, caption and style, the table will be wrapped in the same container as used for figures. The table implementation is embedded in this container using the `markdown` property, see the example below.
 
 *Example:*
 
-```
-| colum 1       | column 2 |
-|---------------|----------|
-| A simple      | table    |
-| with multiple | lines    |
-```
-
-Renders into:
-
-| colum 1       | column 2 |
-|---------------|----------|
-| A simple      | table    |
-| with multiple | lines    |
-
-### 2.1.7 Code blocks
-
-Three consecutive tilde characters are used to mark the start and end of a code block, as shown below:
-
 <pre><code>
-~~~
-struct S {
-    int a;
-}
-~~~
+{&#x25; include figure
+   markdown="
+
+| column 1      | column 2 |
+|---------------|----------|
+| A simple      | table    |
+| with multiple | lines    |
+
+"
+   reference="Table 1"
+   caption="This is the table caption"
+   alt-text=""
+   class="fixed allow-break"
+   caption-position="top"
+&#x25;}
 </code></pre>
 
 Renders into:
 
-~~~
+{% include figure
+   markdown="
+
+| column 1      | column 2 |
+|---------------|----------|
+| A simple      | table    |
+| with multiple | lines    |
+
+"
+   reference="Table 1"
+   caption="This is the table caption"
+   alt-text=""
+   class="fixed allow-break"
+   caption-position="top"
+%}
+
+#### 2.1.6.2 Complex tables using HTML format
+
+More complex table with merged cells or columns can be created using HTML syntax within the Markdown file. Similar as with tables in Markdown format, HTML tables are wrapped in a container. The table implementation in HTML format is then embedded in this container using the `html` property, see the example below. 
+
+*Example:*
+
+<pre><code>
+{&#x25; include figure
+   html="
+&lt;table>
+  &lt;tr>
+     &lt;th>column 1&lt;/th>
+     &lt;th>column 2&lt;/th>
+  &lt;/tr>
+  &lt;tr>
+     &lt;td>Row 1&lt;/td>
+     &lt;td rowspan='2'>Merged rows&lt;/td>
+  &lt;/tr>
+  &lt;tr>
+     &lt;td>Row 2&lt;/td>
+  &lt;/tr>
+  &lt;tr>
+     &lt;td colspan='2'>Merged columns&lt;/td>
+   &lt;/tr>
+&lt;/table>"
+   reference="Table 2"
+   caption="This is the a more complex table with merged rows and columns"
+   alt-text=""
+   class="fixed allow-break"
+   caption-position="top"
+&#x25;}
+</code></pre>
+
+Renders into:
+
+{% include figure
+   html="
+<table>
+  <tr>
+     <th>column 1</th>
+     <th>column 2</th>
+  </tr>
+  <tr>
+     <td>Row 1</td>
+     <td rowspan='2'>Merged rows</td>
+  </tr>
+  <tr>
+     <td>Row 2</td>
+  </tr>
+  <tr>
+     <td colspan='2'>Merged columns</td>
+   </tr>
+</table>"
+   reference="Table 2"
+   caption="This is the a more complex table with merged cells and columns"
+   alt-text=""
+   class="fixed allow-break"
+   caption-position="top"
+%}
+
+**Important**: In case quotes are used in the HTML table, for example to specify styles or attributes, these should not conflict with the opening and closing double quotes for the `html` block. Therefore single quotes should be used within such embedding.
+
+### 2.1.7 Code blocks
+
+Three consecutive backtick characters are used to mark the start and end of a code block, as shown below:
+
+<pre><code>
+```
 struct S {
     int a;
 }
-~~~
+```
+</code></pre>
+
+Renders into:
+
+```
+struct S {
+    int a;
+}
+```
 
 Alternatively, lines indented with either four spaces or one tab are also interpreted as an inline code block.
 
@@ -268,7 +354,7 @@ Alternatively, the link and URL can be decoupled by using a reference name, such
 
 ```
 A [link][accellera] to the Accellera homepage.
-
+...
 [accellera]: https://accellera.org
 ```
 
@@ -276,9 +362,23 @@ A [link][accellera] to the Accellera homepage.
 
 A link to an image uses an exclamation mark before the square brackets. The link text will become the alternative text of the image and the link URL specifies the image source:
 
-```
-An image: ![gras](img/image.jpg)
-```
+<pre><code>
+{&#x25; include figure
+   reference="Figure 1"
+   images="accellera_logo.svg"
+   caption="Accellera logo as SVG"
+   alt-text=""
+   class="fixed"
+&#x25;}
+</code></pre>
+
+{% include figure
+   reference="Figure 2"
+   images="accellera_logo.svg"
+   caption="Accellera logo as SVG"
+   alt-text=""
+   class="fixed"
+%}
 
 ### 2.1.11 HTML attributes
 
