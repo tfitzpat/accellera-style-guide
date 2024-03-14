@@ -28,4 +28,4 @@ The documentation flow uses an Accellera-owned GitHub private project to store d
 
 Each documentation repository will contain the required installation scripts and automation to create, author and render documents. Technical editors should have access to a Linux machine with administrator (root) access to be able to install the required tool packages and scripts. It is recommended to create a Linux virtual machine (e.g., VirtualBox) for this activity.
 
-Please contact the Technical Committee chair in case of questions on the Accellera documentation flow, the requires installation procedure or use of the templates.
+Please contact the Technical Committee chair in case of questions on the Accellera documentation flow, the requires installation procedure or use of the standard document templates.
