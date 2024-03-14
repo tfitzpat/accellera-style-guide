@@ -74,20 +74,6 @@ Kramdown supports setting the header ID as shown below:
 ## This is a second-level heading with trailing hashes ##  {#my-second-id}
 ```
 
-When setting the option `auto_ids` to `false`, then the automatic header ID generation is turned off, see example below:
-
-*Example*
-
-```
-{::options auto_ids="false" /}
-
-#### Level-4 header without an ID
-```
-
-{::options auto_ids="false" /}
-
-#### Level-4 header without an ID
-
 ### 3.1.3 Italics
 
 Use a star character (\*\) before and after the italicised words.
@@ -430,3 +416,4 @@ This is <span style="color: red">written in red</span>.
 Renders into:
 
 This is <span style="color: red">written in red</span>.
+-->
