@@ -34,7 +34,7 @@ The table below gives an overview of the default strcture of the repository.
 | `standard/`    | Subdirectoryfor the standard document        | Used by technical editor(s)        |
 
 "
-   reference="Table 3-1"
+   reference="Table 2-1"
    caption="Repository structure"
    alt-text=""
    class="fixed allow-break"
@@ -63,7 +63,7 @@ Table X below gives an overview of the default
 | `standard/toc.ncx`                 | Placeholder to generate navigation file for old ereaders (do not edit or remove) |
 
 "
-   reference="Table 3-2"
+   reference="Table 2-2"
    caption="Standard document subdirectory structure"
    alt-text=""
    class="fixed allow-break"
