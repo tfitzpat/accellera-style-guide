@@ -13,3 +13,5 @@ Note that the Accellera Style Guide defines additional guidelines which are not 
 The Accelera Style Guide is owned and maintained by the Accellera Technical Committee. Working groups are encouraged to report findings and issues when using this style guide to the Accellera Technical Committee chair, such that improvements and learnings can be incorporated in this guide.
 
 The Accellera Technical Committee also offers a documentation flow which is provided by [Electric Book Works](https://electricbookworks.com/). This documentation flow uses the Markdown format for authoring, and offers documentation generation to render the standard document in the required style.
+
+**Keywords**: html, kramdown, markdown, style manual.
