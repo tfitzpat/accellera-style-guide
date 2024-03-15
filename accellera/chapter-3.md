@@ -3,6 +3,7 @@ style: chapter
 ---
 
 # 3. Document authoring and formatting
+{:.page-break-before}
 
 This chapter explains the document authoring and formatting.
 
@@ -350,19 +351,19 @@ A link to an image uses an exclamation mark before the square brackets. The link
 <pre><code>
 {&#x25; include figure
    reference="Figure 1-1"
-   images="accellera_logo.svg"
-   caption="Accellera logo as SVG"
+   images="accellera_logo.png"
+   caption="Accellera logo as PNG"
    alt-text=""
-   class="fixed"
+   class="fixed height-5"
 &#x25;}
 </code></pre>
 
 {% include figure
    reference="Figure 1-1"
-   images="accellera_logo.svg"
-   caption="Accellera logo as SVG"
+   images="accellera_logo.png"
+   caption="Accellera logo as PNG"
    alt-text=""
-   class="fixed"
+   class="fixed height-5"
 %}
 
 ### 3.1.11 HTML entities and Unicode characters

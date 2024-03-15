@@ -4,6 +4,7 @@ creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
 subject: "" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
 description: "The Accelera Style Guide defines the recommended structure, formatting and style to develop Accellera Standards and Drafts." # E.g. the blurb
+keywords: "html, kramdown, markdown, style manual"
 publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand name
 publisher-url: ""
 date: "2024-01-03" # YYYY-MM-DD e.g. publication date
@@ -32,8 +33,8 @@ products: # Metadata for each product for this title (only use values that overr
     identifier: "" # e.g. ISBN or UUID
     image: "cover.jpg"
     files:
-      - "0-0-cover"
-      - "0-1-abstract"
+      - "0-0-titlepage"
+      - "0-1-introduction"
       - "0-2-contents"
       - "chapter-1"
       - "chapter-2"
@@ -41,12 +42,12 @@ products: # Metadata for each product for this title (only use values that overr
       - "chapter-4"
     toc: # For each menu item, include at least label and file. Optionally add id (for deep linking) and children.
       - file: "chapter-1"
-        id: "1-introduction"
-        label: "1. Introduction"
+        id: "1-overview"
+        label: "1. Overview"
         children:
           - file: "chapter-1"
-            id: "11-overview"
-            label: "1.1 Overview"
+            id: "11-purpose"
+            label: "1.1 Purpose"
           - file: "chapter-1"
             id: "12-helpful-resources"
             label: "1.2 Helpful resources"

@@ -3,6 +3,7 @@ style: chapter
 ---
 
 # 4. Document structure and style 
+{:.page-break-before}
 
 This chapter explains the document structure and style to be compliant with the IEEE SA Standards Style Manual.
 

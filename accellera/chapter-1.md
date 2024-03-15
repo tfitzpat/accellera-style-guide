@@ -2,9 +2,10 @@
 style: chapter
 ---
 
-# 1. Introduction
+# 1. Overview
+{:.page-break-before}
 
-## 1.1 Overview
+## 1.1 Purpose
 
 This style guide defines the recommended structure, formatting and style to develop and deploy Accellera (Draft) Standards, User Guides and other standard-related documentation.
 

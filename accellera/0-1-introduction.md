@@ -1,9 +1,9 @@
 ---
-title: Abstract
 style: frontmatter
 ---
+{% include metadata %}
 
-# Abstract
+# Introduction
 
 The Accelera Style Guide defines the recommended structure, formatting and style to develop and publish Accellera (Draft) Standards, User Guides and other standard-related documentation. This style guide serves as a reference for Accellera working groups in the technical editing process when drafting a standard-related document.
 
@@ -14,4 +14,4 @@ The Accelera Style Guide is owned and maintained by the Accellera Technical Comm
 
 The Accellera Technical Committee also offers a documentation flow which is provided by [Electric Book Works](https://electricbookworks.com/). This documentation flow uses the Markdown format for authoring, and offers documentation generation to render the standard document in the required style.
 
-**Keywords**: html, kramdown, markdown, style manual.
+**Keywords**: {{ keywords }}

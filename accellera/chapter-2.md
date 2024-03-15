@@ -3,6 +3,7 @@ style: chapter
 ---
 
 # 2. Project setup
+{:.page-break-before}
 
 This chapter explains the projet setup and use of the GitHub repository for technical documentation.
 
