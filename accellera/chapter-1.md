@@ -1,9 +1,14 @@
 ---
-style: chapter
+title: "1. Overview"
+style: chapter document-title-page
 ---
 
+{% include metadata %}
+
+{{ title }}
+{:.title}
+
 # 1. Overview
-{:.page-break-before}
 
 ## 1.1 Purpose
 

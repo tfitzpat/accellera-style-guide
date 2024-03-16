@@ -77,7 +77,7 @@ Kramdown supports setting the header ID as shown below:
 
 ### 3.1.3 Italics
 
-Use a star character (\*\) before and after the italicised words.
+Use a star character (\*\) before and after the italicized words.
 
 *Example:*
 
@@ -366,9 +366,13 @@ A link to an image uses an exclamation mark before the square brackets. The link
    class="fixed height-5"
 %}
 
+<!-- 
+{% include image file="accellera_logo.png" caption="Accellera logo as PNG" class="height-5" alt="An example image." id="anyuniqueid" %}
+-->
+
 ### 3.1.11 HTML entities and Unicode characters
 
-Special characters can be included using HTML entities or Unicode notication. the table below gives a brief overview of commonly used HTML entities and Unicode characters. A full overview can be found [here](https://www.rapidtables.com/code/text/unicode-characters.html).
+Special characters can be included using HTML entities or Unicode notation. the table below gives a brief overview of commonly used HTML entities and Unicode characters. A full overview can be found [here](https://www.rapidtables.com/code/text/unicode-characters.html).
 
 {% include figure
    html="

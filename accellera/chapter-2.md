@@ -32,7 +32,7 @@ The table below gives an overview of the default strcture of the repository.
 | `_site/`       | Subdirectory for web and app versions of the document | Not touched by technical editor(s) |
 | `_tools/`      | Flow documentation utilities                 | Not touched by technical editor(s) |
 | `assets/`      | Styles and images for the project            | Not touched by technical editor(s) |
-| `standard/`    | Subdirectoryfor the standard document        | Used by technical editor(s)        |
+| `standard/`    | Subdirectory for the standard document        | Used by technical editor(s)        |
 
 "
    reference="Table 2-1"
@@ -42,11 +42,11 @@ The table below gives an overview of the default strcture of the repository.
    caption-position="top"
 %}
 
-In addition, the root directory also constains some configuration settings to enable flow installation, automation and/or deployment. Normally technical editor(s) do onot have to change these files.
+In addition, the root directory also contains some configuration settings to enable flow installation, automation and/or deployment. Normally technical editor(s) do not have to change these files.
 
 ## 2.2 Standard document creation
 
-The root directory to store the standard document is `standard`. This directory will contain the document source fles in markdown format.
+The root directory to store the standard document is `standard`. This directory will contain the document source files in markdown format.
 
 Table X below gives an overview of the default 
  of the repository.

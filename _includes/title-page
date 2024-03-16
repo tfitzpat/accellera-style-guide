@@ -19,6 +19,9 @@ as body text despite CSS rules for em size.
 {% endcomment %}
 
 {% if site.output == "print-pdf" or site.output == "screen-pdf" %}
+   {% comment %} Add label 'Title page' to the PDF bookmarks without displaying it on the main page {% endcomment %}
+   <h1 style="font-size: 0;">Title page</h1>
+
    <p class="title-page-title">
       {{ title }}
    </p>

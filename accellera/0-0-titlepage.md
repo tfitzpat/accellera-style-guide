@@ -1,5 +1,4 @@
 ---
-title: Title page
 style: title-page
 ---
 
