@@ -112,19 +112,19 @@ Unordered lists are started by using a star character (\*\) followed by a space 
 *Example:*
 
 ```
-* Unordered list item 1.
+- Unordered list item 1.
 This sentence is part of the same line.
 
-* Unordered list item 2.
+- Unordered list item 2.
 
 ```
 
 Renders into:
 
-* Unordered list item 1.
+- Unordered list item 1.
 This sentence is part of the same line.
 
-* Unordered list item 2.
+- Unordered list item 2.
 
 #### 3.1.5.2 Ordered lists
 

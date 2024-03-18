@@ -28,9 +28,9 @@ The front cover page is optional for Accellera standard documents. It often show
 
 The title page is mandatory and contains the following information:
 
-* Accellera logo
-* Title and version of the Accellera standard
-* Date when the standard is released
+- Accellera logo
+- Title and version of the Accellera standard
+- Date when the standard is released
 
 Draft standards for public review shall contain the label **Draft** at the title page. The title page is the second element in the PDF bookmarks.
 
@@ -38,10 +38,10 @@ Draft standards for public review shall contain the label **Draft** at the title
 
 The abstract page is mandatory and contains the following information:
 
-* Abstract section
-* Keywords section
-* Acknowledgement section (if applicable)
-* Copyright statement
+- Abstract section
+- Keywords section
+- Acknowledgement section (if applicable)
+- Copyright statement
 
 The abstract paragraph gives a short explanation of the standard written in the passive voice and should be no longer than 15 lines. It is followed by a paragraph listing the key terms and phrases from the text of the standard, and should at least specify the name or abbreviation of the standard. The keywords should match the keywords as defined in the PDF properties. If applicable, a Acknowledgement section can be added to recognize specific contributions of individuals or organizations. The copyright statement lists the name of the organization owning the copyright of the standard document. The abstract page is *not* part of the PDF bookmarks.
 
@@ -58,7 +58,7 @@ The list of eligible voting member organizations is added to the participants pa
 
 The table of contents is mandatory and lists the first-level clauses (one digit notation) and nested second-level subclauses (two digit notation). Lower level clauses are optional and the working group may decide to use subclauses down to the 6th level.
 
-The implementation of the table of contents is stored in the file `_data/works/standard/default.yml`. The table of contents is added to the document at the location if tag `{% include toc %}`. The title of this section is called **Contents** included in the PDF bookmarks. 
+The implementation of the table of contents is stored in the file `_data/works/standard/default.yml`. The table of contents is added to the document at the location of tag {% raw %}`{% include toc %}`{% endraw %} The title of this section is called **Contents** included in the PDF bookmarks. 
 
 Lists of tables and figures are not required in the table of contents. For lengthy documents however, inclusion of a lists of tables and figures is recommended.
 
