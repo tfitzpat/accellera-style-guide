@@ -5,13 +5,17 @@ style: chapter
 # 2. Project setup
 {:.page-break-before}
 
-This chapter explains the projet setup and use of the GitHub repository for technical documentation.
+This chapter explains the project setup and use of the GitHub repository for technical documentation.
 
-## 2.1 GitHub repository setup
+## 2.1 Environment setup
+
+Annex A explains the installation of a virtual machine, the Xubuntu operating system, and the packages required to exercise the documentation flow.
+
+## 2.2 GitHub repository setup
 
 It is recommended to use a dedicated GitHub repository to develop a single standard book. Please contact the Technical Committee chair to request a new repository for the technical documentation. After this, a new GitHub repository will be created, including the installation of default templates and scripts to generate an IEEE-SA stylesheet compatible standards document.
 
-The table below gives an overview of the default strcture of the repository.
+The table below gives an overview of the default structure of the repository.
 
 {% include figure
    markdown="
@@ -44,12 +48,11 @@ The table below gives an overview of the default strcture of the repository.
 
 In addition, the root directory also contains some configuration settings to enable flow installation, automation and/or deployment. Normally technical editor(s) do not have to change these files.
 
-## 2.2 Standard document creation
+## 2.3 Standard document creation
 
-The root directory to store the standard document is `standard`. This directory will contain the document source files in markdown format.
+The root directory to store the standard document is called `standard`. This directory will contain the document source files in markdown format.
 
-Table X below gives an overview of the default 
- of the repository.
+Table 2-2 below gives an overview of the relevant directories and files for the technical editing.
 
 {% include figure
    markdown="
