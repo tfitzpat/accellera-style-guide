@@ -101,26 +101,40 @@ Acronyms and abbreviations are listed in alphanumeric order. Each acronym and ab
 
 ### 4.2.4 Numbering clauses and subclauses
 
-All clause and subclause headings should consist of a number and a concise, meaningful, title. The numbering shall use Western Arabic numerals in sequence. The number of a clause (first-level) shall contain a number followed by a decimal point. A second-level subclause should be numbered by adding a number to the clause number (e.g., 5.1). For third-level subclauses and below, an additional decimal point and number is added (e.g., 5.1.1).
+All clause and subclause headings should consist of a number and a concise, meaningful, title. The numbering shall use Western Arabic numerals in sequence. The number of a clause (first-level) shall contain a number followed by a decimal point. A second-level subclause should be numbered by adding a number to the clause number (e.g., 5.1). For third-level subclauses and below, an additional decimal point and number is added (e.g., 5.1.1). Note that subclauses do not have a trailing period, only clause headings have this.
+
 
 ## 4.3 Backmatter
 
-TODO
+The backmatter of a standard includes pages in the following order:
 
-### 4.3.1 Annex
+1. Annexes
+2. Index
+3. Back cover
 
-TODO
+### 4.3.1 Annexes
+
+The use of annexes is optional but recommended. Often bibliography or glossary is added to the standard. 
+#### 4.3.1.1 Ordering annexes
+
+Annex headings shall use alphabet characters in uppercase (e.g. Annex A, Annex B, etc.) and shall *not* contain the title in the same line. Instead, the following line should indicate whether the annex is normative or informative, by explicitly stating this in between parentheses, e.g. (normative) and (informative) respectively. The title of the annex follows next. The order of normative and informative annexes is not prescribed and therefore can be intermixed.
+
+In the table of contents and PDF bookmarks, the annex header, normative or informative statement (in between parentheses) and title shall be captured in a single line.
+
+The bibliography should be defined as annex, and is either the first or last annex of the standard. If a glossary exists, it should either be the last annex, or it should immediately precede the bibliography (if the bibliography is the last annex).
+
+#### 4.3.1.2 Normative and Informative annexes
+
+A standard may contain one or more normative and informative annexes. Normative annexes are required for implementation of the standard. Informative annexes are not part of the standard, and considered for information only.
+
+#### 4.3.1.3 Bibliography, glossary
+
+The inclusion of a bibliography amd glossary is optional. A bibliography or glossary shall be the title of the annex, and not replace the annex heading. Both bibliography amd glossary shall be labelled informative. When a bibliography is implemented, it shall be either the first or last annex of the standard. If a glossary is implemented, it should be either be the last annex, or it should immediately precede the bibliography (if the bibliography is the last annex).
 
 ### 4.3.2 Index
 
-TODO
+The inclusion of an index is optional. An index is the before-last section in the document, followed by the back cover. The index contains a list of most relevant keywords defined in the standard, and each keyword is reference by a page number. Preferably, each reference to a page is a hyperlink to the actual section where the keyword is defined. The number of references for each keyword or shall be limited to one or two.
 
 ### 4.3.3 Back cover
 
-TODO
-
-
-
-
-
-
+The back cover page is optional for Accellera standard documents. It often shows the identity of the standards developing organization using a graphical representation. A back cover might be empty. The back cover is the last element in the PDF bookmarks.

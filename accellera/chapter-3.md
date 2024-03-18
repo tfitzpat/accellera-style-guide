@@ -421,4 +421,12 @@ This is <span style="color: red">written in red</span>.
 Renders into:
 
 This is <span style="color: red">written in red</span>.
--->
+
+### 3.1.13 Page breaks
+
+When starting the next clause, a page break is often preferred. In order to enforce a page break, add the tag `{:.page-break-before}` just after the section heading, as shown below.  
+
+```
+# 3. This is the next clause
+{:.page-break-before}
+```
