@@ -9,14 +9,15 @@ This chapter explains the project setup and use of the GitHub repository for tec
 
 ## 2.1 Environment setup
 
-Annex A explains the installation of a virtual machine, the Xubuntu operating system, and the packages required to exercise the documentation flow.
+[Annex A](annex-a.html) explains the installation of a virtual machine, the Xubuntu operating system, and the packages required to exercise the documentation flow.
 
 ## 2.2 GitHub repository setup
 
 It is recommended to use a dedicated GitHub repository to develop a single standard book. Please contact the Technical Committee chair to request a new repository for the technical documentation. After this, a new GitHub repository will be created, including the installation of default templates and scripts to generate an IEEE-SA stylesheet compatible standards document.
 
-The table below gives an overview of the default structure of the repository.
+[Table 1](#table-1) below gives an overview of the default structure of the repository.
 
+{:#table-1}
 {% include figure
    markdown="
 
@@ -39,7 +40,7 @@ The table below gives an overview of the default structure of the repository.
 | `standard/`    | Subdirectory for the standard document        | Used by technical editor(s)        |
 
 "
-   reference="Table 2-1"
+   reference="Table 1"
    caption="Repository structure"
    alt-text=""
    class="fixed allow-break"
@@ -52,8 +53,9 @@ In addition, the root directory also contains some configuration settings to ena
 
 The root directory to store the standard document is called `standard`. This directory will contain the document source files in markdown format.
 
-Table 2-2 below gives an overview of the relevant directories and files for the technical editing.
+[Table 2](#table-2) below gives an overview of the relevant directories and files for the technical editing.
 
+{:#table-2}
 {% include figure
    markdown="
 
@@ -67,7 +69,7 @@ Table 2-2 below gives an overview of the relevant directories and files for the 
 | `standard/toc.ncx`                 | Placeholder to generate navigation file for old ereaders (do not edit or remove) |
 
 "
-   reference="Table 2-2"
+   reference="Table 2"
    caption="Standard document subdirectory structure"
    alt-text=""
    class="fixed allow-break"

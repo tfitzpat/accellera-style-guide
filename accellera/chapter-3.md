@@ -180,7 +180,7 @@ To specify the table reference, caption and style, the table will be wrapped in 
 | with multiple | lines    |
 
 "
-   reference="Table 3-1"
+   reference="Table 3"
    caption="This is the table caption"
    alt-text=""
    class="fixed allow-break"
@@ -199,7 +199,7 @@ Renders into:
 | with multiple | lines    |
 
 "
-   reference="Table 3-1"
+   reference="Table 4"
    caption="This is the table caption"
    alt-text=""
    class="fixed allow-break"
@@ -231,7 +231,7 @@ More complex table with merged cells or columns can be created using HTML syntax
      &lt;td colspan='2'>Merged columns&lt;/td>
    &lt;/tr>
 &lt;/table>"
-   reference="Table 3-2"
+   reference="Table 5"
    caption="This is the a more complex table with merged rows and columns"
    alt-text=""
    class="fixed allow-break"
@@ -259,7 +259,7 @@ Renders into:
      <td colspan='2'>Merged columns</td>
    </tr>
 </table>"
-   reference="Table 3-2"
+   reference="Table 6"
    caption="This is the a more complex table with merged cells and columns"
    alt-text=""
    class="fixed allow-break"
@@ -304,7 +304,21 @@ This is the paragraph explaining the sample code block.
 
     void function(int a);
 
-### 3.1.8 Footnotes
+### 3.1.8 Inline code 
+
+Inline code, as part of a sentence, can be marked by surrounding it with a backticks.
+
+*Example:*
+
+```
+The function `get_name()` returns the name of the object.
+```
+
+Renders into:
+
+The function `get_name()` returns the name of the object.
+
+### 3.1.9 Footnotes
 
 A footnote marker consists of square brackets with a caret and the footnote name inside. The footnote definition can be placed elsewhere in the document.
 
@@ -324,7 +338,7 @@ This is a text with a footnote[^fn].
 
 The footnote name is only used for the anchors and the numbering is done automatically in document order. Repeated footnote markers will link to the same footnote definition.
 
-### 3.1.9 Links
+### 3.1.10 Links
 
 A simple link can be created by surrounding the text with square brackets and the link URL with parentheses:
 
@@ -344,7 +358,7 @@ A [link][accellera] to the Accellera homepage.
 [accellera]: https://accellera.org
 ```
 
-### 3.1.10 Images
+### 3.1.11 Images
 
 A link to an image uses an exclamation mark before the square brackets. The link text will become the alternative text of the image and the link URL specifies the image source:
 
@@ -370,7 +384,7 @@ A link to an image uses an exclamation mark before the square brackets. The link
 {% include image file="accellera_logo.png" caption="Accellera logo as PNG" class="height-5" alt="An example image." id="anyuniqueid" %}
 -->
 
-### 3.1.11 HTML entities and Unicode characters
+### 3.1.12 HTML entities and Unicode characters
 
 Special characters can be included using HTML entities or Unicode notation. the table below gives a brief overview of commonly used HTML entities and Unicode characters. A full overview can be found [here](https://www.rapidtables.com/code/text/unicode-characters.html).
 
@@ -402,14 +416,14 @@ Special characters can be included using HTML entities or Unicode notation. the 
      <td>&amp;#169;</td>
   </tr>
 </table>"
-   reference="Table 3-3"
+   reference="Table 7"
    caption="HTML entities and Unicode characters"
    alt-text=""
    class="fixed"
    caption-position="top"
 %}
 
-### 3.1.12 HTML attributes
+### 3.1.13 HTML attributes
 
 HTML attributes can be used to specify specific styles.
 
@@ -422,7 +436,7 @@ Renders into:
 
 This is <span style="color: red">written in red</span>.
 
-### 3.1.13 Page breaks
+### 3.1.14 Page breaks
 
 When starting the next clause, a page break is often preferred. In order to enforce a page break, add the tag `{:.page-break-before}` just after the section heading, as shown below.  
 

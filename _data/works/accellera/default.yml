@@ -40,7 +40,7 @@ products: # Metadata for each product for this title (only use values that overr
       - "chapter-2"
       - "chapter-3"
       - "chapter-4"
-      - "annex-A"
+      - "annex-a"
     toc: # For each menu item, include at least label and file. Optionally add id (for deep linking) and children.
       - file: "chapter-1"
         id: "1-overview"
