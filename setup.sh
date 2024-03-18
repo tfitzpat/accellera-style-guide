@@ -5,6 +5,7 @@ cd download
 
 sudo apt-get update && apt-get install -y \
   software-properties-common \
+  apt-transport-https \
   make \
   gcc \
   build-essential \
@@ -58,15 +59,12 @@ sudo dpkg -i prince_11.4-1_ubuntu18.04_amd64.deb
 wget https://github.com/jgm/pandoc/releases/download/2.5/pandoc-2.5-1-amd64.deb
 sudo dpkg -i ./pandoc-2.5-1-amd64.deb
 
-# Install VSCode package credentials
-wget -O- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/vscode.gpg
-
-# Update apt
-sudo apt update
-
 # Install vscode
+wget -O- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/vscode.gpg
+echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
+sudo apt update
 sudo apt install code
-  
+
 # Update npm
 npm install -g npm@latest
 
