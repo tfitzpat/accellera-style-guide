@@ -57,7 +57,10 @@ The list of eligible voting member organizations is added to the participants pa
 ### 4.1.8 Table of contents
 
 The table of contents is mandatory and lists the first-level clauses (one digit notation) and nested second-level subclauses (two digit notation). Lower level clauses are optional and the working group may decide to use subclauses down to the 6th level.
-Lists of tables and figures not required in the table of contents. For lengthy documents however, inclusion of a lists of tables and figures is recommended.The table of contents is included in the PDF bookmarks.
+
+The implementation of the table of contents is stored in the file `_data/works/standard/default.yml`. The table of contents is added to the document at the location if tag `{% include toc %}`. The title of this section is called **Contents** included in the PDF bookmarks. 
+
+Lists of tables and figures are not required in the table of contents. For lengthy documents however, inclusion of a lists of tables and figures is recommended.
 
 ## 4.2 Document body
 

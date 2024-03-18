@@ -2,7 +2,8 @@
 style: annex
 ---
 
-# Annex A. **(informative)** Environment setup {:#annex-a}
+# Annex A. **(informative)** Environment setup
+{:#annex-a}
 
 ## A.1 Download VirtualBox
 

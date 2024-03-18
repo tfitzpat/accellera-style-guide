@@ -67,7 +67,7 @@ Like with paragraphs, separate the heading from everything else with an empty li
 This is a paragraph.
 ```
 
-Kramdown supports setting the header ID as shown below:
+By default, Kramdown will automatically create an ID for each header, such that it can be referenced (see also [3.1.10](#3110-links-and-references)). Kramdown supports the definition of a user defined ID as shown below. Note that in this case, the user should reference to this user-defined ID when creating the table of contents, or when creating a cross-reference.
 
 ```
 # This is a first-level heading  {#my-first-id}
@@ -338,9 +338,13 @@ This is a text with a footnote[^fn].
 
 The footnote name is only used for the anchors and the numbering is done automatically in document order. Repeated footnote markers will link to the same footnote definition.
 
-### 3.1.10 Links
+### 3.1.10 Links and references
 
-A simple link can be created by surrounding the text with square brackets and the link URL with parentheses:
+#### 3.1.10.1 External links (URLs)
+
+A link to an external URL can be created by surrounding the text with square brackets and the link URL within parentheses:
+
+*Example:*
 
 ```
 A [link](https://accellera.org) to the Accellera homepage.
@@ -352,11 +356,39 @@ A [link](https://accellera.org) to the Accellera homepage.
 
 Alternatively, the link and URL can be decoupled by using a reference name, such that the links can be listed in a separate section. For this, the reference name is used in square brackets instead of the link URL.
 
+*Example:*
+
 ```
 A [link][accellera] to the Accellera homepage.
 ...
 [accellera]: https://accellera.org
 ```
+
+NOTE---Kramdown does not recognize external links with `http` or `https` prefix automatically. Therefore each link should be defined explicitly.
+
+#### 3.1.10.2 Internal links / references
+
+Within the document or document source tree, links can be added to files, clauses or subclauses, see the examples below.
+
+*Example:*
+
+```
+See [Clause 1](chapter-1.html) for more information.
+```
+
+Renders into
+
+See [Clause 1](chapter-1.html) for more information.
+
+*Example:*
+
+```
+The GitHub repository setup is explained in [2.2](chapter-2.html#22-github-repository-setup).
+```
+
+Renders into
+
+The GitHub repository setup is explained in [2.2](chapter-2.html#22-github-repository-setup).
 
 ### 3.1.11 Images
 
@@ -368,7 +400,7 @@ A link to an image uses an exclamation mark before the square brackets. The link
    images="accellera_logo.png"
    caption="Accellera logo as PNG"
    alt-text=""
-   class="fixed height-5"
+   class="fixed"
 &#x25;}
 </code></pre>
 
@@ -377,8 +409,9 @@ A link to an image uses an exclamation mark before the square brackets. The link
    images="accellera_logo.png"
    caption="Accellera logo as PNG"
    alt-text=""
-   class="fixed height-5"
+   class="fixed"
 %}
+<!-- TODO add  height-5 -->
 
 <!-- 
 {% include image file="accellera_logo.png" caption="Accellera logo as PNG" class="height-5" alt="An example image." id="anyuniqueid" %}
