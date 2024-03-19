@@ -117,10 +117,11 @@ The backmatter of a standard includes pages in the following order:
 
 ### 4.3.1 Annexes
 
-The use of annexes is optional but recommended. Often bibliography or glossary is added to the standard. 
+The use of annexes is optional but recommended. Often bibliography or glossary is added to the standard.
+
 #### 4.3.1.1 Ordering annexes
 
-Annex headings shall use alphabet characters in uppercase (e.g. Annex A, Annex B, etc.) and shall *not* contain the title in the same line. Instead, the following line should indicate whether the annex is normative or informative, by explicitly stating this in between parentheses, e.g. (normative) and (informative) respectively. The title of the annex follows next. The order of normative and informative annexes is not prescribed and therefore can be intermixed.
+Annex headings shall use alphabet characters in uppercase (e.g. Annex A, Annex B, etc.) and shall *not* contain the title in the same line and shall not end with a period character. Instead, the following line should indicate whether the annex is normative or informative, by explicitly stating this in between parentheses, e.g. (normative) and (informative) respectively. The title of the annex follows next. The order of normative and informative annexes is not prescribed and therefore can be intermixed.
 
 In the table of contents and PDF bookmarks, the annex header, normative or informative statement (in between parentheses) and title shall be captured in a single line.
 

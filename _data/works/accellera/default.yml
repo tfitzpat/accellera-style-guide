@@ -2,7 +2,7 @@ title: "Accelera Style Guide"
 subtitle: ""
 creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
-subject: "" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
+subject: "The Accelera Style Guide defines the recommended structure, formatting and style to develop and publish Accellera (Draft) Standards, User Guides and other standard-related documentation. This style guide serves as a reference for Accellera working groups in the technical editing process when drafting a standard-related document."
 description: "The Accelera Style Guide defines the recommended structure, formatting and style to develop Accellera Standards and Drafts." # E.g. the blurb
 keywords: "html, kramdown, markdown, style manual"
 publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand name
@@ -41,6 +41,7 @@ products: # Metadata for each product for this title (only use values that overr
       - "chapter-3"
       - "chapter-4"
       - "annex-a"
+      - "annex-b"
     toc: # For each menu item, include at least label and file. Optionally add id (for deep linking) and children.
       - file: "chapter-1"
         id: "1-overview"
@@ -57,14 +58,14 @@ products: # Metadata for each product for this title (only use values that overr
         label: "2. Project setup"
         children:
           - file: "chapter-2"
-            id: "21-environment-setup"
-            label: "2.1 Environment setup"
+            id: "21-github-repository-setup"
+            label: "2.1 GitHub repository setup"
           - file: "chapter-2"
-            id: "22-github-repository-setup"
-            label: "2.2 GitHub repository setup"
+            id: "22-standard-document-creation"
+            label: "2.2 Standard document creation"
           - file: "chapter-2"
-            id: "23-standard-document-creation"
-            label: "2.3 Standard document creation"
+            id: "23-tool-setup"
+            label: "2.3 Tool setup"
       - file: "chapter-3"
         id: "3-document-authoring-and-formatting"
         label: "3. Document authoring and formatting"
@@ -88,3 +89,9 @@ products: # Metadata for each product for this title (only use values that overr
       - file: "chapter-4"
         id: "4-document-structure-and-style"
         label: "4. Document structure and style"
+      - file: "annex-a"
+        id: "annex-a"
+        label: "Annex A (informative) Environment setup"
+      - file: "annex-b"
+        id: "annex-b"
+        label: "Annex B (informative) Electric Book commands"

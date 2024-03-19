@@ -170,8 +170,9 @@ To specify the table reference, caption and style, the table will be wrapped in 
 
 *Example:*
 
-<pre><code>
-{&#x25; include figure
+{% raw %}
+```
+{% include figure
    markdown="
 
 | column 1      | column 2 |
@@ -185,8 +186,9 @@ To specify the table reference, caption and style, the table will be wrapped in 
    alt-text=""
    class="fixed allow-break"
    caption-position="top"
-&#x25;}
-</code></pre>
+%}
+```
+{% endraw %}
 
 Renders into:
 
@@ -212,32 +214,34 @@ More complex table with merged cells or columns can be created using HTML syntax
 
 *Example:*
 
-<pre><code>
-{&#x25; include figure
+{% raw %}
+```
+{% include figure
    html="
-&lt;table>
-  &lt;tr>
-     &lt;th>column 1&lt;/th>
-     &lt;th>column 2&lt;/th>
-  &lt;/tr>
-  &lt;tr>
-     &lt;td>Row 1&lt;/td>
-     &lt;td rowspan='2'>Merged rows&lt;/td>
-  &lt;/tr>
-  &lt;tr>
-     &lt;td>Row 2&lt;/td>
-  &lt;/tr>
-  &lt;tr>
-     &lt;td colspan='2'>Merged columns&lt;/td>
-   &lt;/tr>
-&lt;/table>"
+<table>
+  <tr>
+     <th>column 1</th>
+     <th>column 2</th>
+  </tr>
+  <tr>
+     <td>Row 1</td>
+     <td rowspan='2'>Merged rows</td>
+  </tr>
+  <tr>
+     <td>Row 2</td>
+  </tr>
+  <tr>
+     <td colspan='2'>Merged columns</td>
+   </tr>
+</table>"
    reference="Table 5"
    caption="This is the a more complex table with merged rows and columns"
    alt-text=""
    class="fixed allow-break"
    caption-position="top"
-&#x25;}
-</code></pre>
+%}
+```
+{% endraw %}
 
 Renders into:
 
@@ -383,12 +387,12 @@ See [Clause 1](chapter-1.html) for more information.
 *Example:*
 
 ```
-The GitHub repository setup is explained in [2.2](chapter-2.html#22-github-repository-setup).
+The GitHub repository setup is explained in [2.1](chapter-2.html#21-github-repository-setup).
 ```
 
 Renders into
 
-The GitHub repository setup is explained in [2.2](chapter-2.html#22-github-repository-setup).
+The GitHub repository setup is explained in [2.1](chapter-2.html#21-github-repository-setup).
 
 ### 3.1.11 Images
 
