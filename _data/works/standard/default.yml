@@ -42,6 +42,8 @@ products: # Metadata for each product for this title (only use values that overr
       - "01"
       - "02"
       - "03"
+      - "04"
+      - "a"
     toc: # For each menu item, include at least label and file. Optionally add id (for deep linking) and children.
       - file: "01"
         id: "1-overview"
@@ -66,3 +68,9 @@ products: # Metadata for each product for this title (only use values that overr
           - file: "03"
             id: "31-definitions"
             label: "3.1 Definitions"
+      - file: "04"
+        id: "4-body-of-the-standard"
+        label: "4. Body of the standard"
+      - file: "a"
+        id: "annex-a"
+        label: "Annex A (informative) Title"
