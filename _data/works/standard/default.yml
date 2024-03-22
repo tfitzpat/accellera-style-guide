@@ -1,9 +1,9 @@
-title: "Accelera Standard Template"
+title: "Accellera Standard Template"
 subtitle: ""
 creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
 subject: "" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
-description: "The Accelera Style Guide defines the recommended structure, formatting and style to develop Accellera Standards and Drafts." # E.g. the blurb
+description: "This is the abstract of the Accellera Standard Template. This abstract is based on the description field in the document metadata which can be found in the file _data/works/standard/default.yml. When updating the description in this file, the description is also added to the PDF metadata." # E.g. the blurb
 keywords: "accellera, standard, template"
 publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand name
 publisher-url: ""
@@ -34,6 +34,35 @@ products: # Metadata for each product for this title (only use values that overr
     image: "cover.jpg"
     files:
       - "0-0-titlepage"
-      - "0-1-introduction"
-      - "0-2-contents"
+      - "0-1-abstract"
+      - "0-2-notice"
+      - "0-3-introduction"
+      - "0-4-participants"
+      - "0-5-contents"
+      - "01"
+      - "02"
+      - "03"
     toc: # For each menu item, include at least label and file. Optionally add id (for deep linking) and children.
+      - file: "01"
+        id: "1-overview"
+        label: "1. Overview"
+        children:
+          - file: "01"
+            id: "11-scope"
+            label: "1.1 Scope"
+          - file: "01"
+            id: "12-purpose"
+            label: "1.2 Purpose"
+          - file: "01"
+            id: "13-word-usage"
+            label: "1.3 Word usage"
+      - file: "02"
+        id: "2-normative-references"
+        label: "2. Normative references"
+      - file: "03"
+        id: "3-definitions-acronyms-and-abbreviations"
+        label: "3. Definitions, acronyms, and abbreviations"
+        children:
+          - file: "03"
+            id: "31-definitions"
+            label: "3.1 Definitions"
