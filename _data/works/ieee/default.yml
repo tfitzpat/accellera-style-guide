@@ -1110,4 +1110,4 @@ products: # Metadata for each product for this title (only use values that overr
       - file: "annex-a"
         id: "annex-a-normative-guidelines-and-best-practices-for-the-creation-and-maintenance-of-ieee-standards-terms-and-definitions"
         label: "Annex A (normative) Guidelines and best practices for the creation and maintenance of IEEE standards terms and definitions"
-  
+
