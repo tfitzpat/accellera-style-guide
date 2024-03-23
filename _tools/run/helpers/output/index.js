@@ -23,6 +23,7 @@ const {
   renderIndexComments,
   renderIndexLinks,
   renderMathjax,
+  renderNumbering,
   runPrince,
   epubHTMLTransformations
 } = require('../helpers.js')
@@ -46,6 +47,7 @@ async function pdf (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
+    renderNumbering(argv)
     await jekyll(argv)
     await renderIndexComments(argv)
     await renderIndexLinks(argv)

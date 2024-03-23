@@ -17,6 +17,7 @@ const JSZip = require('jszip') // epub-friendly zip utility
 const buildReferenceIndex = require('./reindex/build-reference-index.js')
 const buildSearchIndex = require('./reindex/build-search-index.js')
 const options = require('./options.js').options
+const numberSections = require('./numbering/index.js')
 
 // Output spawned-process data to console
 function logProcess (process, processName) {
@@ -590,6 +591,17 @@ async function convertXHTMLFiles (argv) {
   }
 }
 
+// Render numbering on the markdown sources
+function renderNumbering (argv) {
+  'use strict'
+  console.log('Numbering started...')
+  
+  const fileNames = markdownFilePaths(argv)
+  console.log('fileList:', fileNames)
+  fileNames.forEach(file => numberSections(file));
+  //numberSections(fileNames[3]);
+}
+
 // Get project settings from settings.yml
 function projectSettings () {
   'use strict'
@@ -793,6 +805,37 @@ function fileList (argv) {
   // Note that files may be objects, not strings,
   // e.g. { "01": "Chapter 1"}
   return files
+}
+
+// Get array of paths to Markdown source files
+function markdownFilePaths (argv, extension) {
+  'use strict'
+
+  if (!extension) {
+    extension = '.md'
+  }
+
+  // Provide fallback book
+  let book
+  if (argv.book) {
+    book = argv.book
+  } else {
+    book = 'book'
+  }
+
+  const fileNames = fileList(argv)
+  const pathToFiles = process.cwd() + '/' + book + '/'
+
+  const paths = fileNames.map(function (filename) {
+    if (typeof filename === 'object') {
+      return fsPath.normalize(pathToFiles + '/' + 
+        Object.keys(filename)[0] + extension)
+    } else {
+      return fsPath.normalize(pathToFiles + '/' + filename + extension)
+    }
+  })
+
+  return paths
 }
 
 // Get array of HTML-file paths for this output
@@ -1647,6 +1690,7 @@ module.exports = {
   renderIndexComments,
   renderIndexLinks,
   renderMathjax,
+  renderNumbering,
   runPrince,
   variantSettings,
   works

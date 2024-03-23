@@ -14,6 +14,9 @@ _prince
 .DS_Store
 .vscode*
 
+# ignore temporary markdown files
+*tmp.md
+
 # If your team needs strict node-package
 # version management, comment out this line
 # and commit package-lock.json.
