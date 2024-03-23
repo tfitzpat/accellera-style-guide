@@ -598,8 +598,7 @@ function renderNumbering (argv) {
   
   const fileNames = markdownFilePaths(argv)
   console.log('fileList:', fileNames)
-  fileNames.forEach(file => numberSections(file));
-  //numberSections(fileNames[3]);
+  fileNames.forEach(async file => numberSections(argv, file));
 }
 
 // Get project settings from settings.yml

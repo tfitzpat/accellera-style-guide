@@ -1,20 +1,31 @@
 const fs = require('fs');
 const readline = require('readline');
+const { ebSlugify } = require('../../../gulp/helpers/utilities.js')
 
-function numberSections(file) {
+async function numberSections(argv, file) {
   if (!file) {
     console.log('numberSections: file not specified. Skipped.');
     return
   }
-  const depth = 3; // TODO
-
   this.isChapter = false;
   this.annexLevel = 0;
+  this.topicName = [];
+  this.override = argv.override;
+  this.depth = argv.depth ? argv.depth : 5;
 
   // reset section counter
   this.sectionNumber = {};
-  for (let i = 0; i < depth; i++) {
+  for (let i = 0; i < this.depth; i++) {
     this.sectionNumber[i] = 0;
+  }
+
+  async function waitForStreamClose(stream) {
+    stream.end();
+    return new Promise((resolve) => {
+        stream.once('finish', () => {
+            resolve();
+        });
+    });
   }
 
   async function processFile(file) {
@@ -34,8 +45,19 @@ function numberSections(file) {
       const newline = convertLine(line);
       writeStream.write(newline+'\n');
     }
+
+    await waitForStreamClose(writeStream);
+
+    if (this.override) {
+      fs.copyFile(file + '.tmp.md', file, (err) => {
+        if (err) throw err;
+      });
+      fs.unlink(file + '.tmp.md', (err) => {
+        if (err) throw err;
+      });
+    }  
   }
-  
+
   function convertLine (line) {
     const section = line.match(/^#+/);
     const chapter = line.match(/style: chapter/);
@@ -43,6 +65,7 @@ function numberSections(file) {
 
     if (chapter) {
       this.isChapter = true;
+      this.annexLevel=0;
     }
 
     if (annex) {
@@ -60,7 +83,7 @@ function numberSections(file) {
   }
   
   function updateSectionNumber(line, targetLevel) {
-    if (targetLevel > depth) {
+    if (targetLevel > this.depth) {
       return line;
     }
     const headerSign = '#'.repeat(targetLevel);
@@ -68,13 +91,21 @@ function numberSections(file) {
     if (this.annexLevel > 0) {
       regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)|Annex\\s[A-Z])?\\s*(.+)');
     } else { // chapter
-      regex = new RegExp('^#{' + targetLevel + '}\\s(\\d+(\\.\\d+)*.?)?\\s*(.+)');
-    }
+      regex = new RegExp('^#{' + targetLevel + '}\\s*(\\d+(\\.\\d+)*.?)?\\s*(.+)?');
+    }        
+
     const match = line.match(regex);
-    console.log('old:', line);
     const number = calculateSectionNumber(targetLevel);
-    const title = match[3].toString();
-    const str = headerSign + ' ' + number + ' ' + title;
+    let title = match[3].toString().replace(/\s*{#.+}/g, ''); // remove {#id}  
+    let id = title;
+
+    if (this.annexLevel > 0) { // TODO remove based on text in line
+      id = title.replace('informative','').replace('normative','');
+    }
+
+    console.log('old:', line, title);
+    this.topicName[level] = this.topicName[level-1] ? this.topicName[level-1] + '-' + ebSlugify(id) : ebSlugify(id);
+    const str = headerSign + ' ' + number + ' ' + title + ' {#'  + this.topicName[level] + '}';
     console.log('new:', str);
     return str;
   }
@@ -82,7 +113,7 @@ function numberSections(file) {
   function calculateSectionNumber(level) {
     this.sectionNumber[level-1] += 1;
 
-    for (let i = level; i < depth; i++) { 
+    for (let i = level; i < this.depth; i++) { 
       if (sectionNumber[i] && sectionNumber[i] > 0) {
         sectionNumber[i] = 0;
       }
@@ -111,6 +142,7 @@ function numberSections(file) {
   }
   
   processFile(file);
+  console.log('next');
 }
 
 module.exports = numberSections
