@@ -2,10 +2,6 @@ const fs = require('fs');
 const readline = require('readline');
 
 async function numberSections(argv, file) {
-  if (!file) {
-    console.log('numberSections: file not specified. Skipped.');
-    return;
-  }
 
   this.isChapter = false;
   this.annexLevel = 0;
@@ -18,6 +14,15 @@ async function numberSections(argv, file) {
   this.sectionNumber = {};
   for (let i = 0; i < this.depth; i++) {
     this.sectionNumber[i] = 0;
+  }
+
+  if (argv.generateId) {
+    return createId('')
+  }
+
+  if (!file) {
+    console.log('numberSections: file not specified. Skipped.');
+    return;
   }
 
   function createId(title) {
