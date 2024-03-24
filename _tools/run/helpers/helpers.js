@@ -18,6 +18,7 @@ const buildReferenceIndex = require('./reindex/build-reference-index.js')
 const buildSearchIndex = require('./reindex/build-search-index.js')
 const options = require('./options.js').options
 const numberSections = require('./numbering/index.js')
+const idRegistry = require('./numbering/registry.js')
 
 // Output spawned-process data to console
 function logProcess (process, processName) {
@@ -599,8 +600,10 @@ function renderNumbering (argv) {
     numberSections(argv);
   } else {
     const fileNames = markdownFilePaths(argv);
-    fileNames.forEach(async file => numberSections(argv, file));
+    numberSections(argv, fileNames).then( () => 
+      console.log('done numberSections'));
   }
+ 
 }
 
 // Get project settings from settings.yml

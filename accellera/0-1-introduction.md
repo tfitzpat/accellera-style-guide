@@ -3,7 +3,7 @@ style: frontmatter
 ---
 {% include metadata %}
 
-# Introduction {#introduction}
+# Introduction
 
 The Accelera Style Guide defines the recommended structure, formatting and style to develop and publish Accellera (Draft) Standards, User Guides and other standard-related documentation. This style guide serves as a reference for Accellera working groups in the technical editing process when drafting a standard-related document.
 

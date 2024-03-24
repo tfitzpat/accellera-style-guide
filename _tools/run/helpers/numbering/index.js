@@ -1,7 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 
-async function numberSections(argv, file) {
+async function numberSections(argv, files) {
 
   this.isChapter = false;
   this.annexLevel = 0;
@@ -20,28 +20,34 @@ async function numberSections(argv, file) {
     return createId('')
   }
 
-  if (!file) {
-    console.log('numberSections: file not specified. Skipped.');
+  if (!files) {
+    console.log('numberSections: files not specified. Skipped.');
     return;
   }
 
-  function createId(title) {
+  function createId(number, title) {
     let id;
     do { 
       for (id = ''; id.length < 7; id += 'abcdefghijklmnopqrstuvwxyz'.charAt(Math.random()*26|0));
       console.log(' id:',id);
     }
     while (this.section[id] != undefined);
-    this.section[id] = title;
+    this.section[id] = {
+      number: number,
+      title: title
+    }
     return id;
   }
   
-  function storeId(id, title) {
+  function storeId(id, number, title) {
     if (this.section[id] != undefined) {
-      console.error('Same ID found! Check correctness of source files');
+      console.error('numberSections: Same ID found! Check correctness of source files', id);
       return;
     }
-    this.section[id] = title;
+    this.section[id] = {
+      number: number,
+      title: title
+    }
   }
 
   async function waitForStreamClose(stream) {
@@ -71,7 +77,7 @@ async function numberSections(argv, file) {
       writeStream.write(newline+'\n');
     }
 
-    await waitForStreamClose(writeStream);
+    waitForStreamClose(writeStream);
 
     if (this.override) {
       fs.copyFile(file + '.tmp.md', file, (err) => {
@@ -136,12 +142,12 @@ async function numberSections(argv, file) {
     if (this.annexLevel > 0) { // TODO remove based on text in line
       title.replace('informative','').replace('normative','');
     }
-    console.log('old:', line, title);
+    console.log('old:', line);
     const str = headerSign + ' ' + number + ' ' + title + id;
     console.log('new:', str);
     return str;
   }
-  
+
   function calculateSectionNumber(level) {
     this.sectionNumber[level-1] += 1;
 
@@ -169,12 +175,12 @@ async function numberSections(argv, file) {
     if ((level-1 == 0) && (this.annexLevel==0)) {
       number += '.';
     }
-
     return number;
   }
 
-  processFile(file);
-  
+  for (let i = 0; i < files.length; i++) {
+    await processFile(files[i]);
+  }
 }
 
 module.exports = numberSections
