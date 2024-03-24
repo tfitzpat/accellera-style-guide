@@ -594,10 +594,8 @@ async function convertXHTMLFiles (argv) {
 // Render numbering on the markdown sources
 function renderNumbering (argv) {
   'use strict'
-  console.log('Numbering started...')
   
-  const fileNames = markdownFilePaths(argv)
-  console.log('fileList:', fileNames)
+  const fileNames = markdownFilePaths(argv);
   fileNames.forEach(async file => numberSections(argv, file));
 }
 
@@ -1680,6 +1678,7 @@ module.exports = {
   installNodeModules,
   jekyll,
   logProcess,
+  markdownFilePaths,
   mathjaxEnabled,
   newBook,
   openOutputFile,

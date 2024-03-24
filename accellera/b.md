@@ -2,9 +2,9 @@
 style: annex
 ---
 
-# Annex B **(informative)** Electric Book commands {#electric-book-commands}
+# Annex B **(informative)** Electric Book commands {#eciyfus}
 
-## B.1 Usage {#electric-book-commands-usage}
+## B.1 Usage {#eidrbqh}
 ```
 npm run electric-book -- <command> [options]
 
@@ -53,7 +53,7 @@ options:
 
 ```
 
-## B.2 Examples {#electric-book-commands-examples}
+## B.2 Examples {#wtyggli}
 
 Create a screen PDF for the `standard` document:
 

@@ -1,22 +1,42 @@
 const fs = require('fs');
 const readline = require('readline');
-const { ebSlugify } = require('../../../gulp/helpers/utilities.js')
 
 async function numberSections(argv, file) {
   if (!file) {
     console.log('numberSections: file not specified. Skipped.');
-    return
+    return;
   }
+
   this.isChapter = false;
   this.annexLevel = 0;
   this.topicName = [];
   this.override = argv.override;
   this.depth = argv.depth ? argv.depth : 5;
+  this.section = {};
 
   // reset section counter
   this.sectionNumber = {};
   for (let i = 0; i < this.depth; i++) {
     this.sectionNumber[i] = 0;
+  }
+
+  function createId(title) {
+    let id;
+    do { 
+      for (id = ''; id.length < 7; id += 'abcdefghijklmnopqrstuvwxyz'.charAt(Math.random()*26|0));
+      console.log(' id:',id);
+    }
+    while (this.section[id] != undefined);
+    this.section[id] = title;
+    return id;
+  }
+  
+  function storeId(id, title) {
+    if (this.section[id] != undefined) {
+      console.error('Same ID found! Check correctness of source files');
+      return;
+    }
+    this.section[id] = title;
   }
 
   async function waitForStreamClose(stream) {
@@ -55,7 +75,8 @@ async function numberSections(argv, file) {
       fs.unlink(file + '.tmp.md', (err) => {
         if (err) throw err;
       });
-    }  
+    }
+    //console.log(' section', this.section);
   }
 
   function convertLine (line) {
@@ -96,16 +117,22 @@ async function numberSections(argv, file) {
 
     const match = line.match(regex);
     const number = calculateSectionNumber(targetLevel);
-    let title = match[3].toString().replace(/\s*{#.+}/g, ''); // remove {#id}  
-    let id = title;
-
-    if (this.annexLevel > 0) { // TODO remove based on text in line
-      id = title.replace('informative','').replace('normative','');
+    let title = match[3].toString();
+    const header = number + ' ' + match[3].toString().replace(/\s*{#.+}/g, ''); // remove {#id}  
+    const idElement = title.match('\s*{#(.+)}');
+    let id = '';
+    
+    if (idElement) {
+      storeId(idElement[1], header);
+    } else {
+      id = ' {#' + createId(number + header) + '}';
     }
 
+    if (this.annexLevel > 0) { // TODO remove based on text in line
+      title.replace('informative','').replace('normative','');
+    }
     console.log('old:', line, title);
-    this.topicName[level] = this.topicName[level-1] ? this.topicName[level-1] + '-' + ebSlugify(id) : ebSlugify(id);
-    const str = headerSign + ' ' + number + ' ' + title + ' {#'  + this.topicName[level] + '}';
+    const str = headerSign + ' ' + number + ' ' + title + id;
     console.log('new:', str);
     return str;
   }
@@ -140,9 +167,9 @@ async function numberSections(argv, file) {
 
     return number;
   }
-  
+
   processFile(file);
-  console.log('next');
+  
 }
 
 module.exports = numberSections
