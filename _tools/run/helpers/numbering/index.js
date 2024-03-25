@@ -102,9 +102,9 @@ async function numberSections(argv, files, ids) {
     const headerSign = '#'.repeat(targetLevel);
     let regex;
     if (this.annexLevel > 0) {
-      regex = new RegExp('^#{' + targetLevel + '}\\s+([A-Z](\\.\\d+)|Annex\\s+[A-Z])?\\s*(.+)');
+      regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)|Annex\\s+[A-Z])?\\s*(.+)');
     } else { // chapter
-      regex = new RegExp('^#{' + targetLevel + '}\\s+(\\d+(\\.\\d+)*.?)?\\s+(.+)?');
+      regex = new RegExp('^#{' + targetLevel + '}\\s*(\\d+(\\.\\d+)*.?)?\\s+(.+)?');
     }        
 
     const match = line.match(regex);
