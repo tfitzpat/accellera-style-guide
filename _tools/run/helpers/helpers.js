@@ -597,7 +597,9 @@ async function renderNumbering (argv) {
   'use strict'
   
   const fileNames = markdownFilePaths(argv);
-  await numberSections(argv, fileNames);
+
+  const ids = await idRegistry(argv, fileNames);
+  await numberSections(argv, fileNames, ids); 
 }
 
 // Get project settings from settings.yml

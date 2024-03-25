@@ -1,4 +1,6 @@
 const fs = require('fs');
+const readline = require('readline');
+const { ebSlugify } = require('../../../gulp/helpers/utilities.js');
 
 async function idRegistry(argv, files) {
 
@@ -9,7 +11,14 @@ async function idRegistry(argv, files) {
     return;
   }
 
-  function storeId(id, number, title) {
+  function storeId(number, title, isFigure=false) {
+    let id;
+    if (isFigure) {
+      id = ebSlugify(number);
+    } else {
+      id = ebSlugify(number + ' ' + title);
+    }
+
     if (this.section[id] != undefined) {
       console.error('idRegistry: Same ID found! Check correctness of source files', id);
       return;
@@ -49,26 +58,28 @@ async function idRegistry(argv, files) {
   }
 
   function scanSection(section) {
-    //console.log('section:', section);
-    const figref = section.match(/reference=\"(.+)\".+caption=\"(.+)\&mdash\;([^\"]+)\"/);
-    const sectionref = section.match(/^#*\s*(\d+[\.\d]*|\d.)?\s+(.+)\s+\{#([a-z]+)\}/);
-    const annexref = section.match(/^#*\s*([A-Z][\.\d+]*|Annex\s[A-Z])\s+(.+)\s+\{#([a-z]+)\}/);
-    
+    const figref = section.match(/reference=\"(.+)\".+caption=\"([^\"]+)\"/);
+    const sectionref = section.match(/^#+\s+(\d+[\.\d]*|\d.)?\s+(.+)/);
+    const annexref = section.match(/^\#+\s+([A-Z][\.\d+]*|Annex\s+[A-Z])\s+(.+)/);
+
     if (sectionref && sectionref[1]) {
-      storeId(sectionref[3], sectionref[1], sectionref[2]);
+      storeId(sectionref[1], sectionref[2]);
     }
 
-    if (annexref) {
-      storeId(annexref[3], annexref[1], annexref[2]);
+    if (annexref && annexref[1]) {
+      storeId(annexref[1], annexref[2]);
     }
 
     if (figref) {
-      storeId(figref[1], figref[2], figref[3]);
+      storeId(figref[1], figref[2], isFigure=true);
     }
-    //console.log(' section', this.section);
   }
 
-  await scanFile(file);
+  for (let i = 0; i < files.length; i++) {
+    await scanFile(files[i]);
+  }
+  //console.log(' section', this.section);
+  return this.section;
 }
 
 module.exports = idRegistry

@@ -5,6 +5,7 @@ style: annex
 # Annex B **(informative)** Electric Book commands
 
 ## B.1 Usage
+
 ```
 npm run electric-book -- <command> [options]
 
@@ -78,3 +79,5 @@ Create a screen PDF for the IEEE-SA Standards Style Manual:
 ```
   npm run electric-book -- output --format screen-pdf --book ieee
 ```
+
+[a](#werewr) and [b](#werewr) 

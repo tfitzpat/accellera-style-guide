@@ -1,21 +1,20 @@
 const fs = require('fs');
 const readline = require('readline');
 
-async function numberSections(argv, files) {
+async function numberSections(argv, files, ids) {
 
   this.isChapter = false;
   this.annexLevel = 0;
   this.topicName = [];
   this.override = argv.override;
   this.depth = argv.depth ? argv.depth : 5;
-  this.section = {};
+  this.ids = ids;
 
   // reset section counter
   this.sectionNumber = {};
   for (let i = 0; i < this.depth; i++) {
     this.sectionNumber[i] = 0;
   }
-
 
   if (!files) {
     console.log('numberSections: files not specified. Skipped.');
@@ -56,6 +55,7 @@ async function numberSections(argv, files) {
     const section = line.match(/^#+/);
     const chapter = line.match(/style: chapter/);
     const annex = line.match(/style: annex/);
+    const xref = line.match(/(\[.+\]|\[\])\(((?!http).+html)?#([^\)]+)\)/);
 
     if (chapter) {
       this.isChapter = true;
@@ -73,9 +73,32 @@ async function numberSections(argv, files) {
       return updateSectionNumber(line, level);
     }
 
+    if (xref) {
+      return updateCrossReference(line);
+    }
+
     return line; // no change
   }
-  
+
+  function updateCrossReference(line) {
+    let nline = line; 
+    const elements = line.split(' '); // we might have more xrefs in a line, so we process per element
+    elements.forEach( item => {
+      const xref = item.match(/(\[.+\]|\[\])\(((?!http).+html)?#([^\)]+)\)/);
+      if (xref) {
+        //console.log('xref:', xref);
+        const id = this.ids[xref[3]];
+        if (id) {
+          nline = nline.replace(xref[1], '['+id.number+']');
+          //console.log(' line:', nline);
+        } else {
+          console.error('xref update: no cross reference found for ID', xref[3]);
+        }
+      }
+    });
+    return nline;
+  }
+
   function updateSectionNumber(line, targetLevel) {
     if (targetLevel > this.depth) {
       return line;
@@ -83,9 +106,9 @@ async function numberSections(argv, files) {
     const headerSign = '#'.repeat(targetLevel);
     let regex;
     if (this.annexLevel > 0) {
-      regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)|Annex\\s[A-Z])?\\s*(.+)');
+      regex = new RegExp('^#{' + targetLevel + '}\\s+([A-Z](\\.\\d+)|Annex\\s+[A-Z])?\\s*(.+)');
     } else { // chapter
-      regex = new RegExp('^#{' + targetLevel + '}\\s*(\\d+(\\.\\d+)*.?)?\\s*(.+)?');
+      regex = new RegExp('^#{' + targetLevel + '}\\s+(\\d+(\\.\\d+)*.?)?\\s+(.+)?');
     }        
 
     const match = line.match(regex);
