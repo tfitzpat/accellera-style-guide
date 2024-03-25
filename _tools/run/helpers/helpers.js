@@ -593,17 +593,11 @@ async function convertXHTMLFiles (argv) {
 }
 
 // Render numbering on the markdown sources
-function renderNumbering (argv) {
+async function renderNumbering (argv) {
   'use strict'
   
-  if (argv.generateId) {
-    numberSections(argv);
-  } else {
-    const fileNames = markdownFilePaths(argv);
-    numberSections(argv, fileNames).then( () => 
-      console.log('done numberSections'));
-  }
- 
+  const fileNames = markdownFilePaths(argv);
+  await numberSections(argv, fileNames);
 }
 
 // Get project settings from settings.yml

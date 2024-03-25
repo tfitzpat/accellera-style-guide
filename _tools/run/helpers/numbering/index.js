@@ -16,38 +16,10 @@ async function numberSections(argv, files) {
     this.sectionNumber[i] = 0;
   }
 
-  if (argv.generateId) {
-    return createId('')
-  }
 
   if (!files) {
     console.log('numberSections: files not specified. Skipped.');
     return;
-  }
-
-  function createId(number, title) {
-    let id;
-    do { 
-      for (id = ''; id.length < 7; id += 'abcdefghijklmnopqrstuvwxyz'.charAt(Math.random()*26|0));
-      console.log(' id:',id);
-    }
-    while (this.section[id] != undefined);
-    this.section[id] = {
-      number: number,
-      title: title
-    }
-    return id;
-  }
-  
-  function storeId(id, number, title) {
-    if (this.section[id] != undefined) {
-      console.error('numberSections: Same ID found! Check correctness of source files', id);
-      return;
-    }
-    this.section[id] = {
-      number: number,
-      title: title
-    }
   }
 
   async function waitForStreamClose(stream) {
@@ -77,7 +49,7 @@ async function numberSections(argv, files) {
       writeStream.write(newline+'\n');
     }
 
-    waitForStreamClose(writeStream);
+    return waitForStreamClose(writeStream);
   }
 
   function convertLine (line) {
@@ -118,23 +90,14 @@ async function numberSections(argv, files) {
 
     const match = line.match(regex);
     const number = calculateSectionNumber(targetLevel);
-    let title = match[3].toString().replace(/\s*{#.+}/g, ''); // remove {#id}
-    const header = number + ' ' + match[3].toString().replace(/\s*{#.+}/g, ''); // remove {#id}
-    const idElement = title.match('\s*{#(.+)}');
-    let id = '';
-    
-    if (idElement) {
-      storeId(idElement[1], header);
-    } else {
-      id = ' {#' + createId(number + header) + '}';
-    }
+    let title = match[3].toString();
 
     if (this.annexLevel > 0) { // TODO remove based on text in line
       title.replace('informative','').replace('normative','');
     }
-    console.log('old:', line);
+    //console.log('old:', line);
     const str = headerSign + ' ' + number + ' ' + title;
-    console.log('new:', str);
+    //console.log('new:', str);
     return str;
   }
 
@@ -169,11 +132,9 @@ async function numberSections(argv, files) {
   }
 
   for (let i = 0; i < files.length; i++) {
-    processFile(files[i]);
-  }
+    await processFile(files[i]);
 
-  if (this.override) {
-    for (let i = 0; i < files.length; i++) {
+    if (this.override) {
       fs.copyFile(files[i] + '.tmp.md', files[i], (err) => {
         if (err) throw err;
       });
