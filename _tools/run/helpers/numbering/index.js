@@ -55,7 +55,7 @@ async function numberSections(argv, files, ids) {
     const section = line.match(/^#+/);
     const chapter = line.match(/style: chapter/);
     const annex = line.match(/style: annex/);
-    const xref = line.match(/(\[.+\]|\[\])\(((?!http).+html)?#([^\)]+)\)/);
+    const xref = [...line.matchAll(/(\[[^\(]+\]|\[\])\(((?!http).+html)?#([^\)]+)\)/gi)];
 
     if (chapter) {
       this.isChapter = true;
@@ -73,29 +73,25 @@ async function numberSections(argv, files, ids) {
       return updateSectionNumber(line, level);
     }
 
-    if (xref) {
-      return updateCrossReference(line);
+    if (xref.length) {
+      return updateCrossReference(xref, line);
     }
 
     return line; // no change
   }
 
-  function updateCrossReference(line) {
-    let nline = line; 
-    const elements = line.split(' '); // we might have more xrefs in a line, so we process per element
-    elements.forEach( item => {
-      const xref = item.match(/(\[.+\]|\[\])\(((?!http).+html)?#([^\)]+)\)/);
-      if (xref) {
-        //console.log('xref:', xref);
-        const id = this.ids[xref[3]];
-        if (id) {
-          nline = nline.replace(xref[1], '['+id.number+']');
-          //console.log(' line:', nline);
-        } else {
-          console.error('xref update: no cross reference found for ID', xref[3]);
-        }
+  function updateCrossReference(xref, line) {
+    let nline = line;
+    for (let i = 0; i < xref.length; i++) {
+      //console.log('xref:', i, xref[i], xref[i][3]);
+      const id = this.ids[xref[i][3]];
+      if (id) {
+        nline = line.replace(xref[i][1], '[' + id.number + ']');
+        //console.log(' line:', nline);
+      } else {
+        console.error('xref update: no cross reference found for ID', xref[i][3]);
       }
-    });
+    }
     return nline;
   }
 

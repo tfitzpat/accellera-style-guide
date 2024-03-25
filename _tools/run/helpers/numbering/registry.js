@@ -20,7 +20,7 @@ async function idRegistry(argv, files) {
     }
 
     if (this.section[id] != undefined) {
-      console.error('idRegistry: Same ID found! Check correctness of source files', id);
+      console.error('idRegistry: Duplicated ID found! Check correctness of source files.', id);
       return;
     }
     this.section[id] = {
