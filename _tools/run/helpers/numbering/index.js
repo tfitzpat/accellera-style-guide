@@ -78,8 +78,6 @@ async function numberSections(argv, files) {
     }
 
     waitForStreamClose(writeStream);
-    console.log('closed');
-
   }
 
   function convertLine (line) {
@@ -171,7 +169,7 @@ async function numberSections(argv, files) {
   }
 
   for (let i = 0; i < files.length; i++) {
-    await processFile(files[i]);
+    processFile(files[i]);
   }
 
   if (this.override) {
@@ -185,7 +183,6 @@ async function numberSections(argv, files) {
     }
   }
   //console.log(' section', this.section);
-
 }
 
 module.exports = numberSections
