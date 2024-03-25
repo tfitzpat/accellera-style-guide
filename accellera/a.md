@@ -2,24 +2,24 @@
 style: annex
 ---
 
-# Annex A **(informative)** Environment setup {#mseokis}
+# Annex A **(informative)** Environment setup
 
-## A.1 Download VirtualBox {#fpnwlbs}
+## A.1 Download VirtualBox
 
 Visit the VirtualBox website [here][virtualbox] to download the binary for your current host operating system. When using Windows as host operating system, download the platform package for **Windows hosts**. Other platform packages are also available, such as Linux and macOS. After download is completed, install VirtualBox with the defaults settings.
 
-## A.2 Download Ubuntu ISO image {#daolxiy}
+## A.2 Download Ubuntu ISO image
 
 As guest operating system, Linux will be used. In this setup, Xubuntu is selected, an Ubuntu distribution using Xfce as window manager and desktop environment. Alternative linux distributions can use used, as long as they are supporting the Debian package management infrastructure (e.g. `apt`). Download the Xubuntu 22.04.4 64-bit ISO image [here][xubuntu].
 
-## A.3 Create a virtual machine {#xossblo}
+## A.3 Create a virtual machine
 
 Open VirtualBox and click on the blue **New** button. It will open a dialog box to specify the creation of a virtual machine, see image below.
 
 {% include figure
    images="create_vm.png"
-   reference="dielxtr"
-   caption="Figure A-1&mdash;Create virtual machine"
+   reference="Figure A-1"
+   caption="Create virtual machine"
    alt-text=""
    class="fixed"
 %}
@@ -36,8 +36,8 @@ Click on **Next** to specify the account details, see figure below. In this setu
 
 {% include figure
    images="vm_account.png"
-   reference="yhpwsct"
-   caption="Figure A-2&mdash;Account username and password (hostname and domain name are optional)"
+   reference="Figure A-2"
+   caption="Account username and password (hostname and domain name are optional)"
    alt-text=""
    class="fixed"
 %}
@@ -46,8 +46,8 @@ Specify the memory size and number of processors for the virtual machine, as sho
 
 {% include figure
    images="vm_hardware.png"
-   reference="zpzhsxo"
-   caption="Figure A-3&mdash;Virtual machine memory and processors"
+   reference="Figure A-3"
+   caption="Virtual machine memory and processors"
    alt-text=""
    class="fixed"
 %}
@@ -56,15 +56,15 @@ Next, specify the available disk space for the virtual machine, see figure below
 
 {% include figure
    images="vm_disk.png"
-   reference="gfztqtf"
-   caption="Figure A-4&mdash;Virtual machine disk space"
+   reference="Figure A-4"
+   caption="Virtual machine disk space"
    alt-text=""
    class="fixed"
 %}
 
 The next dialog presents a summary. Check all settings, and in case a change is required, use the **Back** button to update the configuration. If all settings are correct, click **Finish**.
 
-## A.4 Install Xubuntu {#sjkwhgc}
+## A.4 Install Xubuntu
 
 The virtual machine starts and installs Xubuntu. Depending on the available resources on your host operating system, installation will take between 10 and 20 minutes. After installation the virtual machine will reboot and shows the login screen. Enter the specified password to login.
 
@@ -93,7 +93,7 @@ Next, a clone of the Accellera repository is made, which contains the standard d
 
 This directory contains the sources of the Accellera Style Guide. 
 
-## A.5 Install documentation flow {#yjmnvgk}
+## A.5 Install documentation flow
 
 Install the Electric Book Works documentation flow by executing the following comment in the repository directory:
 

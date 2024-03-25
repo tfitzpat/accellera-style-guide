@@ -78,16 +78,8 @@ async function numberSections(argv, files) {
     }
 
     waitForStreamClose(writeStream);
+    console.log('closed');
 
-    if (this.override) {
-      fs.copyFile(file + '.tmp.md', file, (err) => {
-        if (err) throw err;
-      });
-      fs.unlink(file + '.tmp.md', (err) => {
-        if (err) throw err;
-      });
-    }
-    //console.log(' section', this.section);
   }
 
   function convertLine (line) {
@@ -128,8 +120,8 @@ async function numberSections(argv, files) {
 
     const match = line.match(regex);
     const number = calculateSectionNumber(targetLevel);
-    let title = match[3].toString();
-    const header = number + ' ' + match[3].toString().replace(/\s*{#.+}/g, ''); // remove {#id}  
+    let title = match[3].toString().replace(/\s*{#.+}/g, ''); // remove {#id}
+    const header = number + ' ' + match[3].toString().replace(/\s*{#.+}/g, ''); // remove {#id}
     const idElement = title.match('\s*{#(.+)}');
     let id = '';
     
@@ -143,7 +135,7 @@ async function numberSections(argv, files) {
       title.replace('informative','').replace('normative','');
     }
     console.log('old:', line);
-    const str = headerSign + ' ' + number + ' ' + title + id;
+    const str = headerSign + ' ' + number + ' ' + title;
     console.log('new:', str);
     return str;
   }
@@ -181,6 +173,19 @@ async function numberSections(argv, files) {
   for (let i = 0; i < files.length; i++) {
     await processFile(files[i]);
   }
+
+  if (this.override) {
+    for (let i = 0; i < files.length; i++) {
+      fs.copyFile(files[i] + '.tmp.md', files[i], (err) => {
+        if (err) throw err;
+      });
+      fs.unlink(files[i] + '.tmp.md', (err) => {
+        if (err) throw err;
+      });
+    }
+  }
+  //console.log(' section', this.section);
+
 }
 
 module.exports = numberSections
