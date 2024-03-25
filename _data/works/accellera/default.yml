@@ -1,9 +1,9 @@
-title: "Accelera Style Guide"
+title: "Accellera Style Guide"
 subtitle: ""
 creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
-subject: "The Accelera Style Guide defines the recommended structure, formatting and style to develop and publish Accellera (Draft) Standards, User Guides and other standard-related documentation. This style guide serves as a reference for Accellera working groups in the technical editing process when drafting a standard-related document."
-description: "The Accelera Style Guide defines the recommended structure, formatting and style to develop Accellera Standards and Drafts." # E.g. the blurb
+subject: "The Accellera Style Guide defines the recommended structure, formatting and style to develop and publish Accellera (Draft) Standards, User Guides and other standard-related documentation. This style guide serves as a reference for Accellera working groups in the technical editing process when drafting a standard-related document."
+description: "The Accellera Style Guide defines the recommended structure, formatting and style to develop Accellera Standards and Drafts." # E.g. the blurb
 keywords: "html, kramdown, markdown, style manual"
 publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand name
 publisher-url: ""
