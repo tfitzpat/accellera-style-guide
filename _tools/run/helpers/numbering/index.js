@@ -68,7 +68,7 @@ async function numberSections(argv, files, ids) {
       }
     }
 
-    if (section && (this.isChapter || this.isAnnex)) {
+    if (section && (this.isChapter || this.annexLevel>0)) {
       level = section[0].length;
       return updateSectionNumber(line, level);
     }
@@ -85,8 +85,9 @@ async function numberSections(argv, files, ids) {
     for (let i = 0; i < xref.length; i++) {
       //console.log('xref:', i, xref[i], xref[i][3]);
       const id = this.ids[xref[i][3]];
+      let ref = id.ref;
       if (id) {
-        nline = line.replace(xref[i][1], '[' + id.number + ']');
+        nline = line.replace(xref[i][1], '[' + ref + ']');
         //console.log(' line:', nline);
       } else {
         console.error('xref update: no cross reference found for ID', xref[i][3]);
