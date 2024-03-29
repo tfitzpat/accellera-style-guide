@@ -596,6 +596,9 @@ async function convertXHTMLFiles (argv) {
 async function renderNumbering (argv) {
   'use strict'
 
+  // when --skip-numbering is used we will not render the numbering
+  if (argv.skipNumbering) return;
+
   // original files copied to temp folder to enable updates of sources
   await fs.emptyDir(process.cwd() + '/.temp');
   fs.copySync(process.cwd() + '/' + argv.book, process.cwd() + '/.temp/' + argv.book);
@@ -604,7 +607,7 @@ async function renderNumbering (argv) {
 
   const ids = await idRegistry(argv, fileNames);
   await numberSections(argv, fileNames, ids);
-  }
+}
 
 // Get project settings from settings.yml
 function projectSettings () {

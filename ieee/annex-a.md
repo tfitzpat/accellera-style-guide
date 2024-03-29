@@ -3,7 +3,7 @@ title: "Annex A. Guidelines and best practices for the creation and maintenance 
 style: annex
 ---
 
-# Annex A. **(normative)** Guidelines and best practices for the creation and maintenance of IEEE standards terms and definitions
+# Annex A **(normative)** Guidelines and best practices for the creation and maintenance of IEEE standards terms and definitions
 
 ## A.1 The IEEE Standards Dictionary Online
 

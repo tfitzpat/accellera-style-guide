@@ -85,8 +85,8 @@ async function numberSections(argv, files, ids) {
     for (let i = 0; i < xref.length; i++) {
       //console.log('xref:', i, xref[i], xref[i][3]);
       const id = this.ids[xref[i][3]];
-      let ref = id.ref;
       if (id) {
+        let ref = id.ref;
         nline = line.replace(xref[i][1], '[' + ref + ']');
         //console.log(' line:', nline);
       } else {
