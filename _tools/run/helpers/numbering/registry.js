@@ -44,7 +44,7 @@ async function idRegistry(argv, files) {
     }
   }
 
-  function scanFile(file) {
+  async function scanFile(file) {
     const readableStream = fs.createReadStream(file);
     let block;
 
@@ -144,7 +144,7 @@ async function idRegistry(argv, files) {
   }
 
   for (let i = 0; i < files.length; i++) {
-    await scanFile(files[i]);
+    await scanFile(files[i].temp);
   }
   //console.log(' section', this.section);
   return this.section;

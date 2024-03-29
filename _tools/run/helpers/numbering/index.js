@@ -31,8 +31,8 @@ async function numberSections(argv, files, ids) {
   }
 
   async function processFile(file) {
-    const readableStream = fs.createReadStream(file);
-    const writeStream = fs.createWriteStream(file + '.tmp.md');
+    const readableStream = fs.createReadStream(file.temp);
+    const writeStream = fs.createWriteStream(file.source);
 
     readableStream.on('error', function (error) {
       console.log(`error: ${error.message}`);
@@ -154,14 +154,6 @@ async function numberSections(argv, files, ids) {
   for (let i = 0; i < files.length; i++) {
     await processFile(files[i]);
 
-    if (this.override) {
-      fs.copyFile(files[i] + '.tmp.md', files[i], (err) => {
-        if (err) throw err;
-      });
-      fs.unlink(files[i] + '.tmp.md', (err) => {
-        if (err) throw err;
-      });
-    }
   }
   //console.log(' section', this.section);
 }
