@@ -55,7 +55,7 @@ async function numberSections(argv, files, ids) {
     const section = line.match(/^#+/);
     const chapter = line.match(/style: chapter/);
     const annex = line.match(/style: annex/);
-    const xref = [...line.matchAll(/(\[[^\(]+\]|\[\])\(((?!http).+html)?#([^\)]+)\)/gi)];
+    const xref = [...line.matchAll(/(\[[0-9.]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
 
     if (chapter) {
       this.isChapter = true;
@@ -83,14 +83,16 @@ async function numberSections(argv, files, ids) {
   function updateCrossReference(xref, line) {
     let nline = line;
     for (let i = 0; i < xref.length; i++) {
-      //console.log('xref:', i, xref[i], xref[i][3]);
-      const id = this.ids[xref[i][3]];
+      let link = xref[i][2].split('#');
+      if (!link) continue; // no valid link found, continue
+      const id = this.ids[link[1]];
       if (id) {
         let ref = id.ref;
-        nline = line.replace(xref[i][1], '[' + ref + ']');
+        //console.log('ref:', link, xref[i], ref);
+        nline = nline.replace(xref[i][1], '[' + ref + ']');
         //console.log(' line:', nline);
       } else {
-        console.error('xref update: no cross reference found for ID', xref[i][3]);
+        console.warn('WARNING: xref - no cross reference found for ID', xref[i][2]);
       }
     }
     return nline;
@@ -109,6 +111,10 @@ async function numberSections(argv, files, ids) {
     }        
 
     const match = line.match(regex);
+
+    // regex failed, probably different syntax, so keep line
+    if (!match) return line;
+
     const number = calculateSectionNumber(targetLevel);
     let title = match[3].toString();
 
