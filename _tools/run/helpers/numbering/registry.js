@@ -20,7 +20,7 @@ async function idRegistry(argv, files) {
     return;
   }
 
-  function storeId(ref, title, isFigureOrTable=false) {
+  function storeId(file, ref, title, isFigureOrTable=false) {
     let id;
     if (isFigureOrTable) {
       id = ebSlugify(ref);
@@ -38,9 +38,28 @@ async function idRegistry(argv, files) {
       ref = 'Clause ' + ref;
     }
 
+    let parts = file.split('/');
+    let filePrefix;
+    if (parts.length) {
+      filePrefix = parts[parts.length-1]; // remove path from filename
+    } else {
+      filePrefix = file; // there is no path
+    }
+    
+    filePrefix = filePrefix.replace('md', 'html');
+
     this.section[id] = {
       ref: ref,
       title: title
+    }
+
+    // add reference via file to main chapter
+    if (!this.section[filePrefix]) {
+      this.section[filePrefix] = {
+        ref: ref,
+        title: title
+      }
+      //console.log(" file", filePrefix);
     }
   }
 
@@ -63,7 +82,7 @@ async function idRegistry(argv, files) {
     lineReader.on("line", function(line){
       block += line;
       if (line == '') {
-        scanBlock(block + '\n');
+        scanBlock(block + '\n', file);
         block = '';
       }
     });
@@ -75,7 +94,7 @@ async function idRegistry(argv, files) {
     });
   }
 
-  function scanBlock(block) {
+  function scanBlock(block, file) {
     const figref = block.match(/{%\s+include\s+figure.*reference=\"(.+)\".+caption=\"([^\"]+)\"/);
     const tableref = block.match(/{%\s+include\s+table.*reference=\"(.+)\".+caption=\"([^\"]+)\"/);
     const sectionref = block.match(/^#+\s*(\d+(\.\d+)*.?)?\s+(.+)/);
@@ -108,19 +127,19 @@ async function idRegistry(argv, files) {
     }
 
     if (sectionref && this.isChapter && this.annexLevel == 0) {
-      storeId(ref, sectionref[3]);
+      storeId(file, ref, sectionref[3]);
     }
 
     if (annexref && annexref[1]) {
-      storeId(ref, annexref[2]);
+      storeId(file, ref, annexref[2]);
     }
 
     if (tableref) {
-      storeId(tableref[1], tableref[2], isFigureOrTable=true);
+      storeId(file, tableref[1], tableref[2], isFigureOrTable=true);
     }
 
     if (figref) {
-      storeId(figref[1], figref[2], isFigureOrTable=true);
+      storeId(file, figref[1], figref[2], isFigureOrTable=true);
     }
   }
 

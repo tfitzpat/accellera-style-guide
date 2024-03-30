@@ -50,7 +50,7 @@ async function numberSections(argv, files, ids) {
 
     readableStream.on('end', function() {
       if (block) {  // at EoL, check if there are pending lines in the buffer
-        const updatedBlock = convertLine(block);
+        const updatedBlock = updateBlock(block, file);
         writeStream.write(updatedBlock);
       }
     });
@@ -62,7 +62,7 @@ async function numberSections(argv, files, ids) {
       block += line + '\n';
       if (line == '') {
         //console.log('block', block);
-        const updatedBlock = convertLine(block);
+        const updatedBlock = updateBlock(block);
         writeStream.write(updatedBlock);
         block = '';
       }
@@ -71,11 +71,11 @@ async function numberSections(argv, files, ids) {
     return waitForStreamClose(writeStream);
   }
 
-  function convertLine (block) {
+  function updateBlock (block, file) {
     const section = block.match(/^#+/);
     const chapter = block.match(/style: chapter/);
     const annex = block.match(/style: annex/);
-    const xref = [...block.matchAll(/(\[[0-9.]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
+    const xref = [...block.matchAll(/(\[[0-9a-zA-Z\s.]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
     const codeblock = block.match(/^\`\`\`/);
     const rawblock = block.match(/^\{\%\s+raw\s+\%\}/);
     const table = block.match(/^\{\%\s+include\s+table/);
@@ -160,14 +160,20 @@ async function numberSections(argv, files, ids) {
 
   function updateCrossReference(xref, block) {
     let nblock = block;
+    let id;
+    //console.log('xref', xref);
     for (let i = 0; i < xref.length; i++) {
+      //if (!xref[i][2]) continue; // no reference found, skip
       let link = xref[i][2].split('#');
-      if (!link) continue; // no valid link found, continue
-      const id = this.ids[link[1]];
+      if (link && link[1]) {
+        id = this.ids[link[1]];
+      } else {
+        id = this.ids[xref[i][2]];
+      }
       if (id) {
-        //console.log('ref:', link, xref[i], id.ref);
+        //console.log('old:', nblock);
         nblock = nblock.replace(xref[i][1], '[' + id.ref + ']');
-        //console.log(' line:', nblock);
+        //console.log('new:', nblock);
       } else {
         console.warn('WARNING: xref - no cross reference found for ID', xref[i][2]);
       }
@@ -230,7 +236,6 @@ async function numberSections(argv, files, ids) {
     await processFile(files[i]);
 
   }
-  //console.log(' section', this.section);
 }
 
 module.exports = numberSections

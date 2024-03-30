@@ -36,7 +36,7 @@ sudo apt-get install -y \
   libxfixes3 \
   libxrandr2 \
   curl \
-  git
+    git
 
 # Install nodejs 16.x
 sudo curl -k -sL https://deb.nodesource.com/setup_20.x > node_setup.sh
@@ -73,12 +73,18 @@ npm install --global gulp-cli
 
 cd ..
 
-# install  bundler and jekyll
+# install bundler and jekyll
 echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
 echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
 echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 gem install jekyll bundler
+
+#you might need this to resolve version conficts 
+#bundle update --bundler
+#bundle install
+#bundle update
+#bundle clean --force
 
 # due to zscaler, disable CA check
 export NODE_TLS_REJECT_UNAUTHORIZED=0 
