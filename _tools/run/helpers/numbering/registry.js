@@ -20,9 +20,9 @@ async function idRegistry(argv, files) {
     return;
   }
 
-  function storeId(ref, title, isFigure=false) {
+  function storeId(ref, title, isFigureOrTable=false) {
     let id;
-    if (isFigure) {
+    if (isFigureOrTable) {
       id = ebSlugify(ref);
     } else {
       id = ebSlugify(ref + ' ' + title);
@@ -76,7 +76,8 @@ async function idRegistry(argv, files) {
   }
 
   function scanBlock(block) {
-    const figref = block.match(/reference=\"(.+)\".+caption=\"([^\"]+)\"/);
+    const figref = block.match(/{%\s+include\s+figure.*reference=\"(.+)\".+caption=\"([^\"]+)\"/);
+    const tableref = block.match(/{%\s+include\s+table.*reference=\"(.+)\".+caption=\"([^\"]+)\"/);
     const sectionref = block.match(/^#+\s*(\d+(\.\d+)*.?)?\s+(.+)/);
     const annexref = block.match(/^#+\s*([A-Z][\.\d+]*|Annex\s+[A-Z])\s+(.+)/);
     const chapter = block.match(/style: chapter/);
@@ -114,8 +115,12 @@ async function idRegistry(argv, files) {
       storeId(ref, annexref[2]);
     }
 
+    if (tableref) {
+      storeId(tableref[1], tableref[2], isFigureOrTable=true);
+    }
+
     if (figref) {
-      storeId(figref[1], figref[2], isFigure=true);
+      storeId(figref[1], figref[2], isFigureOrTable=true);
     }
   }
 

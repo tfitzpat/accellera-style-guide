@@ -1,5 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
+const { ebSlugify } = require('../../../gulp/helpers/utilities.js');
 
 async function numberSections(argv, files, ids) {
 
@@ -78,6 +79,7 @@ async function numberSections(argv, files, ids) {
     const codeblock = block.match(/^\`\`\`/);
     const rawblock = block.match(/^\{\%\s+raw\s+\%\}/);
     const table = block.match(/^\{\%\s+include\s+table/);
+    const figure = block.match(/^\{\%\s+include\s+figure/);
 
     // no not process codeblocks, rawblocks
     if (codeblock || rawblock) {
@@ -93,6 +95,9 @@ async function numberSections(argv, files, ids) {
       if (this.annexLevel==0) {
         this.annexLevel = this.sectionNumber[0];
       }
+      // reset numbering for annex
+      this.tableNumber = 0; 
+      this.figureNumber = 0;
     }
 
     if (section && (this.isChapter || this.annexLevel>0)) {
@@ -108,14 +113,49 @@ async function numberSections(argv, files, ids) {
       return updateTableReference(block);
     }
 
+    if (figure) {
+      return updateFigureReference(block);
+    }
+
     return block; // no change
   }
 
   function updateTableReference(block) {
+    let nblock = block;
+    let number = 'Table ';
     const tableref = block.match(/reference=\"(.*)\"/);
-    if (!tableref) return block; // table reference not found
-    console.log('tableref', tableref);
-    return block;
+    if (!tableref) {
+      return block; // table reference not found
+    } else {
+      this.tableNumber +=1;
+      if (this.annexLevel>0) {
+        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.tableNumber;
+      } else {
+        number +=  this.tableNumber;
+      }
+      nblock = nblock.replace('\"' + tableref[1] + '\"', '\"' + number + '\"');
+      //console.log(' replace ', tableref[1], number);
+    }
+    return nblock;
+  }
+
+  function updateFigureReference(block) {
+    let nblock = block;
+    let number = 'Figure ';
+    const ref = block.match(/reference=\"(.*)\"/);
+    if (!ref) {
+      return block; // table reference not found
+    } else {
+      this.figureNumber +=1;
+      if (this.annexLevel>0) {
+        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.figureNumber;
+      } else {
+        number +=  this.figureNumber;
+      }
+      nblock = nblock.replace('\"' + ref[1] + '\"', '\"' + number + '\"');
+      //console.log(' replace ',ref[1], number);
+    }
+    return nblock;
   }
 
   function updateCrossReference(xref, block) {
@@ -125,9 +165,8 @@ async function numberSections(argv, files, ids) {
       if (!link) continue; // no valid link found, continue
       const id = this.ids[link[1]];
       if (id) {
-        let ref = id.ref;
-        //console.log('ref:', link, xref[i], ref);
-        nblock = nblock.replace(xref[i][1], '[' + ref + ']');
+        //console.log('ref:', link, xref[i], id.ref);
+        nblock = nblock.replace(xref[i][1], '[' + id.ref + ']');
         //console.log(' line:', nblock);
       } else {
         console.warn('WARNING: xref - no cross reference found for ID', xref[i][2]);
@@ -161,8 +200,8 @@ async function numberSections(argv, files, ids) {
     this.sectionNumber[level-1] += 1;
 
     for (let i = level; i < this.depth; i++) { 
-      if (sectionNumber[i] && sectionNumber[i] > 0) {
-        sectionNumber[i] = 0;
+      if (this.sectionNumber[i] && this.sectionNumber[i] > 0) {
+        this.sectionNumber[i] = 0;
       }
     }
 
@@ -175,9 +214,9 @@ async function numberSections(argv, files, ids) {
     for (let i = 0; i < level; i++) {
       if (i>0) number += '.';
       if ((i == 0) && this.annexLevel!=0) {
-        number += String.fromCharCode(64+sectionNumber[i]-this.annexLevel);
+        number += String.fromCharCode(64 + this.sectionNumber[i] - this.annexLevel);
       } else {
-        number += sectionNumber[i].toString();
+        number += this.sectionNumber[i].toString();
       }
     }
     // add trailing dot for chapters
