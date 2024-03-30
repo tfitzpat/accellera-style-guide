@@ -17,11 +17,11 @@ As guest operating system, Linux will be used. In this setup, Xubuntu is selecte
 Open VirtualBox and click on the blue **New** button. It will open a dialog box to specify the creation of a virtual machine, see image below.
 
 {% include figure
-   images="create_vm.png"
    reference="Figure A-1"
    caption="Create virtual machine"
    alt-text=""
    class="fixed"
+   images="create_vm.png"
 %}
 
 Enter the following information into the fields. Note: replace &lt;user&gt; with your user account.
@@ -35,31 +35,31 @@ Enter the following information into the fields. Note: replace &lt;user&gt; with
 Click on **Next** to specify the account details, see figure below. In this setup, a new account `accellera` is created. Specify the strong password. Optional is to specify a hostname (e.g., `ebw`) and domain name (e.g., `ebw.virtualbox.org`). After completion, click on **Next**.
 
 {% include figure
-   images="vm_account.png"
    reference="Figure A-2"
    caption="Account username and password (hostname and domain name are optional)"
    alt-text=""
    class="fixed"
+   images="vm_account.png"
 %}
 
 Specify the memory size and number of processors for the virtual machine, as shown below. There is no need to thick the box *Enable EFI*. After completion, click on **Next**.
 
 {% include figure
-   images="vm_hardware.png"
    reference="Figure A-3"
    caption="Virtual machine memory and processors"
    alt-text=""
    class="fixed"
+   images="vm_hardware.png"
 %}
 
 Next, specify the available disk space for the virtual machine, see figure below. It is recommended to define a partition bigger than 10 GB. After completion, click on **Next**.
 
 {% include figure
-   images="vm_disk.png"
    reference="Figure A-4"
    caption="Virtual machine disk space"
    alt-text=""
    class="fixed"
+   images="vm_disk.png"
 %}
 
 The next dialog presents a summary. Check all settings, and in case a change is required, use the **Back** button to update the configuration. If all settings are correct, click **Finish**.

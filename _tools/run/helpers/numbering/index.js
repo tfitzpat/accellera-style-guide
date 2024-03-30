@@ -9,6 +9,8 @@ async function numberSections(argv, files, ids) {
   this.override = argv.override;
   this.depth = argv.depth ? argv.depth : 5;
   this.ids = ids;
+  this.figureNumber = 0;
+  this.tableNumber = 0;
 
   // reset section counter
   this.sectionNumber = {};
@@ -33,29 +35,54 @@ async function numberSections(argv, files, ids) {
   async function processFile(file) {
     const readableStream = fs.createReadStream(file.temp);
     const writeStream = fs.createWriteStream(file.source);
+    let block = '';
+    let eof = false;
 
-    readableStream.on('error', function (error) {
-      console.log(`error: ${error.message}`);
-    });
-
-    const lines = readline.createInterface({
+    const lineReader  = readline.createInterface({
       input: readableStream,
       crlfDelay: Infinity
     });
-  
-    for await (const line of lines) {
-      const newline = convertLine(line);
-      writeStream.write(newline+'\n');
-    }
+
+    lineReader.on('error', function (error) {
+      console.log(`error: ${error.message}`);
+    });
+
+    readableStream.on('end', function() {
+      if (block) {  // at EoL, check if there are pending lines in the buffer
+        const updatedBlock = convertLine(block);
+        writeStream.write(updatedBlock);
+      }
+    });
+
+    // instead of processing a single line, we merge
+    // multiple lines into a single block, as this is
+    // required for figures
+    for await (const line of lineReader) {
+      block += line + '\n';
+      if (line == '') {
+        //console.log('block', block);
+        const updatedBlock = convertLine(block);
+        writeStream.write(updatedBlock);
+        block = '';
+      }
+    };
 
     return waitForStreamClose(writeStream);
   }
 
-  function convertLine (line) {
-    const section = line.match(/^#+/);
-    const chapter = line.match(/style: chapter/);
-    const annex = line.match(/style: annex/);
-    const xref = [...line.matchAll(/(\[[0-9.]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
+  function convertLine (block) {
+    const section = block.match(/^#+/);
+    const chapter = block.match(/style: chapter/);
+    const annex = block.match(/style: annex/);
+    const xref = [...block.matchAll(/(\[[0-9.]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
+    const codeblock = block.match(/^\`\`\`/);
+    const rawblock = block.match(/^\{\%\s+raw\s+\%\}/);
+    const table = block.match(/^\{\%\s+include\s+table/);
+
+    // no not process codeblocks, rawblocks
+    if (codeblock || rawblock) {
+      return block;
+    }
 
     if (chapter) {
       this.isChapter = true;
@@ -70,18 +97,29 @@ async function numberSections(argv, files, ids) {
 
     if (section && (this.isChapter || this.annexLevel>0)) {
       level = section[0].length;
-      return updateSectionNumber(line, level);
+      return updateSectionNumber(block, level);
     }
 
     if (xref.length) {
-      return updateCrossReference(xref, line);
+      return updateCrossReference(xref, block);
     }
 
-    return line; // no change
+    if (table) {
+      return updateTableReference(block);
+    }
+
+    return block; // no change
   }
 
-  function updateCrossReference(xref, line) {
-    let nline = line;
+  function updateTableReference(block) {
+    const tableref = block.match(/reference=\"(.*)\"/);
+    if (!tableref) return block; // table reference not found
+    console.log('tableref', tableref);
+    return block;
+  }
+
+  function updateCrossReference(xref, block) {
+    let nblock = block;
     for (let i = 0; i < xref.length; i++) {
       let link = xref[i][2].split('#');
       if (!link) continue; // no valid link found, continue
@@ -89,42 +127,34 @@ async function numberSections(argv, files, ids) {
       if (id) {
         let ref = id.ref;
         //console.log('ref:', link, xref[i], ref);
-        nline = nline.replace(xref[i][1], '[' + ref + ']');
-        //console.log(' line:', nline);
+        nblock = nblock.replace(xref[i][1], '[' + ref + ']');
+        //console.log(' line:', nblock);
       } else {
         console.warn('WARNING: xref - no cross reference found for ID', xref[i][2]);
       }
     }
-    return nline;
+    return nblock;
   }
 
-  function updateSectionNumber(line, targetLevel) {
+  function updateSectionNumber(block, targetLevel) {
+    nblock = block;
     if (targetLevel > this.depth) {
-      return line;
+      return block;
     }
-    const headerSign = '#'.repeat(targetLevel);
+
     let regex;
-    if (this.annexLevel > 0) {
+    if (this.annexLevel > 0) { // annex
       regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)|Annex\\s+[A-Z])?\\s*(.+)');
     } else { // chapter
       regex = new RegExp('^#{' + targetLevel + '}\\s*(\\d+(\\.\\d+)*.?)?\\s+(.+)?');
     }        
 
-    const match = line.match(regex);
-
-    // regex failed, probably different syntax, so keep line
-    if (!match) return line;
-
+    const match = block.match(regex);
+    // regex failed, probably different syntax, so keep block untouched
+    if (!match) return block;
+    //console.log('section', match);
     const number = calculateSectionNumber(targetLevel);
-    let title = match[3].toString();
-
-    if (this.annexLevel > 0) { // TODO remove based on text in line
-      title.replace('informative','').replace('normative','');
-    }
-    //console.log('old:', line);
-    const str = headerSign + ' ' + number + ' ' + title;
-    //console.log('new:', str);
-    return str;
+    return block.replace(match[1], number);
   }
 
   function calculateSectionNumber(level) {

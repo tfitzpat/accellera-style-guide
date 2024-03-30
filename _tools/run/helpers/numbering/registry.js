@@ -46,7 +46,7 @@ async function idRegistry(argv, files) {
 
   async function scanFile(file) {
     const readableStream = fs.createReadStream(file);
-    let block;
+    let block = '';
 
     const lineReader  = readline.createInterface({
       input: readableStream,
@@ -82,6 +82,14 @@ async function idRegistry(argv, files) {
     const chapter = block.match(/style: chapter/);
     const annex = block.match(/style: annex/);
     const section = block.match(/^#+/);
+    const codeblock = block.match(/^\`\`\`/);
+    const rawblock = block.match(/^\{\%\sraw\s\%\}/);
+    
+    // no not process codeblocks, rawblocks
+    if (codeblock || rawblock) {
+      return block;
+    }
+
     let ref;  
 
     if (chapter) {
