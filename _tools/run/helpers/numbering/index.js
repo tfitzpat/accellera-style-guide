@@ -46,7 +46,7 @@ async function numberSections(argv, files) {
     }
 
     // For Chapters/clauses, the reference name should include the full name
-    if (nlabel.length<3) {
+    if (nlabel[nlabel.length-1] == '.') {
       nlabel = 'Clause ' + label.replace('.',''); // remove dot
     }
 
@@ -86,7 +86,7 @@ async function numberSections(argv, files) {
 
     const lineReader  = readline.createInterface({
       input: readableStream,
-      crlfDelay: Infinity
+      //crlfDelay: Infinity
     });
 
     lineReader.on('error', function (error) {
@@ -95,6 +95,7 @@ async function numberSections(argv, files) {
 
     readableStream.on('end', function() {
       if (block) {  // at EoL, check if there are pending lines in the buffer
+        console.log('blocke', block);
         const updatedBlock = updateBlock(block, updateXref);
         writeStream.write(updatedBlock);
       }
@@ -105,8 +106,8 @@ async function numberSections(argv, files) {
     // required for figures
     for await (const line of lineReader) {
       block += line + '\n';
+      if (this.fileName=='01a.html') console.log('blockl', block);
       if (line == '') {
-        //console.log('block', block);
         const updatedBlock = updateBlock(block, updateXref);
         writeStream.write(updatedBlock);
         block = '';
@@ -244,7 +245,6 @@ async function numberSections(argv, files) {
     if (targetLevel > this.depth) {
       return block;
     }
-
     let regex;
     if (this.annexLevel > 0) { // annex
       regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)|Annex\\s+[A-Z])?\\s*(.+)');
@@ -255,13 +255,19 @@ async function numberSections(argv, files) {
     const match = block.match(regex);
     // regex failed, probably different syntax, so keep block untouched
     if (!match) return block;
+
     //console.log('section', match);
     const number = calculateSectionNumber(targetLevel);
     let oldref = ebSlugify(match[1] + ' ' + match[3]);
     let newref = ebSlugify(number + ' ' + match[3]);
     storeId(number, oldref, newref, match[3]);
 
-    return block.replace(match[1], number);
+    if (match[1]) {
+      nblock = block.replace(match[1], number);
+    } else { // number was missing, add
+      nblock = block.slice(0, targetLevel+1) + number + ' ' + block.slice(targetLevel+1);
+    }
+    return nblock;
   }
 
   function calculateSectionNumber(level) {
@@ -308,7 +314,7 @@ async function numberSections(argv, files) {
     this.fileName = getFileName(files[i]);
     await processFile(files[i]);
   }
-  console.log('section', this.section);
+  //console.log('section', this.section);
 
   // 2nd pass to update xrefs
   console.log('INFO: Numbering 2nd pass...');
@@ -321,6 +327,7 @@ async function numberSections(argv, files) {
     this.fileName = getFileName(files[i]);
     await processFile(files[i], updateXref=true);
   }
+
 }
 
 module.exports = numberSections
