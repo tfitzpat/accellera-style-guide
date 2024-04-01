@@ -18,7 +18,6 @@ const buildReferenceIndex = require('./reindex/build-reference-index.js')
 const buildSearchIndex = require('./reindex/build-search-index.js')
 const options = require('./options.js').options
 const numberSections = require('./numbering/index.js')
-const idRegistry = require('./numbering/registry.js')
 
 // Output spawned-process data to console
 function logProcess (process, processName) {
@@ -599,14 +598,10 @@ async function renderNumbering (argv) {
   // when --skip-numbering is used we will not render the numbering
   if (argv.skipNumbering) return;
 
-  // original files copied to temp folder to enable updates of sources
-  await fs.emptyDir(process.cwd() + '/.temp');
-  fs.copySync(process.cwd() + '/' + argv.book, process.cwd() + '/.temp/' + argv.book);
-
   const fileNames = markdownFilePaths(argv);
 
-  const ids = await idRegistry(argv, fileNames);
-  await numberSections(argv, fileNames, ids);
+  //const ids = await idRegistry(argv, fileNames);
+  await numberSections(argv, fileNames, {});
 }
 
 // Get project settings from settings.yml
