@@ -95,7 +95,6 @@ async function numberSections(argv, files) {
 
     readableStream.on('end', function() {
       if (block) {  // at EoL, check if there are pending lines in the buffer
-        console.log('blocke', block);
         const updatedBlock = updateBlock(block, updateXref);
         writeStream.write(updatedBlock);
       }
@@ -106,7 +105,6 @@ async function numberSections(argv, files) {
     // required for figures
     for await (const line of lineReader) {
       block += line + '\n';
-      if (this.fileName=='01a.html') console.log('blockl', block);
       if (line == '') {
         const updatedBlock = updateBlock(block, updateXref);
         writeStream.write(updatedBlock);
