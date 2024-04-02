@@ -4,4 +4,4 @@ style: annex
 
 # Annex A **(informative)** Title
 
-Annex page template
+Annex page template.

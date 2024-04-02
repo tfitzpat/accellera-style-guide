@@ -80,8 +80,8 @@ async function numberSections(argv, files) {
   }
 
   async function processFile(file, updateXref=false) {
-    const readableStream = fs.createReadStream(file.temp);
-    const writeStream = fs.createWriteStream(file.source);
+    const readableStream = fs.createReadStream(file.temp, { flags: 'r', encoding: 'utf-8' });
+    const writeStream = fs.createWriteStream(file.source, { flags: 'w', encoding: 'utf-8' });
     let block = '';
 
     const lineReader  = readline.createInterface({
