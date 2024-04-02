@@ -59,23 +59,23 @@ options:
 Create a screen PDF for the `standard` document:
 
 ```
-  npm run electric-book -- output --format screen-pdf --book standard
+npm run electric-book -- output --format screen-pdf --book standard
 ```
 
 Create a table of contents for the the `standard` document:
 
 ```
-  npm run electric-book -- toc --book standard
+npm run electric-book -- toc --book standard
 ```
 
 Create a screen PDF for the Accellera Style Guide:
 
 ```
-  npm run electric-book -- output --format screen-pdf --book accellera
+npm run electric-book -- output --format screen-pdf --book accellera
 ```
 
 Create a screen PDF for the IEEE-SA Standards Style Manual:
 
 ```
-  npm run electric-book -- output --format screen-pdf --book ieee
+npm run electric-book -- output --format screen-pdf --book ieee
 ```

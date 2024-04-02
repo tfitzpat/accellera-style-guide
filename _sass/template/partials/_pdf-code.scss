@@ -10,18 +10,19 @@ $pdf-code: true !default;
         font-size: 90%;
         line-height: 1;
         white-space: pre-wrap;
-        padding: 0.1em 0.3em;
         border-radius: 0.2em;
+        background-color: $code-background-color;
     }
 
     pre {
         border-radius: 0.2em;
         line-height: $line-height-default;
         margin: $line-height-default 0;
-        padding: 0 $paragraph-indent;
+        padding: 0.4em 0.4em 0.4em 0.5em; // t r b l
+        background-color: $code-background-color;
 
         code {
-            padding: 0;
+            padding: 0px;
         }
 
         & + p {
