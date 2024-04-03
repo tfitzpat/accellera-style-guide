@@ -74,7 +74,7 @@ Create a screen PDF for the Accellera Style Guide:
 npm run electric-book -- output --format screen-pdf --book accellera
 ```
 
-Create a screen PDF for the IEEE-SA Standards Style Manual:
+Create a screen PDF for the IEEE SA Standards Style Manual:
 
 ```
 npm run electric-book -- output --format screen-pdf --book ieee
