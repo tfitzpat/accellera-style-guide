@@ -50,4 +50,15 @@ Adjust HTML based on output format.
 	<img src="{{ images }}/{{ image }}" alt="{{ cover-alt }}" class="cover">
 </div>
 
+
+{% comment %}
+FIXME: Workaround to also place copyright on cover page, otherwise it will not be found by the footer scss
+This copyright will be hidden since an image will be used as cover page
+Because this IEEE Manual does not have a title page which prints the copyright
+{% endcomment %}
+
+<p class="cover-copyright">
+{{ rights }}
+</p>
+
 {% endif %}

@@ -15,7 +15,7 @@ language: "en" # use ISO 639-1, 639-2, or 639-3 codes (in that order of preferen
 relation: "" # e.g. other edition ISBN
 coverage: "" # e.g. geographic place or chronological time span
 rightsholder: "IEEE" # who owns the copyright?
-rights: "All rights reserved. " # e.g. a copyright statement
+rights: "Copyright © 2021 IEEE. All rights reserved." # e.g. a copyright statement
 image: "cover.jpg"
 
 products: # Metadata for each product for this title (only use values that override parent metadata)

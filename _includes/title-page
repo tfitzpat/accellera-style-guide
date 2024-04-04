@@ -47,3 +47,7 @@ as body text despite CSS rules for em size.
    file=project-logo
    class="title-page-logo"
    folder="assets" %}
+
+<p class="title-page-copyright">
+{{ rights }}
+</p>

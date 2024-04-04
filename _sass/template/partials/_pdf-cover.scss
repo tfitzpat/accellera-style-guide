@@ -29,4 +29,13 @@ $pdf-cover: true !default;
     // _pdf-page-break-tools.scss
     // _pdf-start-on-recto-and-verso
 
+    .cover-copyright {
+        position: absolute;
+        text-align: center;
+        bottom: -50px; // move under page margin
+        // Now we'll center the block on the page
+        transform: translateX(-50%);
+        margin-left: 50%;			
+        string-set: book-copyright content(text);
+    }
 }
