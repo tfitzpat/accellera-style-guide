@@ -12,6 +12,7 @@ async function numberSections(argv, files) {
   this.section = {};
   this.figureNumber = 0;
   this.tableNumber = 0;
+  this.equationNumber = 0;
   this.fileName = '';
 
   if (!files) {
@@ -124,6 +125,7 @@ async function numberSections(argv, files) {
     const rawblock = block.match(/^\{\%\s+raw\s+\%\}/);
     const table = block.match(/^\{\%\s+include\s+table/);
     const figure = block.match(/^\{\%\s+include\s+figure/);
+    const equation = block.match(/^\{\%\s+include\s+equation/);
 
     if (xref.length && updateXref) {
       return updateCrossReference(xref, block);
@@ -165,6 +167,10 @@ async function numberSections(argv, files) {
       return updateFigureReference(block);
     }
 
+    if (equation) {
+      return updateEquationReference(block);
+    }
+
     return block; // no change if no other match found
   }
 
@@ -195,7 +201,7 @@ async function numberSections(argv, files) {
     const ref = block.match(/reference=\"(.*)\"/);
     const caption= block.match(/caption=\"(.*)\"/);
     if (!ref) {
-      return block; // table reference not found
+      return block; // figure reference not found
     } else {
       this.figureNumber +=1;
       if (this.annexLevel>0) {
@@ -206,6 +212,26 @@ async function numberSections(argv, files) {
       nblock = nblock.replace('\"' + ref[1] + '\"', '\"' + number + '\"');
       //console.log(' replace ',ref[1], number);
       storeId(number, ebSlugify(ref[1]), ebSlugify(number), caption[1]);
+    }
+    return nblock;
+  }
+
+  function updateEquationReference(block) {
+    let nblock = block;
+    let number = 'Equation ';
+    const ref = block.match(/reference=\"(.*)\"/);
+    if (!ref) {
+      return block; // equation reference not found
+    } else {
+      this.equationNumber +=1;
+      if (this.annexLevel>0) {
+        number = String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.equationNumber;
+      } else {
+        number =  this.equationNumber;
+      }
+      nblock = nblock.replace('\"' + ref[1] + '\"', '\"' + this.equationNumber + '\"');
+      //console.log(' replace ',ref[1], number);
+      storeId(number, ebSlugify(number + ref[1]), ebSlugify(number), '');
     }
     return nblock;
   }

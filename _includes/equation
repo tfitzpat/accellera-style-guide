@@ -1,0 +1,43 @@
+{% capture this-equation %}
+
+{% include metadata %}
+
+{% comment %} Check the reference. If it's the same as the image name, hide it.
+This allows for figures with IDs but without visible references.
+{% endcomment %}
+
+{% assign equation-reference-hidden = false %}
+{% capture equation-reference %}{{ include.reference }}{% endcapture %}
+
+{% comment %}
+TODO: define equation body css style (currently undefined) 
+and define equation-reference (currently reuse figure-reference)
+{% endcomment %}
+
+<div class="equation-body">
+
+{% if include.file and include.file != "" %}
+<div class="equation-file" style="display: flex; align-items: center;">
+  <div style="margin-right: auto;">{% include_relative {{ include.file }} %}</div>
+  <div style="margin-left: auto;">({{ equation-reference }})</div>
+</div>
+{% endif %}
+
+{% if include.mathml and include.mathml != "" %}
+<div class="equation-mathml" style="display: flex; align-items: center;">
+  <div style="margin-right: auto;">{{ include.mathml }}</div>
+  <div style="margin-left: auto;">({{ equation-reference }})</div>
+</div>
+{% endif %}
+
+{% if include.latex and include.latex != "" %}
+<div class="equation-latex" style="display: flex; align-items: center;">
+  <div style="margin-right: auto;">{{ include.latex }}</div>
+  <div style="margin-left: auto;">({{ equation-reference }})</div>
+</div>
+{% endif %}
+
+</div><!--.equation-body-->
+
+{% endcapture %}
+{{ this-equation }}
