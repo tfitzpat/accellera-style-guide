@@ -95,8 +95,7 @@ $convert-images-to-color-profile: false !default;
 
     ul, ol {
         margin: 0 0 $line-height-default 0;
-        break-inside: avoid;
-        page-break-after: before;
+        page-break-before: avoid;
     }
     ol {
         list-style: decimal;
@@ -117,6 +116,7 @@ $convert-images-to-color-profile: false !default;
         margin-bottom: 0; // manages line space after sublists in lists
     }
     li {
+        page-break-inside: avoid;
         list-style-position: outside;
         margin-left: $paragraph-indent;
         &::marker {
