@@ -40,6 +40,7 @@ $pdf-figures: true !default;
         }
 
         .figure-body {
+            page-break-inside: avoid; // prevents that caption is placed on previous page
 
             .figure-images {
                 text-align: center;
