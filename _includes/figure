@@ -61,7 +61,6 @@ because https://github.com/jekyll/jekyll/issues/2248.
     <p class="caption" markdown="1" id="{{ figure-reference | slugify }}-caption">
       {% if figure-reference and figure-reference-hidden == false %}<span class="figure-reference">{{ figure-reference }}</span>{% endif %}{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
     </p>
-
     {% endif %}
 
 {% endif %}

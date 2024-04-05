@@ -24,7 +24,6 @@ TODO: replace figure css styles by table css style
     <p class="caption" markdown="1" id="{{ table-reference | slugify }}-caption">
       {% if table-reference and table-reference-hidden == false %}<span class="figure-reference">{{ table-reference }}</span>{% endif %}{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
     </p>
-
     {% endif %}
 
 {% endif %}

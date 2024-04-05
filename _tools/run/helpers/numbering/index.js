@@ -218,7 +218,7 @@ async function numberSections(argv, files) {
 
   function updateEquationReference(block) {
     let nblock = block;
-    let number = 'Equation ';
+    let prefix = 'Equation ';
     const ref = block.match(/reference=\"(.*)\"/);
     if (!ref) {
       return block; // equation reference not found
@@ -231,7 +231,7 @@ async function numberSections(argv, files) {
       }
       nblock = nblock.replace('\"' + ref[1] + '\"', '\"' + this.equationNumber + '\"');
       //console.log(' replace ',ref[1], number);
-      storeId(number, ebSlugify(number + ref[1]), ebSlugify(number), '');
+      storeId(prefix + number, ebSlugify(prefix + ref[1]), ebSlugify(prefix + number), '');
     }
     return nblock;
   }
@@ -338,7 +338,7 @@ async function numberSections(argv, files) {
     this.fileName = getFileName(files[i]);
     await processFile(files[i]);
   }
-  //console.log('section', this.section);
+  console.log('section', this.section);
 
   // 2nd pass to update xrefs
   console.log('INFO: Numbering 2nd pass...');
