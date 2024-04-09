@@ -8,10 +8,10 @@ To render the Accellera Style Guide, use the following command:
 npm run eb -- output --format screen-pdf --book accellera
 ```
 
-It will generate a PDF in the `output` directory.
+It will generate a PDF in the `_output` directory.
 
-Please contact the Technical Committee chair in case of questions on the Accellera documentation flow, the requires installation procedure or use of the standard document templates.
+Please contact the Technical Committee chair in case of questions on the Accellera documentation flow, the required installation procedure or use of the standard document templates.
 
-## Acknowledgement
+## Acknowledgment
 
-Special thanks to [Electric Book Works](https://electricbookworks.com/) for the development and support of this technical documenation flow.
+Special thanks to [Electric Book Works](https://electricbookworks.com/) for the development and support of this technical documentation flow.

@@ -9,7 +9,7 @@ publisher: "IEEE" # E.g. the publisher, imprint or brand name
 publisher-url: ""
 date: "2021-04-29" # YYYY-MM-DD e.g. publication date
 modified: "2021-04-29" # YYYY-MM-DD e.g. date of last revision
-type: "" # e.g. Novel, Poetry, Memoir
+type: "Standard" # e.g. Standard, User Guide, Whitepaper
 identifier: "" # e.g. ISBN or UUID
 source: "" # e.g. parent ISBN or ISTC
 language: "en" # use ISO 639-1, 639-2, or 639-3 codes (in that order of preference)

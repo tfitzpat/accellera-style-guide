@@ -1,6 +1,7 @@
 ---
 style: frontmatter
 ---
+
 {% include metadata %}
 
 # Introduction
