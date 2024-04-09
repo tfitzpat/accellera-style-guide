@@ -10,16 +10,16 @@ publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand
 publisher-url: ""
 date: "2024-01-03" # YYYY-MM-DD e.g. publication date
 modified: "2024-01-03" # YYYY-MM-DD e.g. date of last revision
-type: "Standard" # e.g. Standard, User Guide, Whitepaper
+type: "User Guide" # e.g. Standard, User Guide, Whitepaper
 identifier: "" # e.g. ISBN or UUID
 source: "" # e.g. parent ISBN or ISTC
 language: "en" # use ISO 639-1, 639-2, or 639-3 codes (in that order of preference)
 relation: "" # e.g. other edition ISBN
 coverage: "" # e.g. geographic place or chronological time span
-rightsholder: "Accellera Systems Initiative" # who owns the copyright?
-rights: "Copyright © 2024 Accellera. All rights reserved." # e.g. a copyright statement
+rightsholder: "Accellera" # who owns the copyright?
+rights: "All rights reserved." # e.g. a copyright statement
 image: "accellera_logo.svg"
-status: "Draft" # status, e.g., Draft, Final
+status: "Final" # status, e.g., Draft, Final, Review
 
 products: # Metadata for each product for this title (only use values that override parent metadata)
   print-pdf:

@@ -1,4 +1,6 @@
 const fs = require('fs-extra');
+const fsPath = require('path');
+const yaml = require('js-yaml');
 const readline = require('readline');
 const { ebSlugify } = require('../../../gulp/helpers/utilities.js');
 
@@ -14,6 +16,7 @@ async function numberSections(argv, files) {
   this.tableNumber = 0;
   this.equationNumber = 0;
   this.fileName = '';
+  this.type = ""; // e.g. standard doc
 
   if (!files) {
     console.log('numberSections: files not specified. Skipped.');
@@ -24,6 +27,28 @@ async function numberSections(argv, files) {
     this.sectionNumber = {};
     for (let i = 0; i < this.depth; i++) {
       this.sectionNumber[i] = 0;
+    }
+  }
+
+  function getMetaData(argv) {
+    let book = 'book'; // default
+    if (argv.book) {
+      book = argv.book;
+    }
+
+    // Build path to YAML data for this book
+    const pathToYAMLFolder = process.cwd() +
+      '/_data/works/' + book + '/';
+
+    // Build path to default-edition YAML
+    const pathToDefaultYAML = fsPath.normalize(pathToYAMLFolder + 'default.yml');
+
+    // Get the files list
+    const metadata = yaml.load(fs.readFileSync(pathToDefaultYAML, 'utf8'));
+
+    // get type of document
+    if (metadata.type) {
+      this.type = metadata.type;
     }
   }
 
@@ -40,6 +65,13 @@ async function numberSections(argv, files) {
   
   function storeId(label, oldref, newref, title) {
     let nlabel = label;
+    let prefix;
+
+    if (this.type == 'Standard') {
+      prefix = 'Clause ';
+    } else {
+      prefix = 'Chapter ';
+    }
 
     if (this.section[oldref] != undefined) {
       console.error('WARNING: Duplicated ID found! Check correctness of source files.', oldref);
@@ -48,7 +80,7 @@ async function numberSections(argv, files) {
 
     // For Chapters/clauses, the reference name should include the full name
     if (nlabel[nlabel.length-1] == '.') {
-      nlabel = 'Clause ' + label.replace('.',''); // remove dot
+      nlabel = prefix + label.replace('.',''); // remove dot
     }
 
     this.section[oldref] = {
@@ -326,6 +358,8 @@ async function numberSections(argv, files) {
 
   // main function called here
   
+  getMetaData(argv);
+
   // 1st pass
   console.log('INFO: Numbering 1st pass...');
 

@@ -1,13 +1,14 @@
 title: "2021 IEEE SA Standards Style Manual"
 subtitle: ""
+version: "version 1.0"
 creator: "IEEE" # E.g. the author
 contributor: "" # E.g. other contributors
 subject: "" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
 description: "The IEEE Standards Style Manual (PDF) establishes preferred style for the preparation and structure of proposed IEEE standards (drafts). It also cites requirements of the *IEEE SA Standards Board Operations Manual* that are related to the development and publication of IEEE standards." # E.g. the blurb
 publisher: "IEEE" # E.g. the publisher, imprint or brand name
 publisher-url: ""
-date: "2022-12-12" # YYYY-MM-DD e.g. publication date
-modified: "2022-12-12" # YYYY-MM-DD e.g. date of last revision
+date: "2021-04-29" # YYYY-MM-DD e.g. publication date
+modified: "2021-04-29" # YYYY-MM-DD e.g. date of last revision
 type: "" # e.g. Novel, Poetry, Memoir
 identifier: "" # e.g. ISBN or UUID
 source: "" # e.g. parent ISBN or ISTC
@@ -15,8 +16,9 @@ language: "en" # use ISO 639-1, 639-2, or 639-3 codes (in that order of preferen
 relation: "" # e.g. other edition ISBN
 coverage: "" # e.g. geographic place or chronological time span
 rightsholder: "IEEE" # who owns the copyright?
-rights: "Copyright © 2021 IEEE. All rights reserved." # e.g. a copyright statement
+rights: "All rights reserved." # e.g. a copyright statement
 image: "cover.jpg"
+status: "Final" # status, e.g., Draft, Final, Review
 
 products: # Metadata for each product for this title (only use values that override parent metadata)
   print-pdf:

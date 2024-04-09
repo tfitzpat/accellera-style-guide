@@ -25,10 +25,16 @@ Also, where a value for a variant isn't available,
 we fall back to the value in the work's default.yml.
 {% endcomment %}
 
+{% if work[work-variant].status and work[work-variant].status == "Draft" %}
+    {% capture status %}{{ work[work-variant].status }}{% endcapture %}
+{% elsif work.default.status and work[work-variant].status == "Draft" %}
+    {% capture status %}{{ work.default.status }}{% endcapture %}
+{% endif %}
+
 {% if work[work-variant].title and work[work-variant].title != "" %}
-    {% capture title %}{{ work[work-variant].title }}{% endcapture %}
+    {% capture title %}{{ work[work-variant].title }} {{ status }}{% endcapture %}
 {% elsif work.default.title and work.default.title != "" %}
-    {% capture title %}{{ work.default.title }}{% endcapture %}
+    {% capture title %}{{ work.default.title }} {{ status }}{% endcapture %}
 {% endif %}
 
 {% if work[work-variant].subtitle and work[work-variant].subtitle != "" %}
@@ -148,6 +154,12 @@ we fall back to the value in the work's default.yml.
     {% capture image %}{{ work[work-variant].image }}{% endcapture %}
 {% elsif work.default.image and work.default.image != "" %}
     {% capture image %}{{ work.default.image }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].version and work[work-variant].version != "" %}
+    {% capture version %}{{ work[work-variant].version }}{% endcapture %}
+{% elsif work.default.version and work.default.version != "" %}
+    {% capture version %}{{ work.default.version }}{% endcapture %}
 {% endif %}
 
 {% comment %} Print-PDF metadata {% endcomment %}

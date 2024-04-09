@@ -1,5 +1,4 @@
 ---
-title: "Annex A. Guidelines and best practices for the creation and maintenance of IEEE standards terms and definitions"
 style: annex
 ---
 

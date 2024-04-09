@@ -58,7 +58,7 @@ Because this IEEE Manual does not have a title page which prints the copyright
 {% endcomment %}
 
 <p class="cover-copyright">
-{{ rights }}
+Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}
 </p>
 
 {% endif %}

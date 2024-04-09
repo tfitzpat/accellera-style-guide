@@ -59,9 +59,12 @@ as body text despite CSS rules for em size.
 -->
 
 <p class="title-page-date">
-   {{ date }}
+   {{ date | date: "%B %Y" }}
 </p>
 
 <p class="title-page-copyright">
-{{ rights }}
+Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}
+{% if status == "Draft" %}
+<span style="display:none">This is an unapproved {{ rightsholder }} Standards Draft, subject to change.</span>
+{% endif %}
 </p>
