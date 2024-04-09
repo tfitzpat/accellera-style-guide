@@ -338,7 +338,7 @@ async function numberSections(argv, files) {
     this.fileName = getFileName(files[i]);
     await processFile(files[i]);
   }
-  console.log('section', this.section);
+  //console.log('section', this.section);
 
   // 2nd pass to update xrefs
   console.log('INFO: Numbering 2nd pass...');
