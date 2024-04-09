@@ -1,50 +1,76 @@
 // LISTS
 
 .wrapper:not(.contents-page) {
+  p + ol, p + ul {
+    margin-top: - 0.75 * $line-height-default;
+  }
+
+  // Ordered lists
   ol {
+    padding-left: 0;
+
+    // First level
     counter-reset: list;
     margin-left: 2 * $paragraph-indent;
-  }
-  ol > li {
-    list-style: none;
-    margin-top: $line-height-default / 2;
-    margin-left: $line-height-default;
-  }
-  ol > li:before {
-    content: counter(list, lower-alpha) ") ";
-    counter-increment: list;
-    position: absolute;
-    left: 10pt;
+
+    & > li {
+      list-style: none;
+      margin-top: $line-height-default / 4;
+      margin-left: $line-height-default;
+
+      &:before {
+        // First level is labelled with lowercase letters
+        content: counter(list, lower-alpha) ") ";
+        counter-increment: list;
+        left: $paragraph-indent;
+        position: absolute;
+      }
+    }
+
+    ol {
+      // Second level
+      counter-reset: sublist;
+      margin-left: $paragraph-indent;
+    
+      li:before {
+        // Second level is labelled with numbers
+        content: counter(sublist) ") ";
+        counter-increment: sublist;
+        left: 2 * $paragraph-indent + $line-height-default;
+      }
+
+      ol {
+        // Third level
+        counter-reset: subsublist;
+        margin-left: $paragraph-indent;
+        
+        li:before {
+          // Third level is labelled with lowercase roman numerals
+          content: counter(subsublist, lower-roman) ") ";
+          counter-increment: subsublist;
+          left: 3 * $paragraph-indent + 2 * $line-height-default;
+        }
+      }
+    }
   }
 
+  // Unordered lists
   ul {
     margin-left: 2 * $paragraph-indent;
-  }
 
-  ul > li {
-    list-style: none;
-    margin-top: $line-height-default * 0.7;
-  }
+    & > li {
+      list-style: none;
+      margin-top: $line-height-default / 4;
 
-  ul > li:before {
-    content: "―";
-    position: absolute;
-    left: 10pt;
+      &:before {
+        content: "―";
+        position: absolute;
+        left: 10pt;
+      }
+    }
   }
 
   li li:before {
     left: 2 * $paragraph-indent + $line-height-default;
-  }
-  
-  li {
-    margin-bottom: $font-size-default;
-  }
-
-  li:last-of-type {
-    margin-bottom: 1.2 * $line-height-default;
-  }
-
-  ol p, ul p {
-    margin-bottom: 1.2 * $line-height-default;
   }
 }
