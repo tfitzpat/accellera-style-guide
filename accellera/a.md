@@ -87,19 +87,20 @@ After the reboot, open the terminal window again. A workarea called `workarea` i
     $ mkdir workarea
     $ cd workarea
 	
-Next, a clone of the Accellera repository is made, which contains the standard document template.
+Next, a clone of the repository is made, which contains the Accellera documentation flow and templates.
 
-    $ git clone https://github.com/barnasc/accellera-style-guide    
-    $ cd accellera-style-guide 
+    $ git clone https://github.com/OSCI-WG/tc-documentation.git
+    $ cd tc-documentation
 
-This directory contains the sources of the Accellera Style Guide. 
+NOTE---Each working group can have its own documentation repository.
+{:.note}
 
 ## A.5 Install documentation flow
 
 Install the Electric Book Works documentation flow by executing the following comment in the repository directory:
 
-    $ cd accellera-style-guide
-    $ sudo ./setup.sh
+    $ cd tc-documentation # or working group specific documentation repository
+    $ bash setup.sh
 
 All packages for the documentation flow are installed. Also, Visual Studio Code is installed, which can be used as Markdown editor.
 
