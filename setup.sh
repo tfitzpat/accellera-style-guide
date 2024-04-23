@@ -73,14 +73,19 @@ npm install --global gulp-cli
 
 cd ..
 
-# Install bundler and jekyll
-echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
+# Set paths for Ruby gems
+echo '# Define Ruby Gems path to ~/gems' >> ~/.bashrc
 echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
 echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
+
+# Install bundler and jekyll
 gem install jekyll bundler
 
-#you might need this to resolve version conficts 
+# install gems
+bundle install
+
+# you might need this to resolve version conficts 
 #bundle update --bundler
 #bundle install
 #bundle update
@@ -88,7 +93,7 @@ gem install jekyll bundler
 
 # Install Microsoft Core Fonts
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-sudo apt-get install ttf-mscorefonts-installer
+sudo apt-get install ttf-mscorefonts-installer -y
 
 # due to zscaler, disable CA check
 export NODE_TLS_REJECT_UNAUTHORIZED=0 

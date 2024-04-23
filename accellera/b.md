@@ -57,7 +57,7 @@ options:
 
 ## B.2 Examples
 
-Create a screen PDF for the `standard` document:
+Create a screen PDF for the `standard` (template) document:
 
 ```
 npm run electric-book -- output --format screen-pdf --book standard
