@@ -67,7 +67,7 @@ async function numberSections(argv, files) {
     let nlabel = label;
     let prefix;
 
-    if (this.type == 'Standard') {
+    if (this.type.toLowerCase().includes('standard')) {
       prefix = 'Clause ';
     } else {
       prefix = 'Chapter ';
