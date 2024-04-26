@@ -309,19 +309,21 @@ async function numberSections(argv, files) {
     // regex failed, probably different syntax, so keep block untouched
     if (!match) return block;
 
-    let number = '';
-    if (targetLevel <= this.depth) {
-      number = calculateSectionNumber(targetLevel);
-    }
-
+    const number = calculateSectionNumber(targetLevel);
     let oldref = ebSlugify(match[1] + ' ' + match[3]);
     let newref = ebSlugify(number + ' ' + match[3]);
     storeId(number, oldref, newref, match[3]);
 
-    if (match[1]) {
-      nblock = block.replace(match[1], number);
-    } else { // number was missing, add
-      nblock = block.slice(0, targetLevel+1) + number + ' ' + block.slice(targetLevel+1);
+    if (targetLevel <= this.depth) {
+      if (match[1]) {
+        nblock = block.replace(match[1], number);
+      } else { // number was missing, add
+        nblock = block.slice(0, targetLevel+1) + number + ' ' + block.slice(targetLevel+1);
+      }
+    } else {
+      if (match[1]) {
+        nblock = block.replace(match[1] + ' ', ''); // remove number and one space when depth is changed
+      }
     }
     return nblock;
   }
