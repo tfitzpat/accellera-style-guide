@@ -298,12 +298,9 @@ async function numberSections(argv, files) {
 
   function updateSectionNumber(block, targetLevel) {
     nblock = block;
-    if (targetLevel > this.depth) {
-      return block;
-    }
     let regex;
     if (this.annexLevel > 0) { // annex
-      regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)|Annex\\s+[A-Z])?\\s*(.+)');
+      regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)*|Annex\\s+[A-Z])?\\s+(.+)?');
     } else { // chapter
       regex = new RegExp('^#{' + targetLevel + '}\\s*(\\d+(\\.\\d+)*.?)?\\s+(.+)?');
     }        
@@ -312,8 +309,11 @@ async function numberSections(argv, files) {
     // regex failed, probably different syntax, so keep block untouched
     if (!match) return block;
 
-    //console.log('section', match);
-    const number = calculateSectionNumber(targetLevel);
+    let number = '';
+    if (targetLevel <= this.depth) {
+      number = calculateSectionNumber(targetLevel);
+    }
+
     let oldref = ebSlugify(match[1] + ' ' + match[3]);
     let newref = ebSlugify(number + ' ' + match[3]);
     storeId(number, oldref, newref, match[3]);

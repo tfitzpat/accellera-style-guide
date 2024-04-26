@@ -7,7 +7,7 @@ $pdf-code: true !default;
 
     code {
         font-family: $font-code;
-        font-size: 90%;
+        font-size: $font-code-size;
         line-height: 1;
         white-space: pre-wrap;
         border-radius: 0.2em;
