@@ -6,15 +6,10 @@ style: annex
 {:.page-break-before}
 
 To be able to instantiate a **`cci_param_typed`** with some user-defined type `VT`, that type must provide these features:
-
  - default constructor: `VT()` (DefaultConstructible in C++ concept terminology).
-
  - copy constructor: `VT(const VT&`) (CopyConstructible).
-
  - value type assignment operator: `operator=(const VT&)` (CopyAssignable)
-
  - value type equality operator: `operator==(const VT&)` (EqualityComparable)
-
  - **`cci_value_converter`**`<value type>` defined.
 
 The following example takes a small class `custom_type`, the pairing of an integer and string, and enables use such as:
@@ -78,6 +73,7 @@ T x;
 cci_value vX( x );
 T y = vX.get<T>();
 sc_assert( x == y );
+```
 
 and for some data types such as floating point it may not be practicable, nor desirable to encourage thinking of equality as a
 useful concept when comparing types. However in general such behavior may astonish users, so stability may be a sensible default goal.

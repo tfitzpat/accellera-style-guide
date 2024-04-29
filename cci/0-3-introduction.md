@@ -26,7 +26,5 @@ Configuration tutorial or information on its intended use should consult the Acc
 
 The SystemC CCI Working Group would like to express gratitude to the following organizations for their extraordinary contributions to
 development of the Configuration standard:
-
 - **GreenSocs**, for contributing a complete Configuration solution which served as a concrete reference in defining the standard and also as a foundation for the reference implementation.
-
 - **Ericsson**, for funding resources to fully develop the SystemC Configuration reference implementation.

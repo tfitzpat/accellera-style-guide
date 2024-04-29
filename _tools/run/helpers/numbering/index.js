@@ -152,7 +152,7 @@ async function numberSections(argv, files) {
     const section = block.match(/^#+/);
     const chapter = block.match(/style: chapter/);
     const annex = block.match(/style: annex/);
-    const xref = [...block.matchAll(/(\[[0-9a-zA-Z\s.]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
+    const xref = [...block.matchAll(/(\[[0-9a-zA-Z\s.\-]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
     const codeblock = block.match(/^\`\`\`/);
     const rawblock = block.match(/^\{\%\s+raw\s+\%\}/);
     const table = block.match(/^\{\%\s+include\s+table/);
@@ -216,7 +216,7 @@ async function numberSections(argv, files) {
     } else {
       this.tableNumber +=1;
       if (this.annexLevel>0) {
-        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.tableNumber;
+        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '.' + this.tableNumber;
       } else {
         number +=  this.tableNumber;
       }
@@ -237,7 +237,7 @@ async function numberSections(argv, files) {
     } else {
       this.figureNumber +=1;
       if (this.annexLevel>0) {
-        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.figureNumber;
+        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '.' + this.figureNumber;
       } else {
         number +=  this.figureNumber;
       }
@@ -257,7 +257,7 @@ async function numberSections(argv, files) {
     } else {
       this.equationNumber +=1;
       if (this.annexLevel>0) {
-        number = String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.equationNumber;
+        number = String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '.' + this.equationNumber;
       } else {
         number =  this.equationNumber;
       }

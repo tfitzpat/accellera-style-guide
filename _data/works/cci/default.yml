@@ -242,7 +242,7 @@ products: # Metadata for each product for this title (only use values that overr
             label: "5.10 Version information"
       - file: "a"
         id: "annex-a-informative-a-introduction-to-systemc-configuration"
-        label: "Annex A <strong>(informative)</strong> A Introduction to SystemC Configuration"
+        label: "Annex A (informative) A Introduction to SystemC Configuration"
         children:
           - file: "a"
             id: "a1-sample-code"
@@ -281,10 +281,10 @@ products: # Metadata for each product for this title (only use values that overr
             label: "A.3 Error reporting"
       - file: "b"
         id: "annex-b-informative-glossary"
-        label: "Annex B <strong>(informative)</strong> Glossary"
+        label: "Annex B (informative) Glossary"
       - file: "c"
         id: "annex-c-informative-systemc-configuration-modeler-guidelines"
-        label: "Annex C <strong>(informative)</strong> SystemC Configuration modeler guidelines"
+        label: "Annex C (informative) SystemC Configuration modeler guidelines"
         children:
           - file: "c"
             id: "c1-declare-parameter-instances-as-protected-or-private-members"
@@ -300,4 +300,4 @@ products: # Metadata for each product for this title (only use values that overr
             label: "C.4 Provide parameter descriptions"
       - file: "d"
         id: "annex-d-informative-enabling-user-defined-parameter-value-types"
-        label: "Annex D <strong>(informative)</strong> Enabling user-defined parameter value types"
+        label: "Annex D (informative) Enabling user-defined parameter value types"
