@@ -30,10 +30,10 @@ Accellera is the sole entity that may authorize the use of Accellera-owned certi
 
 Authorization to photocopy portions of any individual standard for internal or personal use must be granted by Accellera, provided that permission is obtained from and any required fee is paid to Accellera. To arrange for authorization please contact Lynn Garibaldi, Accellera Systems Initiative, 8698 Elk Grove Blvd Suite 1, #114, Elk Grove, CA 95624, phone (916) 670-1056, e-mail <lynn@accellera.org>. Permission to photocopy portions of any individual standard for educational classroom use can also be obtained from Accellera.
 
-Suggestions for improvements to the *name* Standard are welcome. They should be posted to the *name* Community Forum at:
+Suggestions for improvements to the SystemC CCI Standard are welcome. They should be posted to the SystemC CCI Community Forum at:
 
-> [https://forums.accellera.org/forum/forum-name/](https://forums.accellera.org/forum/forum-name/)
+> <https://forums.accellera.org/forum/41-systemc-cci-configuration-control-inspection/>
 
 The current Working Group web page is:
 
-> [http://www.accellera.org/activities/working-groups/working-group-name](http://www.accellera.org/activities/working-groups/working-group-name)
+> <https://www.accellera.org/activities/working-groups/systemc-cci>

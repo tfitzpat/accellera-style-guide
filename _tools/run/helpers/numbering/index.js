@@ -152,7 +152,7 @@ async function numberSections(argv, files) {
     const section = block.match(/^#+/);
     const chapter = block.match(/style: chapter/);
     const annex = block.match(/style: annex/);
-    const xref = [...block.matchAll(/(\[[0-9a-zA-Z\s.]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
+    const xref = [...block.matchAll(/(\[[0-9a-zA-Z\s.\-]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
     const codeblock = block.match(/^\`\`\`/);
     const rawblock = block.match(/^\{\%\s+raw\s+\%\}/);
     const table = block.match(/^\{\%\s+include\s+table/);
@@ -216,7 +216,7 @@ async function numberSections(argv, files) {
     } else {
       this.tableNumber +=1;
       if (this.annexLevel>0) {
-        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.tableNumber;
+        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '.' + this.tableNumber;
       } else {
         number +=  this.tableNumber;
       }
@@ -237,7 +237,7 @@ async function numberSections(argv, files) {
     } else {
       this.figureNumber +=1;
       if (this.annexLevel>0) {
-        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.figureNumber;
+        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '.' + this.figureNumber;
       } else {
         number +=  this.figureNumber;
       }
@@ -257,7 +257,7 @@ async function numberSections(argv, files) {
     } else {
       this.equationNumber +=1;
       if (this.annexLevel>0) {
-        number = String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.equationNumber;
+        number = String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '.' + this.equationNumber;
       } else {
         number =  this.equationNumber;
       }
@@ -298,12 +298,9 @@ async function numberSections(argv, files) {
 
   function updateSectionNumber(block, targetLevel) {
     nblock = block;
-    if (targetLevel > this.depth) {
-      return block;
-    }
     let regex;
     if (this.annexLevel > 0) { // annex
-      regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)|Annex\\s+[A-Z])?\\s*(.+)');
+      regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)*|Annex\\s+[A-Z])?\\s+(.+)?');
     } else { // chapter
       regex = new RegExp('^#{' + targetLevel + '}\\s*(\\d+(\\.\\d+)*.?)?\\s+(.+)?');
     }        
@@ -312,16 +309,21 @@ async function numberSections(argv, files) {
     // regex failed, probably different syntax, so keep block untouched
     if (!match) return block;
 
-    //console.log('section', match);
     const number = calculateSectionNumber(targetLevel);
     let oldref = ebSlugify(match[1] + ' ' + match[3]);
     let newref = ebSlugify(number + ' ' + match[3]);
     storeId(number, oldref, newref, match[3]);
 
-    if (match[1]) {
-      nblock = block.replace(match[1], number);
-    } else { // number was missing, add
-      nblock = block.slice(0, targetLevel+1) + number + ' ' + block.slice(targetLevel+1);
+    if (targetLevel <= this.depth) {
+      if (match[1]) {
+        nblock = block.replace(match[1], number);
+      } else { // number was missing, add
+        nblock = block.slice(0, targetLevel+1) + number + ' ' + block.slice(targetLevel+1);
+      }
+    } else {
+      if (match[1]) {
+        nblock = block.replace(match[1] + ' ', ''); // remove number and one space when depth is changed
+      }
     }
     return nblock;
   }

@@ -52,4 +52,9 @@ $pdf-tables: true !default;
 	.table-text-center {
 		text-align: center;
 	}
+	.table-col-width-200 {
+		th, td {
+			width: 200px!important;
+		}
+	}
 }
