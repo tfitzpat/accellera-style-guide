@@ -8,8 +8,8 @@ description: "The Accellera Style Guide defines the recommended structure, forma
 keywords: "html, kramdown, markdown, style manual"
 publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand name
 publisher-url: ""
-date: "2024-01-03" # YYYY-MM-DD e.g. publication date
-modified: "2024-01-03" # YYYY-MM-DD e.g. date of last revision
+date: "2024-04-30" # YYYY-MM-DD e.g. publication date
+modified: "2024-04-30" # YYYY-MM-DD e.g. date of last revision
 type: "User Guide" # e.g. Standard, User Guide, Whitepaper
 identifier: "" # e.g. ISBN or UUID
 source: "" # e.g. parent ISBN or ISTC
@@ -23,7 +23,7 @@ status: "Final" # status, e.g., Draft, Final, Review
 
 products: # Metadata for each product for this title (only use values that override parent metadata)
   print-pdf:
-    date: "2024-01-03" # YYYY-MM-DD e.g. publication or creation date
+    date: "2024-04-30" # YYYY-MM-DD e.g. publication or creation date
     format: "Print" # e.g. Paperback, Digital download, Digital online
     identifier: "" # e.g. ISBN or UUID
     image: "cover.jpg"

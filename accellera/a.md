@@ -18,7 +18,7 @@ As guest operating system, Linux will be used. In this setup, Xubuntu is selecte
 Open VirtualBox and click on the blue **New** button. It will open a dialog box to specify the creation of a virtual machine, see image below.
 
 {% include figure
-   reference="Figure A-1"
+   reference="Figure A.1"
    caption="Create virtual machine"
    alt-text=""
    class="fixed"
@@ -26,17 +26,14 @@ Open VirtualBox and click on the blue **New** button. It will open a dialog box 
 %}
 
 Enter the following information into the fields. Note: replace &lt;user&gt; with your user account.
-
-* Name: Xubuntu 22.04.4 EBW environment
-
-* Folder: C:\Users\&lt;user&gt;\VirtualBox VMs 
-
-* ISO image: C:\Users\<user>\Downloads\xubuntu-22.04.4-desktop-amd64.iso
+- Name: Xubuntu 22.04.4 EBW environment
+- Folder: C:\Users\&lt;user&gt;\VirtualBox VMs 
+- ISO image: C:\Users\<user>\Downloads\xubuntu-22.04.4-desktop-amd64.iso
 
 Click on **Next** to specify the account details, see figure below. In this setup, a new account `accellera` is created. Specify the strong password. Optional is to specify a hostname (e.g., `ebw`) and domain name (e.g., `ebw.virtualbox.org`). After completion, click on **Next**.
 
 {% include figure
-   reference="Figure A-2"
+   reference="Figure A.2"
    caption="Account username and password (hostname and domain name are optional)"
    alt-text=""
    class="fixed"
@@ -46,7 +43,7 @@ Click on **Next** to specify the account details, see figure below. In this setu
 Specify the memory size and number of processors for the virtual machine, as shown below. There is no need to thick the box *Enable EFI*. After completion, click on **Next**.
 
 {% include figure
-   reference="Figure A-3"
+   reference="Figure A.3"
    caption="Virtual machine memory and processors"
    alt-text=""
    class="fixed"
@@ -56,7 +53,7 @@ Specify the memory size and number of processors for the virtual machine, as sho
 Next, specify the available disk space for the virtual machine, see figure below. It is recommended to define a partition bigger than 10 GB. After completion, click on **Next**.
 
 {% include figure
-   reference="Figure A-4"
+   reference="Figure A.4"
    caption="Virtual machine disk space"
    alt-text=""
    class="fixed"
