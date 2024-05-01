@@ -14,8 +14,9 @@ _prince
 .DS_Store
 .vscode*
 
-# ignore temp dir
+# ignore temp dirs
 .temp/
+download/
 
 # If your team needs strict node-package
 # version management, comment out this line
