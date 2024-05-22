@@ -40,5 +40,21 @@ $pdf-tables: true !default;
 			font-style: normal;
 		}
 	}
-
+	.table-no-border {
+		border: none!important;
+		border-spacing: 0;
+		padding: 0;
+		th, td {
+			border: none!important;
+			padding: 0;
+		}
+	}
+	.table-text-center {
+		text-align: center;
+	}
+	.table-col-width-200 {
+		th, td {
+			width: 200px!important;
+		}
+	}
 }

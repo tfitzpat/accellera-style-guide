@@ -18,6 +18,7 @@ const buildReferenceIndex = require('./reindex/build-reference-index.js')
 const buildSearchIndex = require('./reindex/build-search-index.js')
 const buildTocNav = require('./reindex/build-toc-nav.js')
 const options = require('./options.js').options
+const numberSections = require('./numbering/index.js')
 
 // Output spawned-process data to console
 function logProcess (process, processName) {
@@ -248,10 +249,10 @@ async function jekyll (argv) {
   // plus any auto-generated excludes config
   let configs = configString(argv)
   const extraConfigs = await extraExcludesConfig(argv)
-  if (extraConfigs) {
+    if (extraConfigs) {
     configs += ',' + extraConfigs
   }
-
+  
   try {
     console.log('Running Jekyll with command: ' +
               'bundle exec jekyll ' + command +
@@ -314,7 +315,7 @@ async function extraExcludesConfig (argv) {
   // Default is an empty config file, for no excludes.
   // Create it and/or make it an empty file.
   const pathToTempExcludesConfig = '_output/.temp/_config.excludes.yml'
-  await fsPromises.mkdir('_output/.temp', { recursive: true })
+    await fsPromises.mkdir('_output/.temp', { recursive: true })
   await fsPromises.writeFile(pathToTempExcludesConfig, '')
 
   // If we're outputting a particular book/work,
@@ -333,7 +334,7 @@ async function extraExcludesConfig (argv) {
 
     // Add the works we're not outputting to it
     const newExcludes = excludes.concat(worksToExclude)
-
+    
     // That's only the list of values. To create a valid
     // key:value property, we need the `excludes:` key.
     const excludesProperty = {
@@ -591,6 +592,19 @@ async function convertXHTMLFiles (argv) {
   }
 }
 
+// Render numbering on the markdown sources
+async function renderNumbering (argv) {
+  'use strict'
+
+  // when --skip-numbering is used we will not render the numbering
+  if (argv.skipNumbering) return;
+
+  const fileNames = markdownFilePaths(argv);
+
+  //const ids = await idRegistry(argv, fileNames);
+  await numberSections(argv, fileNames, {});
+}
+
 // Get project settings from settings.yml
 function projectSettings () {
   'use strict'
@@ -796,6 +810,45 @@ function fileList (argv) {
   return files
 }
 
+// Get array of paths to Markdown source files
+function markdownFilePaths (argv, extension) {
+  'use strict'
+
+  if (!extension) {
+    extension = '.md'
+  }
+
+  // Provide fallback book
+  let book
+  if (argv.book) {
+    book = argv.book
+  } else {
+    book = 'book'
+  }
+
+  const fileNames = fileList(argv)
+  const pathToTempSource = process.cwd() + '/.temp/' + book + '/'
+  const pathToSource = process.cwd() + '/' + book + '/'
+
+  fsPromises.mkdir(pathToTempSource, { recursive: true })
+
+  const paths = fileNames.map(function (filename) {
+    if (typeof filename === 'object') {
+      return {
+        source: fsPath.normalize(pathToSource + '/' + Object.keys(filename)[0] + extension),
+        temp: fsPath.normalize(pathToTempSource + '/' + Object.keys(filename)[0] + extension)
+      }
+    } else {
+      return {
+        source: fsPath.normalize(pathToSource + '/' + filename + extension),
+        temp: fsPath.normalize(pathToTempSource + '/' + filename + extension)
+      }
+    }
+  })
+
+  return paths
+}
+
 // Get array of HTML-file paths for this output
 function htmlFilePaths (argv, extension) {
   'use strict'
@@ -840,7 +893,7 @@ function htmlFilePaths (argv, extension) {
                     filename + extension)
     }
   })
-
+  
   return paths
 }
 
@@ -1654,6 +1707,7 @@ module.exports = {
   installNodeModules,
   jekyll,
   logProcess,
+  markdownFilePaths,
   mathjaxEnabled,
   newBook,
   openOutputFile,
@@ -1664,6 +1718,7 @@ module.exports = {
   renderIndexComments,
   renderIndexLinks,
   renderMathjax,
+  renderNumbering,
   runPrince,
   variantSettings,
   works

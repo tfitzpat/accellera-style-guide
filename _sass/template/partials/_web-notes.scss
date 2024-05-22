@@ -89,4 +89,7 @@ $web-notes: true !default;
 
     // .bottom {} // Only used for print output, ignored for screen.
 
+    .note {
+        font-size: $font-size-default * 0.9;
+    }
 }

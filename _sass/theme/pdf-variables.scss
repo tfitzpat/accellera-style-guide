@@ -29,8 +29,8 @@ $recto-top: string(book-title);
 $verso-top-frontmatter: normal;
 $recto-top-frontmatter: normal;
 
-$verso-bottom: counter(page) "\A Copyright © 2021 IEEE. All rights reserved.";
-$recto-bottom: counter(page) "\A Copyright © 2021 IEEE. All rights reserved.";
+$verso-bottom: counter(page) string(book-copyright);
+$recto-bottom: counter(page) string(book-copyright);
 $verso-bottom-frontmatter: counter(page);
 $recto-bottom-frontmatter: counter(page);
 
@@ -41,3 +41,5 @@ $header-letter-spacing: 0 !default;
 $footer-letter-spacing: 0 !default;
 $header-text-align: center;
 $footer-text-align: center;
+
+$code-background-color: #f4f4f4;

@@ -56,6 +56,7 @@ $pdf-figures: true !default;
             }
 
             .caption {
+                page-break-after: avoid;
                 margin: 0;
                 text-align: left;
                 text-indent: 0;

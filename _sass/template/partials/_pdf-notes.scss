@@ -126,4 +126,7 @@ $pdf-notes: true !default;
             content: counter(manual-footnote, asterisks);
         }
     }
+    .note {
+        font-size: $font-size-default * 0.9;
+    }
 }

@@ -43,21 +43,12 @@ $convert-images-to-color-profile: false !default;
     }
     h2 {
         font-size: $font-size-default * ($font-size-bigger * 0.75);
-        margin: ($line-height-default * 2) 0 $line-height-default 0;
+        margin: $line-height-default 0 $line-height-default 0; // t r b l
+        page-break-after: avoid;
     }
-    h3 {}
-    h4 {
-        font-style: italic;
-        font-weight: inherit;
-    }
-    h5 {
-        font-family: $font-text-main;
-        font-style: italic;
-        font-weight: inherit;
-    }
-    h6 {
-        font-family: $font-text-main;
-        font-weight: inherit;
+    h3, h4, h5, h6 {
+        margin: 0 0 $line-height-default 0; // t r b l
+        page-break-after: avoid;
     }
     p, ul, ol, dl {
         text-align: $text-align;
@@ -104,6 +95,7 @@ $convert-images-to-color-profile: false !default;
 
     ul, ol {
         margin: 0 0 $line-height-default 0;
+        page-break-before: avoid;
     }
     ol {
         list-style: decimal;
@@ -124,6 +116,7 @@ $convert-images-to-color-profile: false !default;
         margin-bottom: 0; // manages line space after sublists in lists
     }
     li {
+        //page-break-inside: avoid;
         list-style-position: outside;
         margin-left: $paragraph-indent;
         &::marker {
@@ -133,6 +126,7 @@ $convert-images-to-color-profile: false !default;
     }
     li:first-of-type {
         page-break-after: avoid;
+        page-break-inside: avoid;
     }
     li:last-of-type {
         page-break-before: avoid;
