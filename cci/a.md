@@ -3,7 +3,6 @@ style: annex
 ---
 
 # Annex A **(informative)** A Introduction to SystemC Configuration
-{:.page-break-before}
 
 This clause is informative and is intended to aid the reader in the understanding of the structure and intent of the SystemC Configuration
 standard. The SystemC Configuration API is entirely within namespace **`cci`**. Code fragments illustrating this document have an implicit
