@@ -3,7 +3,6 @@ style: annex
 ---
 
 # Annex A **(informative)** Environment setup
-{:.page-break-before}
 
 ## A.1 Download VirtualBox
 

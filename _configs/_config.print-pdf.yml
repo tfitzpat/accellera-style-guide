@@ -1,5 +1,7 @@
 # Set site.output == "print-pdf"
 output: "print-pdf"
+pdf-engine: "prince"
+
 # Set site.image-set == "images/print-pdf"
 image-set: "images/print-pdf"
 # Turn off documentation
