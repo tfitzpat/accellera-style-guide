@@ -6,50 +6,68 @@
   }
 
   // Ordered lists
-  ol {
+  :not(li) > ol {
     padding-left: 0;
 
     // First level
-    counter-reset: list;
+    counter-reset: listCounter;
     margin-left: 2 * $paragraph-indent;
 
     & > li {
       list-style: none;
       margin-top: $line-height-default / 4;
       margin-left: $line-height-default;
+      counter-increment: listCounter;
 
       &:before {
-        // First level is labelled with lowercase letters
-        content: counter(list, lower-alpha) ") ";
-        counter-increment: list;
+        // First level is labelled with lowercase letter
+        content: counter(listCounter, lower-alpha) ") ";
         left: $paragraph-indent;
         position: absolute;
       }
     }
+  }
 
-    ol {
-      // Second level
-      counter-reset: sublist;
-      margin-left: $paragraph-indent;
-    
-      li:before {
+  :not(li) > ol > li > ol {
+    padding-left: 0;
+
+    // Second level
+    counter-reset: sublist;
+    margin-left: $paragraph-indent;
+  
+    & > li {
+      list-style: none;
+      margin-top: $line-height-default / 4;
+      margin-left: $line-height-default;
+      counter-increment: sublist;
+
+      &:before {
         // Second level is labelled with numbers
         content: counter(sublist) ") ";
-        counter-increment: sublist;
         left: 2 * $paragraph-indent + $line-height-default;
+        position: absolute;
       }
+    }
+  }
 
-      ol {
-        // Third level
-        counter-reset: subsublist;
-        margin-left: $paragraph-indent;
-        
-        li:before {
-          // Third level is labelled with lowercase roman numerals
-          content: counter(subsublist, lower-roman) ") ";
-          counter-increment: subsublist;
-          left: 3 * $paragraph-indent + 2 * $line-height-default;
-        }
+  :not(li) > ol > li > ol > li > ol {
+    padding-left: 0;
+
+    // Third level
+    counter-reset: subsublist;
+    margin-left: $paragraph-indent;
+    
+    & > li {
+      list-style: none;
+      margin-top: $line-height-default / 4;
+      margin-left: $line-height-default;
+      counter-increment: subsublist;
+
+      &:before {
+        // Third level is labelled with lowercase roman numerals
+        content: counter(subsublist, lower-roman) ") ";
+        left: 3 * $paragraph-indent + 2 * $line-height-default;
+        position: absolute;
       }
     }
   }
@@ -57,6 +75,7 @@
   // Unordered lists
   ul {
     margin-left: 2 * $paragraph-indent;
+    padding-left: 0;
 
     & > li {
       list-style: none;
@@ -72,5 +91,23 @@
 
   li li:before {
     left: 2 * $paragraph-indent + $line-height-default;
+  }
+}
+
+// PAGEDJS
+[data-pdf-engine="pagedjs"] {
+  [data-align-last-split-element='justify'] {
+    text-align-last: left;
+  }
+  li, li * {
+    text-align: left !important;
+  }
+
+  li blockquote {
+    margin: 0;
+    
+    p {
+      margin: 0;
+    }
   }
 }

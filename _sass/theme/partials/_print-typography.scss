@@ -19,7 +19,7 @@ h2 {
   text-align: left;
 }
 
-:not(.toc-entry-title) > a[href]:not(.footnote) {
+:not(.toc-entry-title) > a[href]:not(.footnote, .page-footnote) {
   color: blue;
   text-decoration: underline;
 }
@@ -32,5 +32,17 @@ h2 {
   &:before, &:after {
     content: '\a';
     white-space: pre;
+  }
+}
+
+.policy {
+  font-style: italic;
+  line-height: 1.5 * $line-height-default;
+}
+
+// PAGEDJS
+[data-pdf-engine="pagedjs"] {
+  code {
+    line-height: $line-height-default;
   }
 }
