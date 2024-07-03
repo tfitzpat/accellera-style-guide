@@ -51,6 +51,7 @@ options:
   -r, --app-release      Make the app a signed release (default: false)
   -p, --app-emulate      Launch app in default emulator (default: false)
   -x, --export-format    File format to export to (default: MS Word)
+  -s, --numbering        Section (re)numbering in the book (default: false)
   -j, --merged           Whether to merge HTML files for PDF output (default: true)
 
 ```

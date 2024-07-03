@@ -40,7 +40,7 @@ This allows for figures with IDs but without visible references. {% endcomment %
 {% for figure-image in figure-images %}
     {% if figure-reference == figure-image or figure-reference == "" %}
         {% assign figure-reference-hidden = true %}
-        {% capture figure-reference %}{{ figure-image | slugify }}{% endcapture %}
+        {% capture figure-reference %}{{ figure-image | slugify: 'pretty' | remove: '.' }}{% endcapture %}
         {% break %}
     {% endif %}
 {% endfor %}
@@ -51,14 +51,13 @@ We have to do funky remove: '<p>' | remove: '</p>' | strip_newlines
 because https://github.com/jekyll/jekyll/issues/2248.
 {% endcomment %}
 
-<div class="figure{% if include.class %} {{ include.class }}{% endif %}"{% if figure-reference %} id="{{ figure-reference | slugify }}"{% endif %} role="figure" {% if include.caption %}aria-labelledby="{{ figure-reference | slugify }}-caption"{% endif %}>
-
+<div class="figure{% if include.class %} {{ include.class }}{% endif %}"{% if figure-reference %} id="{{ figure-reference | slugify: 'pretty' | remove: '.' }}"{% endif %} role="figure" {% if include.caption %}aria-labelledby="{{ figure-reference | slugify: 'pretty' | remove: '.' }}-caption"{% endif %}>
 <div class="figure-body">
 
 {% if include.slide-caption == nil and include.caption-position == "top" %}
 
     {% if figure-reference-hidden == false or include.caption and include.caption != "" %}
-    <p class="caption" markdown="1" id="{{ figure-reference | slugify }}-caption">
+    <p class="caption" markdown="1" id="{{ figure-reference | slugify: 'pretty' | remove: '.' }}-caption">
       {% if figure-reference and figure-reference-hidden == false %}<span class="figure-reference">{{ figure-reference }}</span>{% endif %}{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
     </p>
     {% endif %}
@@ -156,7 +155,7 @@ because https://github.com/jekyll/jekyll/issues/2248.
 {% if include.slide-caption == nil and include.caption-position != "top" %}
 
     {% if figure-reference-hidden == false or include.caption and include.caption != "" %}
-    <p class="caption" markdown="1" id="{{ figure-reference | slugify }}-caption">
+    <p class="caption" markdown="1" id="{{ figure-reference | slugify: 'pretty' | remove: '.' }}-caption">
       {% if figure-reference and figure-reference-hidden == false %}<span class="figure-reference">{{ figure-reference }}</span>{% endif %}{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
     </p>
 
