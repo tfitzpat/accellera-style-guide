@@ -9,7 +9,8 @@ $pdf-page-start-depth: true !default;
     .epigraph-page,
     .contents-page,
     .frontmatter,
-    .chapter {
+    .chapter,
+    .annex {
         margin-top: $start-depth;
     }
 

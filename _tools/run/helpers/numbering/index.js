@@ -358,6 +358,21 @@ async function numberSections(argv, files) {
     return number;
   }
 
+  // helper function to copy file and append with ending newline if missing
+  async function copyFileAppendNewLine(file) {
+    try {
+      const content = await fs.readFile(file.source, 'utf8');
+      if (typeof content !== 'string') {
+        throw new TypeError('Content of file is not a string. Abort.');
+      }
+      const matches = content.match(/\r?\n$/); // check for LF or CRLF
+      const EOF = (matches) ? '' : '\n';
+      await fs.writeFile(file.temp, content + EOF, 'utf8');
+    } catch (error) {
+        throw new TypeError('Unable to copy file. Abort.');
+    }
+  }
+
   // main function called here
   
   getMetaData(argv);
@@ -366,8 +381,10 @@ async function numberSections(argv, files) {
   console.log('INFO: Numbering 1st pass...');
 
   // files copied to temp folder to enable updates of sources
-  await fs.emptyDir(process.cwd() + '/.temp');
-  fs.copySync(process.cwd() + '/' + argv.book, process.cwd() + '/.temp/' + argv.book);
+  await fs.emptyDir(process.cwd() + '/.temp' + argv.book);
+  for (let i = 0; i < files.length; i++) {
+    await copyFileAppendNewLine(files[i]);
+  }
 
   resetSectionNumbering();
   for (let i = 0; i < files.length; i++) {
