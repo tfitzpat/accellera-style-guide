@@ -17,7 +17,7 @@ $pdf-page-setup: true !default;
 
 	// Give names to pages
 
-	$named-page-styles: cover, halftitle-page, half-title-page, title-page, previous-publications-page, copyright-page, dedication-page, frontispiece-page, contents-page, frontmatter, part-page, chapter, $pages-with-sidebar, $pages-without-sidebar;
+	$named-page-styles: cover, halftitle-page, half-title-page, title-page, previous-publications-page, copyright-page, dedication-page, frontispiece-page, contents-page, frontmatter, part-page, chapter, $pages-with-sidebar, $pages-without-sidebar, annex;
 
 	@each $page-style in $named-page-styles {
 		.wrapper.#{$page-style} {

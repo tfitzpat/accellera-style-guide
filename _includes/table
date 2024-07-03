@@ -14,14 +14,13 @@ This allows for figures with IDs but without visible references. {% endcomment %
 TODO: replace figure css styles by table css style
 {% endcomment %}
 
-<div class="figure{% if include.class %} {{ include.class }}{% endif %}"{% if table-reference %} id="{{ table-reference | slugify }}"{% endif %} role="figure" {% if include.caption %}aria-labelledby="{{ table-reference | slugify }}-caption"{% endif %}>
-
+<div class="figure{% if include.class %} {{ include.class }}{% endif %}"{% if table-reference %} id="{{ table-reference | slugify: 'pretty' | remove: '.' }}"{% endif %} role="figure" {% if include.caption %}aria-labelledby="{{ table-reference | slugify: 'pretty' | remove: '.' }}-caption"{% endif %}>
 <div class="figure-body">
 
 {% if include.slide-caption == nil and include.caption-position == "top" %}
 
     {% if table-reference-hidden == false or include.caption and include.caption != "" %}
-    <p class="caption" markdown="1" id="{{ table-reference | slugify }}-caption">
+    <p class="caption" markdown="1" id="{{ table-reference | slugify: 'pretty' | remove: '.' }}-caption">
       {% if table-reference and table-reference-hidden == false %}<span class="figure-reference">{{ table-reference }}</span>{% endif %}{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
     </p>
     {% endif %}
@@ -55,7 +54,7 @@ TODO: replace figure css styles by table css style
 {% if include.slide-caption == nil and include.caption-position != "top" %}
 
     {% if table-reference-hidden == false or include.caption and include.caption != "" %}
-    <p class="caption" markdown="1" id="{{ figure-reference | slugify }}-caption">
+    <p class="caption" markdown="1" id="{{ figure-reference | slugify: 'pretty' | remove: '.' }}-caption">
       {% if table-reference and table-reference-hidden == false %}<span class="figure-reference">{{ table-reference }}</span>{% endif %}{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
     </p>
 

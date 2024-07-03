@@ -125,6 +125,13 @@ const options = {
     implies: ['format'],
     nargs: 1
   },
+  numbering: {
+    description: 'Section (re)numbering in the book',
+    alias: 's',
+    default: false,
+    defaultDescription: 'false',
+    type: 'boolean'
+  },
   merged: {
     description: 'Whether to merge HTML files for PDF output',
     alias: 'j',
@@ -132,6 +139,7 @@ const options = {
     defaultDescription: 'true',
     type: 'boolean'
   }
+
 }
 
 exports.options = options
