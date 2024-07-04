@@ -14,6 +14,11 @@
 .pagedjs_page {
   page-break-before: $start-on !important;
   break-before: $start-on !important;
+
+  &.continued {
+    page-break-before: auto !important;
+    break-before: auto !important;
+  }
 }
 
 .break-on-items {
