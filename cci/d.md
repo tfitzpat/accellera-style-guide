@@ -3,7 +3,6 @@ style: annex
 ---
 
 # Annex D **(informative)** Enabling user-defined parameter value types
-{:.page-break-before}
 
 To be able to instantiate a **`cci_param_typed`** with some user-defined type `VT`, that type must provide these features:
  - default constructor: `VT()` (DefaultConstructible in C++ concept terminology).

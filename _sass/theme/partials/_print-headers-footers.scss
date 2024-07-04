@@ -1,57 +1,32 @@
-// HEADERS
+// HEADERS AND FOOTERS
 
 @page {
   @top-center {
+    content: $verso-top;
     text-transform: none !important;
+    font-family: $font-text-secondary;
+    font-size: $footer-font-size;
   }
 }
 
-// FOOTERS
-
 @page {
   @bottom-center {
+    content: $verso-bottom;
+    font-family: $font-text-secondary;
+    font-size: $footer-font-size;
     white-space: pre-wrap;
     text-transform: none !important;
     line-height: $line-height-default !important;
   }
 }
 
-@page contents-page {
-  @bottom-center {
-    content: $verso-bottom;
-    @include margin-box-bottom-center(verso);
-    font-family: $font-text-secondary;
-    font-size: $footer-font-size;
-  }
-}
-
-// Exceptions
-.chapter { 
-  prince-page-group: auto;
-  margin-top: 0;
-}
-
-.document-title-page {
-  prince-page-group: start;
-}
-
-// Add header to annex page
-.annex {
-  page: annex;
-}
-
-@page annex {
+// Title page does not get header, page number
+@page title-page {
   @top-center {
-    content: $verso-top;
-    @include margin-box-top-center(verso);
-    // font-family: $font-text-secondary;
-    // font-size: $footer-font-size;
+    content: normal;
   }
-  
+
   @bottom-center {
-    content: $verso-bottom;
-    @include margin-box-bottom-center(verso);
-    font-family: $font-text-secondary;
-    font-size: $footer-font-size;
+    content: string(book-copyright);
   }
 }
