@@ -17,7 +17,7 @@ function updateIDs (filename, dom, argv) {
   return new Promise(function (resolve, reject) {
     try {
       // Prefix IDs with a no-spaces, no-fullstops filename
-      const prefix = filename.replace(/[.\s]/g, '-')
+      const prefix = 'file-' + filename.replace(/[.\s]/g, '-')
       const elementsWithIDs = dom.window.document.querySelectorAll('[id]')
 
       elementsWithIDs.forEach(function (el) {
@@ -84,14 +84,14 @@ function updateIDs (filename, dom, argv) {
           // - doesn't include #, it points to another file.
           if (hrefIsToThisBook) {
             if (href.match(/.+#/)) {
-              linkFilenameAsPrefix = href.split('#').shift()
+              linkFilenameAsPrefix = 'file-' + href.split('#').shift()
                 .replace(/[.\s]/g, '-')
               linkID = href.split('#').pop()
             } else if (href.startsWith('#')) {
               linkFilenameAsPrefix = prefix
               linkID = href.split('#').pop()
             } else {
-              linkFilenameAsPrefix = href.replace(/[.\s]/g, '-')
+              linkFilenameAsPrefix = 'file-' + href.replace(/[.\s]/g, '-')
             }
 
             // Change the link to an internal link that uses
