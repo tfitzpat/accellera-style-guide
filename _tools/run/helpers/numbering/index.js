@@ -10,7 +10,7 @@ async function numberSections(argv, files) {
   this.annexLevel = 0;
   this.topicName = [];
   this.override = argv.override;
-  this.depth = argv.depth ? argv.depth : 5;
+  this.numberingDepth = (argv.numbering > 0 && argv.numbering < 6) ? argv.numbering : 5;
   this.section = {};
   this.figureNumber = 0;
   this.tableNumber = 0;
@@ -25,7 +25,7 @@ async function numberSections(argv, files) {
 
   function resetSectionNumbering() {
     this.sectionNumber = {};
-    for (let i = 0; i < this.depth; i++) {
+    for (let i = 0; i < this.numberingDepth; i++) {
       this.sectionNumber[i] = 0;
     }
   }
@@ -314,7 +314,7 @@ async function numberSections(argv, files) {
     let newref = ebSlugify(number + ' ' + match[3]);
     storeId(number, oldref, newref, match[3]);
 
-    if (targetLevel <= this.depth) {
+    if (targetLevel <= this.numberingDepth) {
       if (match[1]) {
         nblock = block.replace(match[1], number);
       } else { // number was missing, add
@@ -331,7 +331,7 @@ async function numberSections(argv, files) {
   function calculateSectionNumber(level) {
     this.sectionNumber[level-1] += 1;
 
-    for (let i = level; i < this.depth; i++) { 
+    for (let i = level; i < this.numberingDepth; i++) { 
       if (this.sectionNumber[i] && this.sectionNumber[i] > 0) {
         this.sectionNumber[i] = 0;
       }

@@ -126,11 +126,11 @@ const options = {
     nargs: 1
   },
   numbering: {
-    description: 'Section (re)numbering in the book',
+    description: 'Depth of section (re)numbering in the book',
     alias: 's',
-    default: false,
-    defaultDescription: 'false',
-    type: 'boolean'
+    default: 0,
+    defaultDescription: '0',
+    type: 'number'
   },
   merged: {
     description: 'Whether to merge HTML files for PDF output',

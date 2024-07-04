@@ -36,7 +36,7 @@ async function web (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    if (argv.numbering === true) {
+    if (argv.numbering > 0) {
       await renderNumbering(argv)
     }
     await jekyll(argv)
@@ -51,7 +51,7 @@ async function pdf (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    if (argv.numbering === true) {
+    if (argv.numbering > 0) {
       await renderNumbering(argv)
     }
     await jekyll(argv)
@@ -76,7 +76,7 @@ async function epub (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    if (argv.numbering === true) {
+    if (argv.numbering > 0) {
       await renderNumbering(argv)
     }
     await jekyll(argv)
@@ -169,7 +169,7 @@ async function app (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    if (argv.numbering === true) {
+    if (argv.numbering > 0) {
       await renderNumbering(argv)
     }
     await jekyll(argv)

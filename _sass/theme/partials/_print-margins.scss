@@ -1,5 +1,9 @@
 // SPACING
 
+.chapter.continued {
+  margin-top: 2 * $line-height-default;
+}
+
 .title {
   margin-bottom: 5 * $line-height-default;
   padding-top: 6.5 * $line-height-default;
