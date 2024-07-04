@@ -3,7 +3,6 @@ style: annex
 ---
 
 # Annex B **(informative)** Glossary
-{:.page-break-before}
 
 This glossary contains brief, informal descriptions for a number of terms and phrases used in this standard. Where appropriate, the complete, formal definition of each term or phrase is given in themain body of the standard. Each glossary entry contains either the clause number of the definition in the main body of the standard.
 

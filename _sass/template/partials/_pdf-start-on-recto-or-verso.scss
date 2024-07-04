@@ -5,6 +5,7 @@ $pdf-start-on-recto-or-verso: true !default;
     .halftitle-page, .half-title-page,
     .title-page {
         page-break-before: right;
+        break-before: right;
     }
 
     // By default, these page styles start on right-hand pages only
@@ -17,12 +18,13 @@ $pdf-start-on-recto-or-verso: true !default;
     .page-1,
     // Need to make this very specific to override .chapter setting below
     .chapter.page-1 { 
-        page-break-before: right;
+        // page-break-before: right;
+        // break-before: right;
 
         @include page-continued();
     }
 
-    // But they can be overriden by the $start-on variable
+    // But they can be overridden by the $start-on variable
     .frontmatter, 
     .dedication-page, 
     .epigraph-page, 
@@ -31,6 +33,7 @@ $pdf-start-on-recto-or-verso: true !default;
     .chapter 
     { 
         page-break-before: $start-on;
+        break-before: $start-on;
 
         @include page-continued();
     }
@@ -39,6 +42,7 @@ $pdf-start-on-recto-or-verso: true !default;
     // `style: chapter start-on-right`
     .start-on-right, .start-on-recto {
         page-break-before: right;
+        break-before: right;
     }
 
     // Also see:
