@@ -3,7 +3,6 @@ style: annex
 ---
 
 # Annex B **(informative)** Electric Book commands
-{:.page-break-before}
 
 ## B.1 Usage
 

@@ -8,11 +8,24 @@ $pdf-page-setup: true !default;
 		margin-bottom: $margin-bottom;
 		margin-outside: $margin-outside;
 		margin-inside: $margin-inside;
+		margin-left: $margin-outside;
+		margin-right: $margin-inside;
 		padding: 0;
 		marks: $crop-marks;
+		bleed: $bleed;
 		prince-bleed: $bleed;
 		prince-trim: $trim;
 		prince-pdf-page-colorspace: $colorspace;
+	}
+
+	@page:left {
+		margin-left: $margin-outside;
+		margin-right: $margin-inside;
+	}
+
+	@page:right {
+		margin-left: $margin-inside;
+		margin-right: $margin-outside;
 	}
 
 	// Give names to pages

@@ -138,6 +138,23 @@ const options = {
     default: true,
     defaultDescription: 'true',
     type: 'boolean'
+  },
+  'pdf-engine': {
+    description: 'Tool for converting HTML to PDF',
+    alias: 'g',
+    default: 'prince',
+    defaultDescription: 'Prince',
+    choices: ['prince', 'pagedjs'],
+    type: 'string',
+    implies: ['format'],
+    nargs: 1
+  },
+  'pdf-debug': {
+    description: 'Run PagedJS in debug mode',
+    alias: 'z',
+    default: false,
+    defaultDescription: 'false',
+    type: 'boolean'
   }
 
 }

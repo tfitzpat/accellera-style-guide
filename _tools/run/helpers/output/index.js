@@ -24,6 +24,7 @@ const {
   renderIndexLinks,
   renderMathjax,
   renderNumbering,
+  runPagedJS,
   runPrince,
   epubHTMLTransformations
 } = require('../helpers.js')
@@ -58,7 +59,11 @@ async function pdf (argv) {
     await renderIndexLinks(argv)
     await merge(argv)
     await renderMathjax(argv)
-    await runPrince(argv)
+    if (argv['pdf-engine'] === 'pagedjs') {
+      await runPagedJS(argv)
+    } else {
+      await runPrince(argv)
+    }
     openOutputFile(argv)
   } catch (error) {
     console.log(error)

@@ -7,10 +7,6 @@
 // from the end of the document (where kramdown gathers them)
 // to a container div beside their in-text references.
 
-// A counter for footnote references created one-by-one,
-// rather than for an entire page or books.
-var manualFootnoteCounter = 1
-
 function ebFootnotesToMove (wrapper) {
   'use strict'
 
@@ -54,9 +50,6 @@ function ebMoveEndnoteToFootnote (noteReference) {
     }
   }
 
-  // Make a div.page-footnote
-  var pageFootnote = document.createElement('div')
-
   // We need to look at the value of [data-page-footnotes] and
   // be a bit clever about which class we apply here,
   // so that we know which counter to increment in the CSS
@@ -69,16 +62,6 @@ function ebMoveEndnoteToFootnote (noteReference) {
     }
   }
 
-  pageFootnote.classList.add('page-footnote')
-  pageFootnote.classList.add(pageFootnoteClass)
-  pageFootnote.id = footnoteReferenceID
-
-  // Add and increment the manual-footnote counter
-  if (endnote.querySelector('.move-to-footnote')) {
-    pageFootnote.setAttribute('page-footnote-counter', manualFootnoteCounter)
-    manualFootnoteCounter += 1
-  }
-
   // Get the sup that contains the footnoteReference a.footnote
   var footnoteReferenceContainer = noteReference.parentNode
 
@@ -88,18 +71,17 @@ function ebMoveEndnoteToFootnote (noteReference) {
   // and add a class to it.
   containingElement.parentNode.className += ' contains-footnote'
 
-  // Move the endnote contents inside the div.page-footnote
-  pageFootnote.innerHTML = endnote.innerHTML
+  const footnoteSpan = document.createElement('span')
+  footnoteSpan.classList.add('page-footnote')
+  footnoteSpan.classList.add(pageFootnoteClass)
+  footnoteSpan.id = footnoteReferenceID
 
-  // Insert the new .page-footnote at the reference.
-  // Technically, before the <sup> that contains the reference <a>.
-  // We have to use insertBefore because Prince borks at insertAdjacentElement.
-  containingElement.insertBefore(pageFootnote, footnoteReferenceContainer)
+  footnoteSpan.innerHTML = '<span>' + endnote.querySelector('p').innerHTML + '</span>'
+  containingElement.insertBefore(footnoteSpan, footnoteReferenceContainer)
+  containingElement.removeChild(footnoteReferenceContainer)
 
-  // Remove the old endnote, and the old reference to it
-  // (Prince creates new references to page-footnotes)
+  // Remove the old endnote
   endnote.parentNode.removeChild(endnote)
-  footnoteReferenceContainer.parentNode.removeChild(footnoteReferenceContainer)
 }
 
 function ebFootnotesRenumberEndnotes () {

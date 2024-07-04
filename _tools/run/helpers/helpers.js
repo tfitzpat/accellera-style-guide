@@ -170,6 +170,14 @@ function configString (argv) {
     string += ',_configs/' + argv.configs.replace(/'/g, '').replace(/"/g, '')
   }
 
+  // Add additional config, if we are building a PDF with a tool other than PrinceXML
+  if (argv.format === 'screen-pdf' || argv.format === 'print-pdf') {
+    if (argv['pdf-engine'] &&
+        pathExists(process.cwd() + '/_configs/_config.' + argv['pdf-engine'] + '.yml')) {
+      string += ',_configs/_config.' + argv['pdf-engine'] + '.yml'
+    }
+  }
+
   // Add MathJax config if --mathjax=true
   if (argv.mathjax) {
     string += ',_configs/_config.mathjax-enabled.yml'
@@ -1122,6 +1130,41 @@ async function runPrince (argv) {
   })
 }
 
+// Run PagedJS
+async function runPagedJS (argv) {
+  // Get the HTML file to render. We have to pass a single merged HTML file
+  // to PagedJS, so stop and throw an error if `--merged false` was passed
+  // at the command line.
+  const inputFiles = [fsPath.dirname(htmlFilePaths(argv)[0]) + '/merged.html']
+  if (argv.merged === false) {
+    throw new Error('PagedJS requires a single HTML file, please run command with `--merged true`')
+  }
+
+  // Build out the pagedjs command
+  // pagedjs-cli merged.html -o book-screen.pdf -d
+  const input = inputFiles[0]
+  const output = process.cwd() + '/_output/' + outputFilename(argv)
+
+  const pagedjsSpawnArgs = [input, '-o', output]
+
+  if (argv['pdf-debug'] === true) {
+    pagedjsSpawnArgs.push('-d')
+  }
+
+  try {
+    const pagedjsProcess = spawn('pagedjs-cli', pagedjsSpawnArgs)
+    const result = await logProcess(pagedjsProcess, 'PagedJS')
+
+    if (result === 1) {
+      console.error('PagedJS could not complete its build. Exiting.')
+      process.exit()
+    }
+    return result
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 // Zip an epub folder
 async function epubZip () {
   'use strict'
@@ -1719,6 +1762,7 @@ module.exports = {
   renderIndexLinks,
   renderMathjax,
   renderNumbering,
+  runPagedJS,
   runPrince,
   variantSettings,
   works
