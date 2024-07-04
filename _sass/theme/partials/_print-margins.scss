@@ -1,5 +1,9 @@
 // SPACING
 
+.chapter.continued {
+  margin-top: 2 * $line-height-default;
+}
+
 .title {
   margin-bottom: 5 * $line-height-default;
   padding-top: 6.5 * $line-height-default;
@@ -28,8 +32,13 @@ h3 {
   margin-top: 2 * $line-height-default;
 }
 
-.wrapper {
-  margin-bottom: 2 * $line-height-default;
+.content > h1:first-child,
+.content > h2:first-child,
+.content > h3:first-child,
+.content > h4:first-child,
+.content > h5:first-child,
+.content > h6:first-child {
+  margin-top: 0;
 }
 
 p, p + p {

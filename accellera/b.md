@@ -3,7 +3,6 @@ style: annex
 ---
 
 # Annex B **(informative)** Electric Book commands
-{:.page-break-before}
 
 ## B.1 Usage
 
@@ -51,7 +50,7 @@ options:
   -r, --app-release      Make the app a signed release (default: false)
   -p, --app-emulate      Launch app in default emulator (default: false)
   -x, --export-format    File format to export to (default: MS Word)
-  -s, --numbering        Section (re)numbering in the book (default: false)
+  -s, --numbering        Depth of section (re)numbering in the book (default: 0)
   -j, --merged           Whether to merge HTML files for PDF output (default: true)
 
 ```
@@ -64,20 +63,26 @@ Create a screen PDF for the `standard` (template) document:
 npm run electric-book -- output --format screen-pdf --book standard
 ```
 
-Create a table of contents for the the `standard` document:
-
-```
-npm run electric-book -- toc --book standard
-```
-
 Create a screen PDF for the Accellera Style Guide:
 
 ```
 npm run electric-book -- output --format screen-pdf --book accellera
 ```
 
+Create a screen PDF for the Accellera Style Guide, and enable renumbering of sections and cross-references down to 5th level:
+
+```
+npm run electric-book -- output --format screen-pdf --book accellera --numbering 5
+```
+
 Create a screen PDF for the IEEE SA Standards Style Manual:
 
 ```
 npm run electric-book -- output --format screen-pdf --book ieee
+```
+
+Create a table of contents file for the the `standard` document:
+
+```
+npm run electric-book -- toc --book standard
 ```

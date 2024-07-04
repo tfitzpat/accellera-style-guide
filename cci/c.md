@@ -3,7 +3,6 @@ style: annex
 ---
 
 # Annex C **(informative)** SystemC Configuration modeler guidelines
-{:.page-break-before}
 
 The following guidelines are provided to help ensure proper and most
 effective use of this standard.

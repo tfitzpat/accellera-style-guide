@@ -3,6 +3,7 @@
 @mixin page-continued() {
     &.continued {
         page-break-before: auto;
+        break-before: auto;
         prince-page-group: auto;
         margin-top: 0;
     }

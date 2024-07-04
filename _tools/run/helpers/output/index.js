@@ -24,6 +24,7 @@ const {
   renderIndexLinks,
   renderMathjax,
   renderNumbering,
+  runPagedJS,
   runPrince,
   epubHTMLTransformations
 } = require('../helpers.js')
@@ -35,7 +36,7 @@ async function web (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    if (argv.numbering === true) {
+    if (argv.numbering > 0) {
       await renderNumbering(argv)
     }
     await jekyll(argv)
@@ -50,7 +51,7 @@ async function pdf (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    if (argv.numbering === true) {
+    if (argv.numbering > 0) {
       await renderNumbering(argv)
     }
     await jekyll(argv)
@@ -58,7 +59,11 @@ async function pdf (argv) {
     await renderIndexLinks(argv)
     await merge(argv)
     await renderMathjax(argv)
-    await runPrince(argv)
+    if (argv['pdf-engine'] === 'pagedjs') {
+      await runPagedJS(argv)
+    } else {
+      await runPrince(argv)
+    }
     openOutputFile(argv)
   } catch (error) {
     console.log(error)
@@ -71,7 +76,7 @@ async function epub (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    if (argv.numbering === true) {
+    if (argv.numbering > 0) {
       await renderNumbering(argv)
     }
     await jekyll(argv)
@@ -164,7 +169,7 @@ async function app (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    if (argv.numbering === true) {
+    if (argv.numbering > 0) {
       await renderNumbering(argv)
     }
     await jekyll(argv)
