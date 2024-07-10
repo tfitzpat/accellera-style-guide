@@ -1,6 +1,6 @@
 title: "Accellera Style Guide"
 subtitle: ""
-version: "version 0.1"
+version: "version 0.2"
 creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
 subject: "The Accellera Style Guide defines the recommended structure, formatting and style to develop and publish Accellera (Draft) Standards, User Guides and other standard-related documentation. This style guide serves as a reference for Accellera working groups in the technical editing process when drafting a standard-related document."
@@ -8,8 +8,8 @@ description: "The Accellera Style Guide defines the recommended structure, forma
 keywords: "html, kramdown, markdown, style manual"
 publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand name
 publisher-url: ""
-date: "2024-04-30" # YYYY-MM-DD e.g. publication date
-modified: "2024-04-30" # YYYY-MM-DD e.g. date of last revision
+date: "2024-07-10" # YYYY-MM-DD e.g. publication date
+modified: "2024-07-10" # YYYY-MM-DD e.g. date of last revision
 type: "User Guide" # e.g. Standard, User Guide, Whitepaper
 identifier: "" # e.g. ISBN or UUID
 source: "" # e.g. parent ISBN or ISTC
@@ -50,8 +50,8 @@ products: # Metadata for each product for this title (only use values that overr
             id: "21-github-repository-setup"
             label: "2.1 GitHub repository setup"
           - file: "02"
-            id: "22-standard-document-creation"
-            label: "2.2 Standard document creation"
+            id: "22-accellera-standard-template"
+            label: "2.2 Accellera standard template"
           - file: "02"
             id: "23-tool-setup"
             label: "2.3 Tool setup"
@@ -144,8 +144,8 @@ products: # Metadata for each product for this title (only use values that overr
             id: "21-github-repository-setup"
             label: "2.1 GitHub repository setup"
           - file: "02"
-            id: "22-standard-document-creation"
-            label: "2.2 Standard document creation"
+            id: "22-accellera-standard-template"
+            label: "2.2 Accellera standard template"
           - file: "02"
             id: "23-tool-setup"
             label: "2.3 Tool setup"
