@@ -31,10 +31,10 @@ $verso-top-frontmatter: string(book-title);
 $recto-top-frontmatter: string(book-title);
 
 // "\A" is a newline
-$verso-bottom: string(book-copyright) "\A" counter(page);
-$recto-bottom: string(book-copyright) "\A" counter(page);
-$verso-bottom-frontmatter: string(book-copyright) "\A" counter(page);
-$recto-bottom-frontmatter: string(book-copyright) "\A" counter(page);
+$verso-bottom: counter(page) "\A" string(book-copyright);
+$recto-bottom: counter(page) "\A" string(book-copyright);
+$verso-bottom-frontmatter: counter(page) "\A" string(book-copyright);
+$recto-bottom-frontmatter: counter(page) "\A" string(book-copyright);
 
 $footer-space-from-bottom: $margin-bottom / 4 !default;
 $footer-space-from-text: $line-height-default / 2 !default;

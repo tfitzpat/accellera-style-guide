@@ -14,12 +14,13 @@ TODO: define equation body css style (currently undefined)
 and define equation-reference (currently reuse figure-reference)
 {% endcomment %}
 
-<div class="equation-body">
+<div class="equation-body" {% if equation-reference %} id="equation-{{ equation-reference | slugify: 'pretty' | remove: '.' }}"{% endif %}>
 
 {% if include.file and include.file != "" %}
 <div class="equation-file" style="display: flex; align-items: center;">
   <div style="margin-right: auto;">{% include_relative {{ include.file }} %}</div>
   <div style="margin-left: auto;">({{ equation-reference }})</div>
+  
 </div>
 {% endif %}
 

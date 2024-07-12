@@ -52,37 +52,37 @@ options:
   -x, --export-format    File format to export to (default: MS Word)
   -s, --numbering        Depth of section (re)numbering in the book (default: 0)
   -j, --merged           Whether to merge HTML files for PDF output (default: true)
-
+  -g, --pdf-engine       Select PDF rendering engine (default: prince)
 ```
 
 ## B.2 Examples
 
-Create a screen PDF for the `standard` (template) document:
+Create a screen PDF for the Accellera standard template (`accellera-standard-template`) document:
 
 ```
-npm run electric-book -- output --format screen-pdf --book standard
+npm run electric-book -- output --format screen-pdf --book accellera-standard-template
 ```
 
 Create a screen PDF for the Accellera Style Guide:
 
 ```
-npm run electric-book -- output --format screen-pdf --book accellera
+npm run electric-book -- output --format screen-pdf --book accellera-style-guide
 ```
 
 Create a screen PDF for the Accellera Style Guide, and enable renumbering of sections and cross-references down to 5th level:
 
 ```
-npm run electric-book -- output --format screen-pdf --book accellera --numbering 5
+npm run electric-book -- output --format screen-pdf --book accellera-style-guide --numbering 5
 ```
 
 Create a screen PDF for the IEEE SA Standards Style Manual:
 
 ```
-npm run electric-book -- output --format screen-pdf --book ieee
+npm run electric-book -- output --format screen-pdf --book ieee-sa-standards-style-manual
 ```
 
-Create a table of contents file for the the `standard` document:
+Create a table of contents file for the Accellera standard template (`accellera-standard-template`) document:
 
 ```
-npm run electric-book -- toc --book standard
+npm run electric-book -- toc --book accellera-standard-template
 ```
