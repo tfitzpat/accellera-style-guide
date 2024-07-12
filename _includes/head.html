@@ -53,7 +53,7 @@ separate HTML files are merged into one body element.
         data-title="{% if title %}{{ title }}{% else %}{{ page.title }}{% endif %}"
         data-creator="{% if creator %}{{ creator }}{% else %}{{ project.project-organisation }}{% endif %}"
         {% if is-translation %} data-translation="{{ language }}"{% endif %}
-        data-copyright='Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}{% if status == "Draft" %}<span style="display:none">This is an unapproved {{ rightsholder }} Standards Draft, subject to change.</span>{% endif %}'
+        data-copyright='Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}{% if status == "Draft" %}&#xa;This is an unapproved {{ rightsholder }} Standards Draft, subject to change.{% endif %}'
         {% if site.pdf-engine %} data-pdf-engine="{{ site.pdf-engine }}" {% endif %}>
 
 
@@ -103,7 +103,7 @@ separate HTML files are merged into one body element.
         data-title="{% if title %}{{ title }}{% else %}{{ page.title }}{% endif %}"
         data-creator="{% if creator %}{{ creator }}{% else %}{{ project.project-organisation }}{% endif %}"
         {% if is-translation %} data-translation="{{ language }}"{% endif %}
-        data-copyright='Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}{% if status == "Draft" %}<span style="display:none">This is an unapproved {{ rightsholder }} Standards Draft, subject to change.</span>{% endif %}'
+        data-copyright='Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}{% if status == "Draft" %}&#xa;This is an unapproved {{ rightsholder }} Standards Draft, subject to change.{% endif %}'
         {% if site.pdf-engine %} data-pdf-engine="{{ site.pdf-engine }}" {% endif %}>
 
 
