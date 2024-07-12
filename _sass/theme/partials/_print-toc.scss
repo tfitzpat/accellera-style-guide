@@ -24,3 +24,42 @@
     }
   }
 }
+
+// PAGEDJS
+.contents-page[data-pdf-engine="pagedjs"] {
+  .content > .toc-list > .toc-entry-title {
+    margin-top: $line-height-default;
+  }
+  
+  ol {
+    padding-left: 0;
+  }
+
+  li {
+    a {
+      display: grid;
+      grid-template-columns: 100%;
+
+      span.toc-entry-text {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        justify-self: start;
+        background-color: white;
+        z-index: 4;
+
+        &::after {
+          content: ' ';
+          padding-left: 0.5em;
+          background-color: white;
+        }
+      }
+    }
+    
+    a::after { 
+      content: '............................................................................................................................................................ ' target-counter(attr(href), page);
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      justify-self: end;
+    }
+  }
+}

@@ -67,7 +67,7 @@ screen-pdf:
   # Heading levels to use for automated TOC
   # --------------
   toc:
-    heading-levels: ['h1', 'h2']
+    heading-levels: ['h1', 'h2', 'h3']
   # Choose what to display as the title for the cover page in the
   # PDF bookmarks. Default is locales.pdf.cover. Setting this to
   # title will use the title from default.yml

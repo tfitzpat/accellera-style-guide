@@ -10,7 +10,7 @@ async function numberSections(argv, files) {
   this.annexLevel = 0;
   this.topicName = [];
   this.override = argv.override;
-  this.depth = argv.depth ? argv.depth : 5;
+  this.numberingDepth = (argv.numbering > 0 && argv.numbering < 6) ? argv.numbering : 5;
   this.section = {};
   this.figureNumber = 0;
   this.tableNumber = 0;
@@ -25,7 +25,7 @@ async function numberSections(argv, files) {
 
   function resetSectionNumbering() {
     this.sectionNumber = {};
-    for (let i = 0; i < this.depth; i++) {
+    for (let i = 0; i < this.numberingDepth; i++) {
       this.sectionNumber[i] = 0;
     }
   }
@@ -152,7 +152,7 @@ async function numberSections(argv, files) {
     const section = block.match(/^#+/);
     const chapter = block.match(/style: chapter/);
     const annex = block.match(/style: annex/);
-    const xref = [...block.matchAll(/(\[[0-9a-zA-Z\s.]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
+    const xref = [...block.matchAll(/(\[[0-9a-zA-Z\s.\-]+\]|\[\])\((([^\s^\)]+)?)\)/gi)];
     const codeblock = block.match(/^\`\`\`/);
     const rawblock = block.match(/^\{\%\s+raw\s+\%\}/);
     const table = block.match(/^\{\%\s+include\s+table/);
@@ -216,7 +216,7 @@ async function numberSections(argv, files) {
     } else {
       this.tableNumber +=1;
       if (this.annexLevel>0) {
-        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.tableNumber;
+        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '.' + this.tableNumber;
       } else {
         number +=  this.tableNumber;
       }
@@ -237,7 +237,7 @@ async function numberSections(argv, files) {
     } else {
       this.figureNumber +=1;
       if (this.annexLevel>0) {
-        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.figureNumber;
+        number += String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '.' + this.figureNumber;
       } else {
         number +=  this.figureNumber;
       }
@@ -257,7 +257,7 @@ async function numberSections(argv, files) {
     } else {
       this.equationNumber +=1;
       if (this.annexLevel>0) {
-        number = String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '-' + this.equationNumber;
+        number = String.fromCharCode(64 + this.sectionNumber[0] - this.annexLevel) + '.' + this.equationNumber;
       } else {
         number =  this.equationNumber;
       }
@@ -298,12 +298,9 @@ async function numberSections(argv, files) {
 
   function updateSectionNumber(block, targetLevel) {
     nblock = block;
-    if (targetLevel > this.depth) {
-      return block;
-    }
     let regex;
     if (this.annexLevel > 0) { // annex
-      regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)|Annex\\s+[A-Z])?\\s*(.+)');
+      regex = new RegExp('^#{' + targetLevel + '}\\s*([A-Z](\\.\\d+)*|Annex\\s+[A-Z])?\\s+(.+)?');
     } else { // chapter
       regex = new RegExp('^#{' + targetLevel + '}\\s*(\\d+(\\.\\d+)*.?)?\\s+(.+)?');
     }        
@@ -312,16 +309,21 @@ async function numberSections(argv, files) {
     // regex failed, probably different syntax, so keep block untouched
     if (!match) return block;
 
-    //console.log('section', match);
     const number = calculateSectionNumber(targetLevel);
     let oldref = ebSlugify(match[1] + ' ' + match[3]);
     let newref = ebSlugify(number + ' ' + match[3]);
     storeId(number, oldref, newref, match[3]);
 
-    if (match[1]) {
-      nblock = block.replace(match[1], number);
-    } else { // number was missing, add
-      nblock = block.slice(0, targetLevel+1) + number + ' ' + block.slice(targetLevel+1);
+    if (targetLevel <= this.numberingDepth) {
+      if (match[1]) {
+        nblock = block.replace(match[1], number);
+      } else { // number was missing, add
+        nblock = block.slice(0, targetLevel+1) + number + ' ' + block.slice(targetLevel+1);
+      }
+    } else {
+      if (match[1]) {
+        nblock = block.replace(match[1] + ' ', ''); // remove number and one space when depth is changed
+      }
     }
     return nblock;
   }
@@ -329,7 +331,7 @@ async function numberSections(argv, files) {
   function calculateSectionNumber(level) {
     this.sectionNumber[level-1] += 1;
 
-    for (let i = level; i < this.depth; i++) { 
+    for (let i = level; i < this.numberingDepth; i++) { 
       if (this.sectionNumber[i] && this.sectionNumber[i] > 0) {
         this.sectionNumber[i] = 0;
       }
@@ -356,6 +358,21 @@ async function numberSections(argv, files) {
     return number;
   }
 
+  // helper function to copy file and append with ending newline if missing
+  async function copyFileAppendNewLine(file) {
+    try {
+      const content = await fs.readFile(file.source, 'utf8');
+      if (typeof content !== 'string') {
+        throw new TypeError('Content of file is not a string. Abort.');
+      }
+      const matches = content.match(/\r?\n$/); // check for LF or CRLF
+      const EOF = (matches) ? '' : '\n';
+      await fs.writeFile(file.temp, content + EOF, 'utf8');
+    } catch (error) {
+        throw new TypeError('Unable to copy file. Abort.');
+    }
+  }
+
   // main function called here
   
   getMetaData(argv);
@@ -364,8 +381,10 @@ async function numberSections(argv, files) {
   console.log('INFO: Numbering 1st pass...');
 
   // files copied to temp folder to enable updates of sources
-  await fs.emptyDir(process.cwd() + '/.temp');
-  fs.copySync(process.cwd() + '/' + argv.book, process.cwd() + '/.temp/' + argv.book);
+  await fs.emptyDir(process.cwd() + '/.temp' + argv.book);
+  for (let i = 0; i < files.length; i++) {
+    await copyFileAppendNewLine(files[i]);
+  }
 
   resetSectionNumbering();
   for (let i = 0; i < files.length; i++) {

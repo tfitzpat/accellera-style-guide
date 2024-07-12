@@ -125,13 +125,38 @@ const options = {
     implies: ['format'],
     nargs: 1
   },
+  numbering: {
+    description: 'Depth of section (re)numbering in the book',
+    alias: 's',
+    default: 0,
+    defaultDescription: '0',
+    type: 'number'
+  },
   merged: {
     description: 'Whether to merge HTML files for PDF output',
     alias: 'j',
     default: true,
     defaultDescription: 'true',
     type: 'boolean'
+  },
+  'pdf-engine': {
+    description: 'Tool for converting HTML to PDF',
+    alias: 'g',
+    default: 'prince',
+    defaultDescription: 'Prince',
+    choices: ['prince', 'pagedjs'],
+    type: 'string',
+    implies: ['format'],
+    nargs: 1
+  },
+  'pdf-debug': {
+    description: 'Run PagedJS in debug mode',
+    alias: 'z',
+    default: false,
+    defaultDescription: 'false',
+    type: 'boolean'
   }
+
 }
 
 exports.options = options

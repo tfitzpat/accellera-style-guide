@@ -116,7 +116,7 @@ $convert-images-to-color-profile: false !default;
         margin-bottom: 0; // manages line space after sublists in lists
     }
     li {
-        page-break-inside: avoid;
+        //page-break-inside: avoid;
         list-style-position: outside;
         margin-left: $paragraph-indent;
         &::marker {
@@ -126,6 +126,7 @@ $convert-images-to-color-profile: false !default;
     }
     li:first-of-type {
         page-break-after: avoid;
+        page-break-inside: avoid;
     }
     li:last-of-type {
         page-break-before: avoid;

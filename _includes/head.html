@@ -52,7 +52,9 @@ separate HTML files are merged into one body element.
         {% endif %}
         data-title="{% if title %}{{ title }}{% else %}{{ page.title }}{% endif %}"
         data-creator="{% if creator %}{{ creator }}{% else %}{{ project.project-organisation }}{% endif %}"
-        {% if is-translation %} data-translation="{{ language }}"{% endif %}>
+        {% if is-translation %} data-translation="{{ language }}"{% endif %}
+        data-copyright='Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}{% if status == "Draft" %}&#xa;This is an unapproved {{ rightsholder }} Standards Draft, subject to change.{% endif %}'
+        {% if site.pdf-engine %} data-pdf-engine="{{ site.pdf-engine }}" {% endif %}>
 
 
 {% elsif site.output == "screen-pdf" %}
@@ -100,7 +102,9 @@ separate HTML files are merged into one body element.
         {% endif %}
         data-title="{% if title %}{{ title }}{% else %}{{ page.title }}{% endif %}"
         data-creator="{% if creator %}{{ creator }}{% else %}{{ project.project-organisation }}{% endif %}"
-        {% if is-translation %} data-translation="{{ language }}"{% endif %}>
+        {% if is-translation %} data-translation="{{ language }}"{% endif %}
+        data-copyright='Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}{% if status == "Draft" %}&#xa;This is an unapproved {{ rightsholder }} Standards Draft, subject to change.{% endif %}'
+        {% if site.pdf-engine %} data-pdf-engine="{{ site.pdf-engine }}" {% endif %}>
 
 
 {% elsif site.output == "epub" %}

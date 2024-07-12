@@ -1,0 +1,203 @@
+title: "Accellera Style Guide"
+subtitle: ""
+version: "version 0.2"
+creator: "Accellera Systems Initiative" # E.g. the author
+contributor: "" # E.g. other contributors
+subject: "The Accellera Style Guide defines the recommended structure, formatting and style to develop and publish Accellera (Draft) Standards, User Guides and other standard-related documentation. This style guide serves as a reference for Accellera working groups in the technical editing process when drafting a standard-related document."
+description: "The Accellera Style Guide defines the recommended structure, formatting and style to develop Accellera Standards and Drafts." # E.g. the blurb
+keywords: "html, kramdown, markdown, style manual"
+publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand name
+publisher-url: ""
+date: "2024-07-10" # YYYY-MM-DD e.g. publication date
+modified: "2024-07-10" # YYYY-MM-DD e.g. date of last revision
+type: "User Guide" # e.g. Standard, User Guide, Whitepaper
+identifier: "" # e.g. ISBN or UUID
+source: "" # e.g. parent ISBN or ISTC
+language: "en" # use ISO 639-1, 639-2, or 639-3 codes (in that order of preference)
+relation: "" # e.g. other edition ISBN
+coverage: "" # e.g. geographic place or chronological time span
+rightsholder: "Accellera" # who owns the copyright?
+rights: "All rights reserved." # e.g. a copyright statement
+image: "accellera_logo.svg"
+status: "Final" # status, e.g., Draft, Final, Review
+
+products: # Metadata for each product for this title (only use values that override parent metadata)
+  print-pdf:
+    date: "2024-04-30" # YYYY-MM-DD e.g. publication or creation date
+    format: "Print" # e.g. Paperback, Digital download, Digital online
+    identifier: "" # e.g. ISBN or UUID
+    image: "cover.jpg"
+    files:
+    toc:
+      - file: "01"
+        id: "1-overview"
+        label: "1. Overview"
+        children:
+          - file: "01"
+            id: "11-purpose"
+            label: "1.1 Purpose"
+          - file: "01"
+            id: "12-helpful-resources"
+            label: "1.2 Helpful resources"
+          - file: "01"
+            id: "13-using-the-accellera-documentation-flow"
+            label: "1.3 Using the Accellera documentation flow"
+      - file: "02"
+        id: "2-project-setup"
+        label: "2. Project setup"
+        children:
+          - file: "02"
+            id: "21-github-repository-setup"
+            label: "2.1 GitHub repository setup"
+          - file: "02"
+            id: "22-accellera-standard-template"
+            label: "2.2 Accellera standard template"
+          - file: "02"
+            id: "23-tool-setup"
+            label: "2.3 Tool setup"
+      - file: "03"
+        id: "3-document-authoring-and-formatting"
+        label: "3. Document authoring and formatting"
+        children:
+          - file: "03"
+            id: "31-use-of-markdown-and-kramdown-syntax"
+            label: "3.1 Use of Markdown and kramdown syntax"
+          - file: "03"
+            id: "32-formatting-classes"
+            label: "3.2 Formatting classes"
+      - file: "04"
+        id: "4-document-structure-and-style"
+        label: "4. Document structure and style"
+        children:
+          - file: "04"
+            id: "41-frontmatter"
+            label: "4.1 Frontmatter"
+          - file: "04"
+            id: "42-document-body"
+            label: "4.2 Document body"
+          - file: "04"
+            id: "43-backmatter"
+            label: "4.3 Backmatter"
+      - file: "a"
+        id: "annex-a-informative-environment-setup"
+        label: "Annex A (informative) Environment setup"
+        children:
+          - file: "a"
+            id: "a1-download-virtualbox"
+            label: "A.1 Download VirtualBox"
+          - file: "a"
+            id: "a2-download-ubuntu-iso-image"
+            label: "A.2 Download Ubuntu ISO image"
+          - file: "a"
+            id: "a3-create-a-virtual-machine"
+            label: "A.3 Create a virtual machine"
+          - file: "a"
+            id: "a4-install-xubuntu"
+            label: "A.4 Install Xubuntu"
+          - file: "a"
+            id: "a5-install-documentation-flow"
+            label: "A.5 Install documentation flow"
+      - file: "b"
+        id: "annex-b-informative-electric-book-commands"
+        label: "Annex B (informative) Electric Book commands"
+        children:
+          - file: "b"
+            id: "b1-usage"
+            label: "B.1 Usage"
+          - file: "b"
+            id: "b2-examples"
+            label: "B.2 Examples"
+  screen-pdf:
+    date: "2024-01-03" # YYYY-MM-DD e.g. publication date or last revision
+    format: "Digital download" # e.g. Paperback, Digital download, Digital online
+    identifier: "" # e.g. ISBN or UUID
+    image: "cover.jpg"
+    files:
+      - "0-0-titlepage"
+      - "0-1-introduction"
+      - "0-2-contents"
+      - "01"
+      - "02"
+      - "03"
+      - "04"
+      - "a"
+      - "b"
+    toc:
+      - file: "01"
+        id: "1-overview"
+        label: "1. Overview"
+        children:
+          - file: "01"
+            id: "11-purpose"
+            label: "1.1 Purpose"
+          - file: "01"
+            id: "12-helpful-resources"
+            label: "1.2 Helpful resources"
+          - file: "01"
+            id: "13-using-the-accellera-documentation-flow"
+            label: "1.3 Using the Accellera documentation flow"
+      - file: "02"
+        id: "2-project-setup"
+        label: "2. Project setup"
+        children:
+          - file: "02"
+            id: "21-github-repository-setup"
+            label: "2.1 GitHub repository setup"
+          - file: "02"
+            id: "22-accellera-standard-template"
+            label: "2.2 Accellera standard template"
+          - file: "02"
+            id: "23-tool-setup"
+            label: "2.3 Tool setup"
+      - file: "03"
+        id: "3-document-authoring-and-formatting"
+        label: "3. Document authoring and formatting"
+        children:
+          - file: "03"
+            id: "31-use-of-markdown-and-kramdown-syntax"
+            label: "3.1 Use of Markdown and kramdown syntax"
+          - file: "03"
+            id: "32-formatting-classes"
+            label: "3.2 Formatting classes"
+      - file: "04"
+        id: "4-document-structure-and-style"
+        label: "4. Document structure and style"
+        children:
+          - file: "04"
+            id: "41-frontmatter"
+            label: "4.1 Frontmatter"
+          - file: "04"
+            id: "42-document-body"
+            label: "4.2 Document body"
+          - file: "04"
+            id: "43-backmatter"
+            label: "4.3 Backmatter"
+      - file: "a"
+        id: "annex-a-informative-environment-setup"
+        label: "Annex A (informative) Environment setup"
+        children:
+          - file: "a"
+            id: "a1-download-virtualbox"
+            label: "A.1 Download VirtualBox"
+          - file: "a"
+            id: "a2-download-ubuntu-iso-image"
+            label: "A.2 Download Ubuntu ISO image"
+          - file: "a"
+            id: "a3-create-a-virtual-machine"
+            label: "A.3 Create a virtual machine"
+          - file: "a"
+            id: "a4-install-xubuntu"
+            label: "A.4 Install Xubuntu"
+          - file: "a"
+            id: "a5-install-documentation-flow"
+            label: "A.5 Install documentation flow"
+      - file: "b"
+        id: "annex-b-informative-electric-book-commands"
+        label: "Annex B (informative) Electric Book commands"
+        children:
+          - file: "b"
+            id: "b1-usage"
+            label: "B.1 Usage"
+          - file: "b"
+            id: "b2-examples"
+            label: "B.2 Examples"

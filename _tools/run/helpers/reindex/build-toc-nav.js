@@ -9,7 +9,11 @@ async function buildTocNav (outputFormat, headingLevels) {
   'use strict'
 
   const tocObj = {
-    toc: []
+    l1: {
+      l2: {
+        toc: []
+      }
+    }
   }
 
   // Get the store.
@@ -85,7 +89,7 @@ async function buildTocNav (outputFormat, headingLevels) {
 
     // Add the entries to the master index, if there are any.
     if (Object.keys(tocEntries).length !== 0) {
-      tocObj.toc.push(tocEntries)
+      tocObj.l1.l2.toc.push(tocEntries)
     }
 
     // Increment counter.

@@ -10,7 +10,7 @@
 
 h1 {
   font-size: 1.2 * $font-size-default;
-  line-height: 1.2em;
+  line-height: 2em;
   text-align: left;
 }
 
@@ -19,18 +19,28 @@ h2 {
   text-align: left;
 }
 
-:not(.toc-entry-title) > a[href]:not(.footnote) {
+:not(.toc-entry-title) > a[href]:not(.footnote, .page-footnote) {
   color: blue;
   text-decoration: underline;
 }
 
 .annex h1 strong {
   font-weight: normal;
-  line-height: 2.5em;
-  vertical-align: text-bottom;
 
   &:before, &:after {
     content: '\a';
     white-space: pre;
+  }
+}
+
+.policy {
+  font-style: italic;
+  line-height: 1.5 * $line-height-default;
+}
+
+// PAGEDJS
+[data-pdf-engine="pagedjs"] {
+  code {
+    line-height: $line-height-default;
   }
 }
