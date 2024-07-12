@@ -1,0 +1,24 @@
+{% include metadata %}
+
+<p style="text-align: left;"><b>Abstract:</b> {{ description }}</p>
+<p style="text-align: left;"><b>Keywords:</b> {{ keywords }}</p>
+
+<div style="position: absolute;bottom:0;">
+  <p style="text-align: left; font-size: 6.7pt; line-height: 1.2; font-family: Arial, Helvetica, sans-serif;">The
+    Institute of Electrical and Electronics Engineers, Inc.<br>
+    3 Park Avenue, New York, NY 10016-5997, USA<br>
+    Copyright © 2020 by The Institute of Electrical and Electronics Engineers, Inc.<br>
+    All rights reserved. Published &lt;XX MONTH 20XX&gt;. Printed in the United States of America.<br><br>
+    IEEE is a registered trademark in the U.S. Patent & Trademark Office, owned by The Institute of Electrical and
+    Electronics<br>
+    Engineers, Incorporated.<br>
+    <br>
+    <b>PDF: ISBN 978-0-XXXX-XXXX-X STDXXXXX<br>
+      Print: ISBN 978-0-XXXX-XXXX-X STDPDXXXXX</b><br>
+    <br>
+    IEEE prohibits discrimination, harassment and bullying. For more information, visit <a
+      href="https://www.ieee.org/about/corporate/governance/p9-26.html">https://www.ieee.org/about/corporate/governance/p9-26.html</a>.
+    No part of this publication may be reproduced in any form, in an electronic retrieval system or otherwise, without
+    the prior written permission of the publisher.
+  </p>
+</div>
