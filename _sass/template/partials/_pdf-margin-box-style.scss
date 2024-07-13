@@ -215,4 +215,318 @@ $pdf-margin-box-style: true !default;
       @include margin-box-right-bottom();
     }
   }
+
+   // Verso
+   @page annex:left {
+    @top-center {
+      @include margin-box-top-center(verso, true);
+    }
+    @top-right {
+      @include margin-box-top-right(verso);
+    }
+    @top-left {
+      @include margin-box-top-left(verso);
+    }
+    @top-right-corner {
+      @include margin-box-top-right-corner();
+    }
+    @top-left-corner {
+      @include margin-box-top-left-corner();
+    }
+    @bottom-center {
+      @include margin-box-bottom-center(verso, true);
+    }
+    @bottom-left {
+      @include margin-box-bottom-left(verso);
+    }
+    @bottom-right {
+      @include margin-box-bottom-right(verso);
+    }
+    @bottom-left-corner {
+      @include margin-box-bottom-left-corner();
+    }
+    @bottom-right-corner {
+      @include margin-box-bottom-right-corner();
+    }
+    @left-middle {
+      @include margin-box-left-middle();
+    }
+    @left-top {
+      @include margin-box-left-top();
+    }
+    @left-bottom {
+      @include margin-box-left-bottom();
+    }
+    @right-middle {
+      @include margin-box-right-middle();
+    }
+    @right-top {
+      @include margin-box-right-top();
+    }
+    @right-bottom {
+      @include margin-box-right-bottom();
+    }
+  }
+
+  // Recto
+  @page annex:right {
+    @top-center {
+      @include margin-box-top-center(recto, true);
+    }
+    @top-right {
+      @include margin-box-top-right(recto);
+    }
+    @top-left {
+      @include margin-box-top-left(recto);
+    }
+    @top-right-corner {
+      @include margin-box-top-right-corner();
+    }
+    @top-left-corner {
+      @include margin-box-top-left-corner();
+    }
+    @bottom-center {
+      @include margin-box-bottom-center(recto, true);
+    }
+    @bottom-left {
+      @include margin-box-bottom-left(recto);
+    }
+    @bottom-right {
+      @include margin-box-bottom-right(recto);
+    }
+    @bottom-left-corner {
+      @include margin-box-bottom-left-corner();
+    }
+    @bottom-right-corner {
+      @include margin-box-bottom-right-corner();
+    }
+    @left-middle {
+      @include margin-box-left-middle();
+    }
+    @left-top {
+      @include margin-box-left-top();
+    }
+    @left-bottom {
+      @include margin-box-left-bottom();
+    }
+    @right-middle {
+      @include margin-box-right-middle();
+    }
+    @right-top {
+      @include margin-box-right-top();
+    }
+    @right-bottom {
+      @include margin-box-right-bottom();
+    }
+  }
+
+  // Verso
+  @page contents-page:left {
+    @top-center {
+      @include margin-box-top-center(verso, true);
+    }
+    @top-right {
+      @include margin-box-top-right(verso);
+    }
+    @top-left {
+      @include margin-box-top-left(verso);
+    }
+    @top-right-corner {
+      @include margin-box-top-right-corner();
+    }
+    @top-left-corner {
+      @include margin-box-top-left-corner();
+    }
+    @bottom-center {
+      @include margin-box-bottom-center(verso, true);
+    }
+    @bottom-left {
+      @include margin-box-bottom-left(verso);
+    }
+    @bottom-right {
+      @include margin-box-bottom-right(verso);
+    }
+    @bottom-left-corner {
+      @include margin-box-bottom-left-corner();
+    }
+    @bottom-right-corner {
+      @include margin-box-bottom-right-corner();
+    }
+    @left-middle {
+      @include margin-box-left-middle();
+    }
+    @left-top {
+      @include margin-box-left-top();
+    }
+    @left-bottom {
+      @include margin-box-left-bottom();
+    }
+    @right-middle {
+      @include margin-box-right-middle();
+    }
+    @right-top {
+      @include margin-box-right-top();
+    }
+    @right-bottom {
+      @include margin-box-right-bottom();
+    }
+  }
+
+  // Recto
+  @page contents-page:right {
+    @top-center {
+      @include margin-box-top-center(recto, true);
+    }
+    @top-right {
+      @include margin-box-top-right(recto);
+    }
+    @top-left {
+      @include margin-box-top-left(recto);
+    }
+    @top-right-corner {
+      @include margin-box-top-right-corner();
+    }
+    @top-left-corner {
+      @include margin-box-top-left-corner();
+    }
+    @bottom-center {
+      @include margin-box-bottom-center(recto, true);
+    }
+    @bottom-left {
+      @include margin-box-bottom-left(recto);
+    }
+    @bottom-right {
+      @include margin-box-bottom-right(recto);
+    }
+    @bottom-left-corner {
+      @include margin-box-bottom-left-corner();
+    }
+    @bottom-right-corner {
+      @include margin-box-bottom-right-corner();
+    }
+    @left-middle {
+      @include margin-box-left-middle();
+    }
+    @left-top {
+      @include margin-box-left-top();
+    }
+    @left-bottom {
+      @include margin-box-left-bottom();
+    }
+    @right-middle {
+      @include margin-box-right-middle();
+    }
+    @right-top {
+      @include margin-box-right-top();
+    }
+    @right-bottom {
+      @include margin-box-right-bottom();
+    }
+  }
+
+
+  // Verso
+  @page no-header:left {
+    @top-center {
+      @include margin-box-top-center(verso, true);
+    }
+    @top-right {
+      @include margin-box-top-right(verso);
+    }
+    @top-left {
+      @include margin-box-top-left(verso);
+    }
+    @top-right-corner {
+      @include margin-box-top-right-corner();
+    }
+    @top-left-corner {
+      @include margin-box-top-left-corner();
+    }
+    @bottom-center {
+      @include margin-box-bottom-center(verso, true);
+    }
+    @bottom-left {
+      @include margin-box-bottom-left(verso);
+    }
+    @bottom-right {
+      @include margin-box-bottom-right(verso);
+    }
+    @bottom-left-corner {
+      @include margin-box-bottom-left-corner();
+    }
+    @bottom-right-corner {
+      @include margin-box-bottom-right-corner();
+    }
+    @left-middle {
+      @include margin-box-left-middle();
+    }
+    @left-top {
+      @include margin-box-left-top();
+    }
+    @left-bottom {
+      @include margin-box-left-bottom();
+    }
+    @right-middle {
+      @include margin-box-right-middle();
+    }
+    @right-top {
+      @include margin-box-right-top();
+    }
+    @right-bottom {
+      @include margin-box-right-bottom();
+    }
+  }
+
+  // Recto
+  @page no-header:right {
+    @top-center {
+      @include margin-box-top-center(recto, true);
+    }
+    @top-right {
+      @include margin-box-top-right(recto);
+    }
+    @top-left {
+      @include margin-box-top-left(recto);
+    }
+    @top-right-corner {
+      @include margin-box-top-right-corner();
+    }
+    @top-left-corner {
+      @include margin-box-top-left-corner();
+    }
+    @bottom-center {
+      @include margin-box-bottom-center(recto, true);
+    }
+    @bottom-left {
+      @include margin-box-bottom-left(recto);
+    }
+    @bottom-right {
+      @include margin-box-bottom-right(recto);
+    }
+    @bottom-left-corner {
+      @include margin-box-bottom-left-corner();
+    }
+    @bottom-right-corner {
+      @include margin-box-bottom-right-corner();
+    }
+    @left-middle {
+      @include margin-box-left-middle();
+    }
+    @left-top {
+      @include margin-box-left-top();
+    }
+    @left-bottom {
+      @include margin-box-left-bottom();
+    }
+    @right-middle {
+      @include margin-box-right-middle();
+    }
+    @right-top {
+      @include margin-box-right-top();
+    }
+    @right-bottom {
+      @include margin-box-right-bottom();
+    }
+  }
+
 }

@@ -1,5 +1,4 @@
 ---
-title: Contents
 style: contents-page
 ---
 

@@ -89,7 +89,7 @@ $pdf-title-pages: true !default;
 		.titlepage-copyright {
 			position: absolute;
 			text-align: center;
-			bottom: -50px; // move under page margin
+			bottom: 0;
             // Now we'll center the block on the page
             transform: translateX(-50%);
             margin-left: 50%;			
