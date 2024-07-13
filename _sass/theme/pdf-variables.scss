@@ -23,12 +23,15 @@ $start-on: page !default;
 $spaced-paras: true !default;
 
 // Show headers and footers on all pages
+// Set to blank or show.
 $first-page-margin-boxes: show;
 
 $verso-top: string(book-title);
 $recto-top: string(book-title);
-$verso-top-frontmatter: string(book-title);
-$recto-top-frontmatter: string(book-title);
+
+//No header for frontmatter pages
+$verso-top-frontmatter: normal;
+$recto-top-frontmatter: normal;
 
 // "\A" is a newline
 $verso-bottom: counter(page) "\A" string(book-copyright);

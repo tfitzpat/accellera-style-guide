@@ -19,14 +19,3 @@
     line-height: $line-height-default !important;
   }
 }
-
-// Title page does not get header, page number
-@page title-page {
-  @top-center {
-    content: normal;
-  }
-
-  @bottom-center {
-    content: string(book-copyright);
-  }
-}
