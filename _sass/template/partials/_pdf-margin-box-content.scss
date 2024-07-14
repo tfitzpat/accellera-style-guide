@@ -391,7 +391,7 @@ $pdf-margin-box-content: true !default;
   }
 
   // No header on 'no-header' page
-  @page no-header {
+  @page no-header:first {
     @top-center {
       content: normal;
     }

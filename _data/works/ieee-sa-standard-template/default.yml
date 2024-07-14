@@ -8,6 +8,11 @@ description: "Add Abstract—contents in the description field of the document m
 keywords: "Add keywords using the document metadata"
 publisher: "IEEE SA" # E.g. the publisher, imprint or brand name
 publisher-url: ""
+committee: "[Committee]" # E.g. P<name> (mandatory for IEEE SA)
+society: "[Society Name]" # E.g. Computer (mandatory for IEEE SA)
+approved: "[XX MONTH 20XX]" # Approval date, notation DD MONTH YYYY (mandatory for IEEE SA)
+isbn-pdf: "ISBN 978-0-XXXX-XXXX-X STDXXXXX" # ISBN Nr for PDF document (mandatory for IEEE SA)
+isbn-print: "ISBN 978-0-XXXX-XXXX-X STDPDXXXXX" # ISBN Nr for Printed version (mandatory for IEEE SA)
 date: "2024-04-30" # YYYY-MM-DD e.g. publication date
 modified: "2024-04-30" # YYYY-MM-DD e.g. date of last revision
 type: "Standard" # e.g. Standard, User Guide, Whitepaper

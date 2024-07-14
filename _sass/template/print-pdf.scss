@@ -330,6 +330,7 @@ $pdf-fitting: true !default; // Classes for floating, tracking, shrinking, etc.
 $pdf-hyphenation: true !default; // Sets hyphenation dictionary
 
 // Book features
+$pdf-abstract-page: true !default; // Abstract pages
 $pdf-start-on-recto-or-verso: true !default; // Starts chapters on a left- or right-hand-page
 $pdf-page-start-depth: true !default; // Sets a top margin on opening pages
 $pdf-base-typography: true !default; // Default typography for HTML elements
@@ -417,6 +418,7 @@ $pdf-page-setup-lightning-source: false !default; // Removes crop marks and sets
 @import "template/partials/pdf-baseline-grid"; // Shows a baseline grid
 
 // Book features
+@import "template/partials/pdf-abstract-page";
 @import "template/partials/pdf-start-on-recto-or-verso"; // Starts chapters on a left- or right-hand-page
 @import "template/partials/pdf-page-start-depth"; // Sets a top margin on opening pages
 @import "template/partials/pdf-base-typography"; // Default typography for HTML elements

@@ -56,7 +56,6 @@ separate HTML files are merged into one body element.
         data-copyright='Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}{% if status == "Draft" %}&#xa;This is an unapproved {{ rightsholder }} Standards Draft, subject to change.{% endif %}'
         {% if site.pdf-engine %} data-pdf-engine="{{ site.pdf-engine }}" {% endif %}>
 
-
 {% elsif site.output == "screen-pdf" %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ language }}" xml:lang="{{ language }}"{% if site.data.locales[language].direction %} dir="{{ site.data.locales[language].direction }}"{% endif %}>
