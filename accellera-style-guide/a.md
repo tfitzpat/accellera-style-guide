@@ -27,9 +27,9 @@ Open VirtualBox and click on the blue **New** button. It will open a dialog box 
 Enter the following information into the fields. Note: replace &lt;user&gt; with your user account.
 - Name: Xubuntu 22.04.4 EBW environment
 - Folder: C:\Users\&lt;user&gt;\VirtualBox VMs 
-- ISO image: C:\Users\<user>\Downloads\xubuntu-22.04.4-desktop-amd64.iso
+- ISO image: C:\Users\&lt;user&gt;\Downloads\xubuntu-22.04.4-desktop-amd64.iso
 
-Click on **Next** to specify the account details, see figure below. In this setup, a new account `accellera` is created. Specify the strong password. Optional is to specify a hostname (e.g., `ebw`) and domain name (e.g., `ebw.virtualbox.org`). After completion, click on **Next**.
+Click on **Next** to specify the account details, see figure below. In this setup, a new account `accellera` is created. Specify the strong password. Optional is to specify a hostname (e.g., `ebw`) and domain name (e.g., `ebw.virtualbox.org`). Also enable the box *Guest Additions*. After completion, click on **Next**.
 
 {% include figure
    reference="Figure A.2"
@@ -65,8 +65,19 @@ The next dialog presents a summary. Check all settings, and in case a change is 
 
 The virtual machine starts and installs Xubuntu. Depending on the available resources on your host operating system, installation will take between 10 and 20 minutes. After installation the virtual machine will reboot and shows the login screen. Enter the specified password to login.
 
-For convenience, a Terminal will be added to the desktop. For this, open the Application menu by clicking on the icon in the upper left corner.
-Right-click on **Terminal Emulator** and select **Add to Desktop**. Open the terminal via the Desktop, it will show the following prompt:
+To enable sharing of clipboard content between the host OS and virtual machine, use the VirtualBox menu of your virtual machine and select: **Devices** > **Shared Chipboard** > **Bidirectional**. 
+
+To share files between the host OS and the virtual machine, select **Devices** > **Shared Folder** > **Shared Folder Settings**, right-click on **Machine Folders** and select **Add shared folder**. Enter the following information:
+
+* Folder path: `C:\Users\<user>\<shared folder on host OS>`
+* Folder name: `shared_folder`
+* Mount point: `media`
+* Select tick box **automount**
+* Select tick box **Make Permanent**
+
+After this, a shared folder located in `/media/sf_shared_folder` is made available, which can be accessed from your host OS via the specified folder path.
+
+For convenience, a Terminal shortcut will be added to the desktop of the virtual machine. For this, open the Application menu by clicking on the icon in the upper left corner. Right-click on **Terminal Emulator** and select **Add to Desktop**. Open the terminal via the Desktop, it will show the following prompt:
 
     accellera@ebw:~:$
 

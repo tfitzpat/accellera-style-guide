@@ -30,6 +30,7 @@ h2 {
   &:before, &:after {
     content: '\a';
     white-space: pre;
+    line-height: 2em;
   }
 }
 
