@@ -66,10 +66,10 @@ sudo apt update
 sudo apt install code
 
 # Update npm
-npm install -g npm@latest
+sudo npm install -g npm@latest
 
 # Install Gulp cli app
-npm install --global gulp-cli
+sudo npm install --global gulp-cli
 
 cd ..
 
@@ -80,10 +80,10 @@ echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 
 # Install bundler and jekyll
-gem install jekyll bundler
+sudo gem install jekyll bundler
 
 # install gems
-bundle install
+sudo bundle install
 
 # you might need this to resolve version conficts 
 #bundle update --bundler
