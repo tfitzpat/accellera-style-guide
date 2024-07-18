@@ -36,9 +36,9 @@ sudo apt-get install -y \
   libxfixes3 \
   libxrandr2 \
   curl \
-    git
+  git
 
-# Install nodejs 16.x
+# Install nodejs 20.x
 sudo curl -k -sL https://deb.nodesource.com/setup_20.x > node_setup.sh
 sudo bash node_setup.sh
 sudo apt-get install nodejs -y
@@ -64,6 +64,10 @@ wget -O- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor 
 echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
 sudo apt update
 sudo apt install code
+
+# Install chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 # Update npm
 sudo npm install -g npm@latest
