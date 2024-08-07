@@ -27,9 +27,15 @@ h2 {
 .annex h1 strong {
   font-weight: normal;
 
-  &:before, &:after {
+  &:before {
     content: '\a';
     white-space: pre;
+    line-height: 1.2em;
+  }
+  &:after {
+    content: '\a';
+    white-space: pre;
+    line-height: 2.4em;
   }
 }
 

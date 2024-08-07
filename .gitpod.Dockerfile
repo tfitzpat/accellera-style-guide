@@ -97,3 +97,7 @@ RUN bash -lc "source ~/.bashrc"
 # (https://www.gitpod.io/docs/configure/projects/prebuilds#workspace-directory-only)
 COPY Gemfile .
 RUN bash -lc "bundle install"
+
+# Install Microsoft Core Fonts
+RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+RUN sudo apt-get install ttf-mscorefonts-installer -y
