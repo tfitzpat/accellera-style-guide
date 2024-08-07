@@ -32,9 +32,9 @@ we fall back to the value in the work's default.yml.
 {% endif %}
 
 {% if work[work-variant].title and work[work-variant].title != "" %}
-    {% capture title %}{{ work[work-variant].title }} {{ status }}{% endcapture %}
+    {% capture title %}{{ work[work-variant].title }}{% endcapture %}
 {% elsif work.default.title and work.default.title != "" %}
-    {% capture title %}{{ work.default.title }} {{ status }}{% endcapture %}
+    {% capture title %}{{ work.default.title }}{% endcapture %}
 {% endif %}
 
 {% if work[work-variant].subtitle and work[work-variant].subtitle != "" %}

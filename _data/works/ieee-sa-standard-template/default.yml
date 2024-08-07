@@ -1,5 +1,5 @@
-title: "IEEE SA Standard Template"
-subtitle: ""
+title: "IEEE SA Standard Template" # Full name of the standard
+subtitle: "" # Number or abbreviation of the standard, empty string if not used
 version: "version 0.1"
 creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
