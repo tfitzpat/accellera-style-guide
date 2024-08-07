@@ -109,6 +109,9 @@ $font-size-smaller: 0.8 !default; // How much smaller than font-size-default for
 $font-size-bigger: 2.5 !default; // How many times bigger than font-size-default for features like headings and pullquotes? Use whole numbers to preserve baseline grid.
 $font-code-size: 85% !default;
 
+$font-size-table: 9pt !default; //  font size for tables
+$line-height-table: 10pt !default; //  line height for tables
+
 $text-align: justify !default; // left or right or inside or outside or justify or center
 $orphans: 1 !default; // Minimum number of lines that must be left at the bottom of the first page
 $widows: 1 !default; // Minimum number of lines that must be left at the top of the second page

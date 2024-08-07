@@ -94,10 +94,34 @@
   }
 }
 
+// enforce numbered list item (1st level only)
+.list-numbers {
+  counter-reset: customCounter !important;
+  & > li {
+    list-style: none;
+    counter-increment: customCounter !important;
+    &:before {
+      content: counter(customCounter) ") " !important;
+      position: absolute;
+    }
+  }
+}
+
+// list items without markers (1st level only)
+// works for ordered (ol) and unordered (ul) lists
+.list-no-markers {
+  margin-left: $paragraph-indent!important;
+  & > li {
+    list-style: none;
+    &:before {
+      content: ''!important;
+    }
+  }
+}
 // PAGEDJS
 [data-pdf-engine="pagedjs"] {
   [data-align-last-split-element='justify'] {
-    text-align-last: left;
+    text-align-last: justify;
   }
   li, li * {
     text-align: left !important;

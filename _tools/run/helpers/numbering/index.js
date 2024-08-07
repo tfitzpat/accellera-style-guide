@@ -10,7 +10,7 @@ async function numberSections(argv, files) {
   this.annexLevel = 0;
   this.topicName = [];
   this.override = argv.override;
-  this.numberingDepth = (argv.numbering > 0 && argv.numbering < 6) ? argv.numbering : 5;
+  this.numberingDepth = (argv.section-numbering > 0 && argv.section-numbering < 6) ? argv.section-numbering : 5;
   this.section = {};
   this.figureNumber = 0;
   this.tableNumber = 0;

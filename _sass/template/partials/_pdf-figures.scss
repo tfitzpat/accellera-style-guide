@@ -44,6 +44,7 @@ $pdf-figures: true !default;
             .figure-images {
                 text-align: center;
                 margin-bottom: $line-height-default;
+                padding-bottom: $line-height-default;
             }
 
             .figure-html, .figure-md {}

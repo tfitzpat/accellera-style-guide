@@ -125,7 +125,7 @@ const options = {
     implies: ['format'],
     nargs: 1
   },
-  numbering: {
+  'section-numbering': {
     description: 'Depth of section (re)numbering in the book',
     alias: 's',
     default: 0,

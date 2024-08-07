@@ -6,7 +6,7 @@ $pdf-tables: true !default;
 	table {
 		border-collapse: collapse;
 		margin: $line-height-default 0;
-		font-size: $font-size-default * $font-size-smaller;
+		font-size: $font-size-table !important;
 		width: 100%;
 		max-width: $page-width - $margin-inside - $margin-outside;
 	}
@@ -14,12 +14,16 @@ $pdf-tables: true !default;
 		font-weight: bold;
 		page-break-after: avoid;
 	}
+	tr {
+		page-break-inside: avoid;
+	}
 	th, td {
 		border-top: $rule-thickness solid $color-mid;
 		border-bottom: $rule-thickness solid $color-mid;
 		border-left: 0;
 		border-right: 0;
-		padding: ($line-height-default * 0.1) ($line-height-default * 0.2);
+		line-height: $line-height-table;
+		padding: ($line-height-default * 0.3) ($line-height-default * 0.4);
 		vertical-align: top;
 		page-break-inside: avoid;
 		p, ul, ol, dl {
@@ -40,21 +44,25 @@ $pdf-tables: true !default;
 			font-style: normal;
 		}
 	}
+	.table-no-padding {
+		padding: 0!important;
+		th, td {
+			padding: 0!important;
+		}
+	}
+	.table-columns-fixed {
+		table-layout: fixed;
+	}
 	.table-no-border {
 		border: none!important;
 		border-spacing: 0;
 		padding: 0;
 		th, td {
 			border: none!important;
-			padding: 0;
+			padding: ($line-height-default * 0.3) ($line-height-default * 0.4);
 		}
 	}
 	.table-text-center {
 		text-align: center;
-	}
-	.table-col-width-200 {
-		th, td {
-			width: 200px!important;
-		}
 	}
 }
