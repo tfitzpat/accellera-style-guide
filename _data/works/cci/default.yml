@@ -1,6 +1,6 @@
 title: "SystemC Configuration, Control and Inspection Standard"
 subtitle: ""
-version: "version 1.0"
+version: "CCI 1.0"
 creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
 subject: "This is the SystemC Configuration, Control and Inspection (CCI) Language Reference Manual." # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)

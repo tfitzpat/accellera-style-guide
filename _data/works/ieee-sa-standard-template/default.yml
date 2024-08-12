@@ -1,6 +1,6 @@
 title: "IEEE SA Standard Template" # Full name of the standard
-subtitle: "" # Number or abbreviation of the standard, empty string if not used
-version: "version 0.1"
+subtitle: ""
+version: "IEEE Pxxxx/Dx, [date]" # for drafts IEEE Pxxxx/Dx, [date] and for final version IEEE Std xxxx-[year]
 creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
 subject: "" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)

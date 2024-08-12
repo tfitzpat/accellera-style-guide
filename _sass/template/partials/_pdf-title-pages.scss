@@ -95,13 +95,14 @@ $pdf-title-pages: true !default;
             margin-left: 50%;			
 			string-set: book-copyright content(text);
 		}
-		.title-page-subtitle {
+		.title-page-version-label {
 			position: absolute;
 			text-align: right;
 			right: 0;
 			top: -20px;
 			font-size: $font-size-default * 1;
 			font-weight: bold;
+			font-family: $font-display-main;
 		}
 	}
 

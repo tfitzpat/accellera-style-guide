@@ -22,7 +22,7 @@ as body text despite CSS rules for em size.
 {% comment %} Add label 'Title page' to the PDF bookmarks without displaying it on the main page {% endcomment %}
   <h1 style="font-size: 0;">Title page</h1>
 
-  <p class="title-page-subtitle">{{ subtitle }}</p>
+  <p class="title-page-version-label">{{ version }}</p>
 
   <p class="title-page-title" style="margin-top:70pt;">
     {{ title }}
