@@ -10,7 +10,7 @@ async function numberSections(argv, files) {
   this.annexLevel = 0;
   this.topicName = [];
   this.override = argv.override;
-  this.numberingDepth = (argv.section-numbering > 0 && argv.section-numbering < 6) ? argv.section-numbering : 5;
+  this.numberingDepth = (argv['section-numbering'] > 0 && argv['section-numbering'] < 6) ? argv['section-numbering'] : 5;
   this.section = {};
   this.figureNumber = 0;
   this.tableNumber = 0;
@@ -381,7 +381,7 @@ async function numberSections(argv, files) {
   console.log('INFO: Numbering 1st pass...');
 
   // files copied to temp folder to enable updates of sources
-  await fs.emptyDir(process.cwd() + '/.temp' + argv.book);
+  await fs.emptyDir(process.cwd() + '/.temp/' + argv.book);
   for (let i = 0; i < files.length; i++) {
     await copyFileAppendNewLine(files[i]);
   }
