@@ -279,21 +279,23 @@ async function numberSections(argv, files) {
       //console.log('oldref',oldref)
       if (oldref && (oldref.length == 2)) {
         id = this.section[oldref[1]];
-        ref = oldref[1];
+        ref = oldref[0] + '#';
       } else {
         id = this.section[xref[i][2]];
-        ref = xref[i][2];
+        ref = '';
       }
       if (id) {
         //console.log('old:', nblock);
-        nblock = nblock.replace(xref[i][1], '[' + id.label + ']');
-        nblock = nblock.replace(ref, id.ref);
+        nblock = nblock.replaceAll(xref[i][1], '[\u00A4\u00A4' + id.label + ']');
+        nblock = nblock.replaceAll('('+xref[i][2]+')', '(\u00A4\u00A4'+ref+id.ref+')');
         //console.log('new:', nblock);
       } else {
         console.warn('WARNING: xref - no cross reference found for ID', xref[i][2]);
       }
     }
-    return nblock;
+    // TODO workaround to avoid replacing same xref twice, by adding a special
+    // token u00A4, and deleting it afterwards
+    return nblock.replaceAll('\u00A4\u00A4',''); 
   }
 
   function updateSectionNumber(block, targetLevel) {
