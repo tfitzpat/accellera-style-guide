@@ -3,7 +3,7 @@ subtitle: ""
 version: "version 0.1"
 creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
-subject: "" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
+subject: "TEC008000" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
 description: "This is the abstract of the Accellera Standard Template. This abstract is based on the description field in the document metadata which can be found in the file _data/works/standard/default.yml. When updating the description in this file, the description is also added to the PDF metadata." # E.g. the blurb
 keywords: "accellera, standard, template"
 publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand name

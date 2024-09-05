@@ -3,7 +3,7 @@ subtitle: ""
 version: "version 1.0"
 creator: "Accellera Systems Initiative" # E.g. the author
 contributor: "" # E.g. other contributors
-subject: "This is the SystemC Configuration, Control and Inspection (CCI) Language Reference Manual." # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
+subject: "TEC008000" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
 description: "This is the SystemC Configuration, Control and Inspection (CCI) Language Reference Manual." # E.g. the blurb
 keywords: "Accellera Systems Initiative, SystemC, Configuration, CCI"
 publisher: "Accellera Systems Initiative" # E.g. the publisher, imprint or brand name

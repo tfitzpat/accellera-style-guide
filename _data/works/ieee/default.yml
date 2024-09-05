@@ -3,7 +3,7 @@ subtitle: ""
 version: "version 1.0"
 creator: "IEEE" # E.g. the author
 contributor: "" # E.g. other contributors
-subject: "" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
+subject: "TEC008000" # E.g. BISAC terms (https://bisg.org/page/BISACEdition) or BIC (https://ns.editeur.org/bic_categories)
 description: "The IEEE Standards Style Manual (PDF) establishes preferred style for the preparation and structure of proposed IEEE standards (drafts). It also cites requirements of the *IEEE SA Standards Board Operations Manual* that are related to the development and publication of IEEE standards." # E.g. the blurb
 publisher: "IEEE" # E.g. the publisher, imprint or brand name
 publisher-url: ""
