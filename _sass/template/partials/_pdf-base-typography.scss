@@ -31,8 +31,8 @@ $convert-images-to-color-profile: false !default;
         line-height: $line-height-default;
         font-weight: bold;
         margin: $line-height-default 0 0 0;
-        page-break-after: avoid;
-        page-break-inside: avoid;
+        //page-break-after: avoid;
+        //page-break-inside: avoid;
     }
     h1 {
         font-family: $font-display-main;
@@ -44,11 +44,11 @@ $convert-images-to-color-profile: false !default;
     h2 {
         font-size: $font-size-default * ($font-size-bigger * 0.75);
         margin: $line-height-default 0 $line-height-default 0; // t r b l
-        page-break-after: avoid;
+        //page-break-after: avoid;
     }
     h3, h4, h5, h6 {
         margin: 0 0 $line-height-default 0; // t r b l
-        page-break-after: avoid;
+        //page-break-after: avoid;
     }
     p, ul, ol, dl {
         text-align: $text-align;

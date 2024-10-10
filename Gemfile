@@ -31,4 +31,3 @@ gem "kramdown-parser-gfm"
 
 # For what ~> means, see https://robots.thoughtbot.com/rubys-pessimistic-operator
 
-gem "webrick", "~> 1.8"

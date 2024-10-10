@@ -8,7 +8,7 @@ At the time this Accellera standard was completed, the SystemC CCI Working Group
 
 | **Trevor Wieman**, Chair
 | **Bart Vanthournout**, Vice Chair
-{: .table-no-border .table-text-center }
+{:.table-no-border.table-no-padding.table-text-center}
 
 | Daniel Aarno | Eric Frejd | Ahmed Nizamudheen
 | Sergei Ananko | Enrico Galli | Atanas Parashkevov
@@ -33,7 +33,7 @@ At the time this Accellera standard was completed, the SystemC CCI Working Group
 | Ajit Dingankar | Vincent Motel | Rafael Zuralski
 | Jakob Engblom | Rajiv Narayan 
 | Alan Fitch | Blake Nicholas 
-{: .table-no-border .table-col-width-200 }
+{:.table-no-border.table-no-padding.table-columns-fixed}
 
 The following members of the entity balloting committee voted on this standard. Balloters may have voted for approval, disapproval, or abstention.
 
@@ -43,4 +43,4 @@ The following members of the entity balloting committee voted on this standard. 
 | Cadence | Mentor | TI
 | CircuitSutra | NXP | Vayavya
 | Doulos | OFFIS
-{: .table-no-border .table-col-width-200 }
+{:.table-no-border.table-no-padding.table-columns-fixed}

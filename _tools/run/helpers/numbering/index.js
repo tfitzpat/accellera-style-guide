@@ -10,7 +10,7 @@ async function numberSections(argv, files) {
   this.annexLevel = 0;
   this.topicName = [];
   this.override = argv.override;
-  this.depth = argv.depth ? argv.depth : 5;
+  this.numberingDepth = (argv['section-numbering'] > 0 && argv['section-numbering'] < 6) ? argv['section-numbering'] : 5;
   this.section = {};
   this.figureNumber = 0;
   this.tableNumber = 0;
@@ -25,7 +25,7 @@ async function numberSections(argv, files) {
 
   function resetSectionNumbering() {
     this.sectionNumber = {};
-    for (let i = 0; i < this.depth; i++) {
+    for (let i = 0; i < this.numberingDepth; i++) {
       this.sectionNumber[i] = 0;
     }
   }
@@ -279,21 +279,23 @@ async function numberSections(argv, files) {
       //console.log('oldref',oldref)
       if (oldref && (oldref.length == 2)) {
         id = this.section[oldref[1]];
-        ref = oldref[1];
+        ref = oldref[0] + '#';
       } else {
         id = this.section[xref[i][2]];
-        ref = xref[i][2];
+        ref = '';
       }
       if (id) {
         //console.log('old:', nblock);
-        nblock = nblock.replace(xref[i][1], '[' + id.label + ']');
-        nblock = nblock.replace(ref, id.ref);
+        nblock = nblock.replaceAll(xref[i][1], '[\u00A4\u00A4' + id.label + ']');
+        nblock = nblock.replaceAll('('+xref[i][2]+')', '(\u00A4\u00A4'+ref+id.ref+')');
         //console.log('new:', nblock);
       } else {
         console.warn('WARNING: xref - no cross reference found for ID', xref[i][2]);
       }
     }
-    return nblock;
+    // TODO workaround to avoid replacing same xref twice, by adding a special
+    // token u00A4, and deleting it afterwards
+    return nblock.replaceAll('\u00A4\u00A4',''); 
   }
 
   function updateSectionNumber(block, targetLevel) {
@@ -314,7 +316,7 @@ async function numberSections(argv, files) {
     let newref = ebSlugify(number + ' ' + match[3]);
     storeId(number, oldref, newref, match[3]);
 
-    if (targetLevel <= this.depth) {
+    if (targetLevel <= this.numberingDepth) {
       if (match[1]) {
         nblock = block.replace(match[1], number);
       } else { // number was missing, add
@@ -331,7 +333,7 @@ async function numberSections(argv, files) {
   function calculateSectionNumber(level) {
     this.sectionNumber[level-1] += 1;
 
-    for (let i = level; i < this.depth; i++) { 
+    for (let i = level; i < this.numberingDepth; i++) { 
       if (this.sectionNumber[i] && this.sectionNumber[i] > 0) {
         this.sectionNumber[i] = 0;
       }
@@ -381,7 +383,7 @@ async function numberSections(argv, files) {
   console.log('INFO: Numbering 1st pass...');
 
   // files copied to temp folder to enable updates of sources
-  await fs.emptyDir(process.cwd() + '/.temp' + argv.book);
+  await fs.emptyDir(process.cwd() + '/.temp/' + argv.book);
   for (let i = 0; i < files.length; i++) {
     await copyFileAppendNewLine(files[i]);
   }

@@ -154,8 +154,9 @@ $pdf-notes: true !default;
         }
     }
     
-
+    // formatting for general note
     .note {
-      font-size: $font-size-default * 0.9;
+        font-size: $font-size-default * 0.9;
+        line-height: $line-height-default * 0.9;
     }
 }

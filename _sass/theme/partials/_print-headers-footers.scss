@@ -3,9 +3,11 @@
 @page {
   @top-center {
     content: $verso-top;
-    text-transform: none !important;
     font-family: $font-text-secondary;
     font-size: $footer-font-size;
+    white-space: pre-wrap;
+    text-transform: none !important;
+    line-height: $line-height-default !important;
   }
 }
 
@@ -17,16 +19,5 @@
     white-space: pre-wrap;
     text-transform: none !important;
     line-height: $line-height-default !important;
-  }
-}
-
-// Title page does not get header, page number
-@page title-page {
-  @top-center {
-    content: normal;
-  }
-
-  @bottom-center {
-    content: string(book-copyright);
   }
 }

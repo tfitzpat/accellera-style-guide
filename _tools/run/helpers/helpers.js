@@ -600,16 +600,11 @@ async function convertXHTMLFiles (argv) {
   }
 }
 
-// Render numbering on the markdown sources
+// Render section numbering on the markdown sources
 async function renderNumbering (argv) {
   'use strict'
 
-  // when --skip-numbering is used we will not render the numbering
-  if (argv.skipNumbering) return;
-
   const fileNames = markdownFilePaths(argv);
-
-  //const ids = await idRegistry(argv, fileNames);
   await numberSections(argv, fileNames, {});
 }
 

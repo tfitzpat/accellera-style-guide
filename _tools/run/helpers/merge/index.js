@@ -46,6 +46,7 @@ function updateIDs (filename, dom, argv) {
         internalLinks = linksArray.filter(function (link) {
           let isInternal = true
           if (link.href.startsWith('https://') ||
+              link.href.startsWith('mailto:') ||
               link.href.startsWith('http://')) {
             isInternal = false
           }
