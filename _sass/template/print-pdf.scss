@@ -109,6 +109,9 @@ $font-size-smaller: 0.8 !default; // How much smaller than font-size-default for
 $font-size-bigger: 2.5 !default; // How many times bigger than font-size-default for features like headings and pullquotes? Use whole numbers to preserve baseline grid.
 $font-code-size: 85% !default;
 
+$font-size-table: 9pt !default; //  font size for tables
+$line-height-table: 10pt !default; //  line height for tables
+
 $text-align: justify !default; // left or right or inside or outside or justify or center
 $orphans: 1 !default; // Minimum number of lines that must be left at the bottom of the first page
 $widows: 1 !default; // Minimum number of lines that must be left at the top of the second page
@@ -255,7 +258,7 @@ $recto-right-frontmatter: "" !default;
 $recto-right-top-frontmatter: "" !default;
 $recto-right-bottom-frontmatter: "" !default;
 
-// Are there headers and footers on the first pages?
+// Set styles for headers and footers on the first pages
 // Set to blank or show.
 $first-page-margin-boxes: blank !default;
 
@@ -270,7 +273,8 @@ $header-case: uppercase !default; // none|capitalize|uppercase|lowercase|initial
 $footer-case: uppercase !default; // none|capitalize|uppercase|lowercase|initial|inherit;
 $header-letter-spacing: 0.1em !default;
 $footer-letter-spacing: 0.1em !default;
-$header-space-from-top: $margin-top / 2 + ($line-height-default / 4) !default; // should align with baseline grid
+//$header-space-from-top: $margin-top / 2 + ($line-height-default / 4) !default; // should align with baseline grid
+$header-space-from-top: $margin-top / 2 - $line-height-default!default; // should align with baseline grid
 $header-space-from-text: $line-height-default !default;
 $footer-space-from-bottom: $margin-bottom / 2 !default;
 $footer-space-from-text: $line-height-default !default;
@@ -330,6 +334,7 @@ $pdf-fitting: true !default; // Classes for floating, tracking, shrinking, etc.
 $pdf-hyphenation: true !default; // Sets hyphenation dictionary
 
 // Book features
+$pdf-abstract-page: true !default; // Abstract pages
 $pdf-start-on-recto-or-verso: true !default; // Starts chapters on a left- or right-hand-page
 $pdf-page-start-depth: true !default; // Sets a top margin on opening pages
 $pdf-base-typography: true !default; // Default typography for HTML elements
@@ -417,6 +422,7 @@ $pdf-page-setup-lightning-source: false !default; // Removes crop marks and sets
 @import "template/partials/pdf-baseline-grid"; // Shows a baseline grid
 
 // Book features
+@import "template/partials/pdf-abstract-page";
 @import "template/partials/pdf-start-on-recto-or-verso"; // Starts chapters on a left- or right-hand-page
 @import "template/partials/pdf-page-start-depth"; // Sets a top margin on opening pages
 @import "template/partials/pdf-base-typography"; // Default typography for HTML elements

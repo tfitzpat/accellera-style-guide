@@ -36,9 +36,9 @@ sudo apt-get install -y \
   libxfixes3 \
   libxrandr2 \
   curl \
-    git
+  git
 
-# Install nodejs 16.x
+# Install nodejs 20.x
 sudo curl -k -sL https://deb.nodesource.com/setup_20.x > node_setup.sh
 sudo bash node_setup.sh
 sudo apt-get install nodejs -y
@@ -65,11 +65,15 @@ echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.
 sudo apt update
 sudo apt install code
 
+# Install chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
 # Update npm
-npm install -g npm@latest
+sudo npm install -g npm@latest
 
 # Install Gulp cli app
-npm install --global gulp-cli
+sudo npm install --global gulp-cli
 
 cd ..
 
@@ -80,10 +84,10 @@ echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 
 # Install bundler and jekyll
-gem install jekyll bundler
+sudo gem install jekyll bundler
 
 # install gems
-bundle install
+sudo bundle install
 
 # you might need this to resolve version conficts 
 #bundle update --bundler

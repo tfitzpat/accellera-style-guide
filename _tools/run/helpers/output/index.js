@@ -36,7 +36,9 @@ async function web (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    await renderNumbering(argv)
+    if (argv['section-numbering'] > 0) {
+      await renderNumbering(argv)
+    }
     await jekyll(argv)
   } catch (error) {
     console.log(error)
@@ -49,7 +51,9 @@ async function pdf (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    await renderNumbering(argv)
+    if (argv['section-numbering'] > 0) {
+      await renderNumbering(argv)
+    }
     await jekyll(argv)
     await renderIndexComments(argv)
     await renderIndexLinks(argv)
@@ -72,7 +76,9 @@ async function epub (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    await renderNumbering(argv)
+    if (argv['section-numbering'] > 0) {
+      await renderNumbering(argv)
+    }
     await jekyll(argv)
     await epubHTMLTransformations(argv)
     await renderIndexComments(argv)
@@ -163,7 +169,9 @@ async function app (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
-    await renderNumbering(argv)
+    if (argv['section-numbering'] > 0) {
+      await renderNumbering(argv)
+    }
     await jekyll(argv)
     await fsPromises.mkdir(process.cwd() + '/_site/app/www')
     await assembleApp()

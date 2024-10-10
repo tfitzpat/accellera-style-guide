@@ -24,7 +24,7 @@ subsequently unregister that *callback* function. (See [5.4.2.8](05.html#5428-ca
 
 **local broker**: A *broker* explicitly registered at a specific level in the module hierarchy, becoming the *automatic broker* for that module and submodules below it that don’t register a *local broker* themselves. (See [5.7](05.html#57-brokers))
 
-**originator**: An object used to identify the source of *parameter value* and *preset value* changes. Originators are embedded within *handles* allowing source identification to be provided in a largely implicit manner. (See [5.4.1](05.html#541-cci-originator))
+**originator**: An object used to identify the source of *parameter value* and *preset value* changes. Originators are embedded within *handles* allowing source identification to be provided in a largely implicit manner. (See [5.4.1](05.html#541-cci_originator))
 
 **parameter**: An object representing a named configuration *value* of a specific compile-time type. *Parameters* are typically created
 within modules from which their name is derived, managed by brokers, and accessed externally via *parameter handles*. (See [5.6](05.html#56-parameters))
@@ -33,7 +33,7 @@ within modules from which their name is derived, managed by brokers, and accesse
 preset value, when present. (See [5.4.2.3](05.html#5423-value-origin))
 
 **parameter handle**: An object that acts as a proxy to a *parameter* while relaying an *originator* representing the *handle* 
-owner. *Parameter handles* can be either *untyped* (See [5.6.3](05.html#563-cci-param-untyped-handle)) or *typed* (See [5.6.4](05.html#564-cci-param-typed-handle)).
+owner. *Parameter handles* can be either *untyped* (See [5.6.3](05.html#563-cci_param_untyped_handle)) or *typed* (See [5.6.4](05.html#564-cci_param_typed_handle)).
 
 **parameter value**: The current *value* of the *parameter*, accessible in either an *untyped* or *typed* manner. (See [5.4.2.1](05.html#5421-value-and-data-type))
 
@@ -41,8 +41,8 @@ owner. *Parameter handles* can be either *untyped* (See [5.6.3](05.html#563-cci-
 
 **(parameter) preset value**: A *value* used to initialize the *parameter*, overriding its default value. Preset values are supplied to the appropriate *broker* prior to constructing or resetting the *parameter*. (See [5.4.3.4](05.html#5434-parameter-initialization)).
 
-**(parameter) underlying data type**: The specific compile-time type supplied as a template instantiation argument in the *parameter*’s declaration. Syntactically, this is referenced as the *parameter*’s **`value_type`**. (See [5.6.2.1](05.html#5621-value-type))
+**(parameter) underlying data type**: The specific compile-time type supplied as a template instantiation argument in the *parameter*’s declaration. Syntactically, this is referenced as the *parameter*’s **`value_type`**. (See [5.6.2.1](05.html#5621-value_type))
 
-**typed (parameter access)**: Using interfaces based on the *parameter*’s *underlying data type* to access a *parameter value*. (See [5.6.2](05.html#562-cci-param-typed))
+**typed (parameter access)**: Using interfaces based on the *parameter*’s *underlying data type* to access a *parameter value*. (See [5.6.2](05.html#562-cci_param_typed))
 
 **untyped (parameter access)**: Using interfaces based on **`cci_value`** to access a *parameter value*. (See [5.6.1](05.html#561-cci_param_untyped))

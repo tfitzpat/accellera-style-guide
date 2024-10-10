@@ -96,7 +96,7 @@ major classes, providing a conceptual model for locating functionality.
 
 ### A.2.1 cci_value
 
-Variant data types are provided by the **`cci_value`** hierarchy (depicted in [Figure A.2](#figure-a-1)). The encapsulated type *may* be:
+Variant data types are provided by the **`cci_value`** hierarchy (depicted in [Figure A.1](#figure-a1)). The encapsulated type *may* be:
  -  one of the directly supported standard data types: `bool`, `int`,
     `unsigned int`, `sc_dt::int64`, `sc_dt::uint64`, `double`, or
     `std::string`.
@@ -153,7 +153,7 @@ classes with modifier methods.
 
 ### A.2.2  cci_param
 
-*Parameter* functionality is implemented by the small hierarchy shown in [Figure A.2](#figure-a-2) The final class,**`cci_param_typed`**, is parameterized by both data type `T` and mutability TM (with mutability defaulted to mutable) and is instantiated with both a name and a *default value* to create the `*parameter* and add it to a *broker*:
+*Parameter* functionality is implemented by the small hierarchy shown in [Figure A.2](#figure-a2) The final class,**`cci_param_typed`**, is parameterized by both data type `T` and mutability TM (with mutability defaulted to mutable) and is instantiated with both a name and a *default value* to create the `*parameter* and add it to a *broker*:
  -  The final *parameter* name may include the hosting object name and a suffix to make it unique.
  -  If no *broker* is specified then the *broker* associated with the current context is used.
  -  A description and *originator* may optionally be given.

@@ -30,7 +30,7 @@ $pdf-start-on-recto-or-verso: true !default;
     .epigraph-page, 
     .contents-page, 
     .part-page,
-    .chapter 
+    .chapter
     { 
         page-break-before: $start-on;
         break-before: $start-on;

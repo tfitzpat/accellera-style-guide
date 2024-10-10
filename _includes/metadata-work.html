@@ -32,9 +32,9 @@ we fall back to the value in the work's default.yml.
 {% endif %}
 
 {% if work[work-variant].title and work[work-variant].title != "" %}
-    {% capture title %}{{ work[work-variant].title }} {{ status }}{% endcapture %}
+    {% capture title %}{{ work[work-variant].title }}{% endcapture %}
 {% elsif work.default.title and work.default.title != "" %}
-    {% capture title %}{{ work.default.title }} {{ status }}{% endcapture %}
+    {% capture title %}{{ work.default.title }}{% endcapture %}
 {% endif %}
 
 {% if work[work-variant].subtitle and work[work-variant].subtitle != "" %}
@@ -77,6 +77,36 @@ we fall back to the value in the work's default.yml.
     {% capture publisher-url %}{{ work[work-variant].publisher-url }}{% endcapture %}
 {% elsif work.default.publisher-url and work.default.publisher-url != "" %}
     {% capture publisher-url %}{{ work.default.publisher-url }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].society and work[work-variant].society != "" %}
+    {% capture society %}{{ work[work-variant].society }}{% endcapture %}
+{% elsif work.default.society and work.default.society != "" %}
+    {% capture society %}{{ work.default.society }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].committee and work[work-variant].committee != "" %}
+    {% capture committee %}{{ work[work-variant].committee }}{% endcapture %}
+{% elsif work.default.committee and work.default.committee != "" %}
+    {% capture committee %}{{ work.default.committee }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].approved and work[work-variant].approved != "" %}
+    {% capture approved %}{{ work[work-variant].approved }}{% endcapture %}
+{% elsif work.default.approved and work.default.approved != "" %}
+    {% capture approved %}{{ work.default.approved }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].isbn-pdf and work[work-variant].isbn-pdf != "" %}
+    {% capture isbn-pdf %}{{ work[work-variant].isbn-pdf }}{% endcapture %}
+{% elsif work.default.isbn-pdf and work.default.isbn-pdf != "" %}
+    {% capture isbn-pdf %}{{ work.default.isbn-pdf }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].isbn-print and work[work-variant].isbn-print != "" %}
+    {% capture isbn-print %}{{ work[work-variant].isbn-print }}{% endcapture %}
+{% elsif work.default.isbn-print and work.default.isbn-print != "" %}
+    {% capture isbn-print %}{{ work.default.isbn-print }}{% endcapture %}
 {% endif %}
 
 {% if work[work-variant].date and work[work-variant].date != "" %}

@@ -365,6 +365,38 @@ $pdf-margin-box-content: true !default;
     }
   }
 
+  // No header on contents pages
+  @page contents-page {
+    @top-center {
+      content: normal;
+    }
+  }
+
+  // No header on frontmatter pages
+  @page frontmatter {
+    @top-center {
+      content: normal;
+    }
+  }
+
+  // No header and footer on title page
+  @page title-page {
+    @top-center {
+      content: normal;
+    }
+
+    @bottom-center {
+      content: normal;
+    }
+  }
+
+  // No header on 'no-header' page
+  @page no-header:first {
+    @top-center {
+      content: normal;
+    }
+  }
+  
   // Add page info to trim area
   // @page {
   //   @prince-overlay {

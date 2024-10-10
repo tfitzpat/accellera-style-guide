@@ -13,6 +13,14 @@
     counter-reset: listCounter;
     margin-left: 2 * $paragraph-indent;
 
+    p {
+      margin-bottom: $line-height-default / 4; // MB adjust paragraph line-height within list
+    }
+
+    blockquote {
+      margin: $line-height-default / 4 0; // MB adjust blockquote line-height within list
+    }
+
     & > li {
       list-style: none;
       margin-top: $line-height-default / 4;
@@ -77,6 +85,14 @@
     margin-left: 2 * $paragraph-indent;
     padding-left: 0;
 
+    p {
+      margin-bottom: $line-height-default / 4; // MB adjust paragraph line-height within list
+    }
+
+    blockquote {
+      margin: $line-height-default / 4 0; // MB adjust blockquote line-height within list
+    }
+
     & > li {
       list-style: none;
       margin-top: $line-height-default / 4;
@@ -94,10 +110,43 @@
   }
 }
 
+// enforce numbered list item (1st level only)
+.list-numbers {
+  counter-reset: customCounter !important;
+  & > li {
+    list-style: none;
+    counter-increment: customCounter !important;
+    &:before {
+      content: counter(customCounter) ") " !important;
+      position: absolute;
+    }
+  }
+}
+
+// list items without markers (1st level only)
+// works for ordered (ol) and unordered (ul) lists
+.list-no-markers {
+  margin-left: $paragraph-indent!important;
+  & > li {
+    list-style: none;
+    &:before {
+      content: ''!important;
+    }
+  }
+}
+
+// ordered list with custom start
+@for $i from 2 through 50 {
+  $start-value: $i - 1;
+  .list-start-#{$i} {
+    counter-reset: listCounter $start-value!important;
+  }
+}
+
 // PAGEDJS
 [data-pdf-engine="pagedjs"] {
   [data-align-last-split-element='justify'] {
-    text-align-last: left;
+    text-align-last: justify;
   }
   li, li * {
     text-align: left !important;
