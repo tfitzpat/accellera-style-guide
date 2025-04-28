@@ -1,0 +1,41 @@
+$pdf-code: true !default;
+@if $pdf-code {
+
+    // Preformatted text and code
+    // In our HTML, we assume that inline code is in <code> tags
+    // and blocks of <code> are in <pre> tags.
+
+    code {
+        font-family: $font-code;
+        font-size: $font-code-size;
+        line-height: 1;
+        white-space: pre-wrap;
+        border-radius: 0.2em;
+        background-color: $code-background-color;
+    }
+
+    pre {
+        border-radius: 0.2em;
+        line-height: $line-height-default;
+        margin: $line-height-default 0;
+        padding: 0.4em 0.4em 0.4em 0.5em; // t r b l
+        background-color: $code-background-color;
+
+        code {
+            padding: 0px;
+        }
+
+        & + p {
+           text-indent: 0;
+        }
+    }
+    // Remove text-indent on paragraphs after the code-highlighting
+    // div that Jekyll inserts. This attribute selector should work
+    // even if the site's code highlighter is not the default Rouge.
+    // Jekyll's inserting this div is ridiculous, see heated discussions at
+    // https://github.com/jekyll/jekyll/issues/3738
+    // and https://github.com/jekyll/jekyll/issues/4905
+    div[class*="highlighter-"] + p {
+       text-indent: 0;
+    }
+}

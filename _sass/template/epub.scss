@@ -48,7 +48,8 @@ $font-size-default: 1em !default;
 $line-height-default: 1.5em !default;
 $font-size-smaller: 0.8 !default; // How much smaller than font-size-default for features like sidenotes and footers?
 $font-size-bigger: 2 !default; // How many times bigger than font-size-default for features like headings and pullquotes?
-
+$font-code-size: 90% !default;
+ 
 // Do you want space between paragraphs, rather than a text-indent? true or false
 $spaced-paras: false !default;
 // If not spacing paras, how large is the first-line indent on paragraphs?

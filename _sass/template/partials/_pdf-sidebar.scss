@@ -1,0 +1,39 @@
+$pdf-sidebar: true !default;
+
+@if $pdf-sidebar {
+
+    @each $page-style in $pages-with-sidebar {
+        @page #{$page-style}:left {
+            @leftnote {
+                box-sizing: border-box;
+                padding-right: $sidebar-gap-width;
+                width: $sidebar-content-width + $sidebar-gap-width;
+            }
+        }
+
+        @page #{$page-style}:right {
+            @rightnote {
+                box-sizing: border-box;
+                padding-left: $sidebar-gap-width;
+                width: $sidebar-content-width + $sidebar-gap-width;
+            }
+        }
+    }
+
+    @each $page-style in $pages-without-sidebar {
+        @page #{$page-style}:left {
+            @leftnote {
+                padding-right: 0;
+                width: 0;
+            }
+        }
+
+        @page #{$page-style}:right {
+            @rightnote {
+                box-sizing: border-box;
+                padding-left: 0;
+                width: 0;
+            }
+        }
+    }
+}

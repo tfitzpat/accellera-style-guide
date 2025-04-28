@@ -1,0 +1,68 @@
+{% include metadata %}
+
+{% comment %}
+In PDF, we avoid making the title an h1, so that
+in a PDF reader's built-in navigation the h1s
+that start parts or chapters are not all indented
+or put into a dropdown beneath the title h1, and
+the overall book heading-level heirarchy is sensible.
+Only PDF treats the entire book as one file.
+
+Other formats all treat the title-page as one of
+many files, where using an h1 on this page is okay
+and semantically sensible.
+
+E.g. In epub, we make the title an h1
+to ensure that it's emphasised in epub readers
+(like Thorium) that treat all paragraphs
+as body text despite CSS rules for em size.
+{% endcomment %}
+
+{% if site.output == "print-pdf" or site.output == "screen-pdf" %}
+{% comment %} Add label 'Title page' to the PDF bookmarks without displaying it on the main page {% endcomment %}
+  <h1 style="font-size: 0;">Title page</h1>
+
+  <p class="title-page-version-label">{{ version }}</p>
+
+  <p class="title-page-title" style="margin-top:70pt;">
+    {{ title }}
+  </p>
+{% else %}
+  <h1 class="title-page-title" style="margin-top:70pt;">
+    {{ title }}
+  </h1>
+{% endif %}
+
+<div style="position: absolute;top:260px;">
+  <div style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; ">
+    <p style="text-align: left;">Developed by the</p>
+    <p style="text-align: left; margin-bottom:0"><b>{{ committee }} Committee</b></p>
+    <p style="text-align: left; margin-bottom:0">of the</p>
+    <p style="text-align: left; margin-bottom:20px;"><b>IEEE {{ society }} Society</b></p>
+    <p style="text-align: left; margin-bottom:10px;">Approved {{ approved }}</p>
+    <p style="text-align: left; margin-bottom:0"><b>IEEE SA Standards Board</b></p>
+  </div>
+
+  <p style="text-align: left; margin-top: 30px;">Copyright © {{ date | date: "%Y" }} by The Institute of Electrical and Electronics
+    Engineers, Inc.<br>
+    Three Park Avenue<br>
+    New York, New York 10016-5997, USA<br><br>
+    All rights reserved.</p>
+
+  <p style="text-align: justify;">This document is an unapproved draft of a proposed IEEE Standard. As such, this
+    document is subject to change. USE AT YOUR OWN RISK! IEEE copyright statements SHALL NOT BE REMOVED from draft or
+    approved IEEE standards, or modified in any way. Because this is an unapproved draft, this document must not be
+    utilized for any conformance/compliance purposes. Permission is hereby granted for officers from each IEEE Standards
+    Working Group or Committee to reproduce the draft document developed by that Working Group for purposes of
+    international standardization consideration. IEEE Standards Department must be informed of the submission for
+    consideration prior to any reproduction for international standardization consideration (<a href="mailto:stds-ipr@ieee.org">stds-ipr@ieee.org</a>). Prior
+    to adoption of this document, in whole or in part, by another standards development organization, permission must
+    first be obtained from the IEEE Standards Department (<a href="mailto:stds-ipr@ieee.org">stds-ipr@ieee.org</a>). When requesting permission, IEEE Standards
+    Department will require a copy of the standard development organization's document highlighting the use of IEEE
+    content. Other entities seeking permission to reproduce this document, in whole or in part, must also obtain
+    permission from the IEEE Standards Department.</p>
+
+  <p style="text-align: left;">IEEE Standards Department<br>
+    445 Hoes Lane<br>
+    Piscataway, NJ 08854, USA</p>
+</div>

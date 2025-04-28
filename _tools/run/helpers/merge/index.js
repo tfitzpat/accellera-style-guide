@@ -17,7 +17,7 @@ function updateIDs (filename, dom, argv) {
   return new Promise(function (resolve, reject) {
     try {
       // Prefix IDs with a no-spaces, no-fullstops filename
-      const prefix = filename.replace(/[.\s]/g, '-')
+      const prefix = 'file-' + filename.replace(/[.\s]/g, '-')
       const elementsWithIDs = dom.window.document.querySelectorAll('[id]')
 
       elementsWithIDs.forEach(function (el) {
@@ -46,6 +46,7 @@ function updateIDs (filename, dom, argv) {
         internalLinks = linksArray.filter(function (link) {
           let isInternal = true
           if (link.href.startsWith('https://') ||
+              link.href.startsWith('mailto:') ||
               link.href.startsWith('http://')) {
             isInternal = false
           }
@@ -84,14 +85,14 @@ function updateIDs (filename, dom, argv) {
           // - doesn't include #, it points to another file.
           if (hrefIsToThisBook) {
             if (href.match(/.+#/)) {
-              linkFilenameAsPrefix = href.split('#').shift()
+              linkFilenameAsPrefix = 'file-' + href.split('#').shift()
                 .replace(/[.\s]/g, '-')
               linkID = href.split('#').pop()
             } else if (href.startsWith('#')) {
               linkFilenameAsPrefix = prefix
               linkID = href.split('#').pop()
             } else {
-              linkFilenameAsPrefix = href.replace(/[.\s]/g, '-')
+              linkFilenameAsPrefix = 'file-' + href.replace(/[.\s]/g, '-')
             }
 
             // Change the link to an internal link that uses
@@ -101,56 +102,6 @@ function updateIDs (filename, dom, argv) {
               link.href = '#' + [linkFilenameAsPrefix, linkID].join('-')
             }
           }
-        })
-      }
-
-      resolve(dom)
-    } catch (error) {
-      console.log(error)
-      reject(error)
-    }
-  })
-}
-
-// The following removes all but the content of footnotes in the document,
-// and replaces the structures with a <span class="footnote-ref">...</span>
-// PrinceXML then handles the numbering, positioning, and appearance in
-// _sass/theme/partials/_print-footnotes.scss, so that footnotes can appear
-// on the same page as their callers
-function moveFootnotes (dom) {
-  return new Promise(function (resolve, reject) {
-    try {
-      let footnoteCounter = 1
-      // Find all the footnote sups
-      const footnoteLinks = dom.window.document.querySelectorAll('.footnote')
-      const total = footnoteLinks.length
-
-      footnoteLinks.forEach(function (link) {
-        const href = link.href.split('#').pop()
-        const li = dom.window.document.getElementById(href)
-
-        const span = dom.window.document.createElement('span')
-        span.classList.add('footnote-ref')
-        span.innerHTML = li.querySelector('p').innerHTML
-
-        const arrow = span.querySelector('.reversefootnote')
-        arrow.remove()
-
-        span.innerHTML = span.innerHTML.replace('&amp;nbsp;', '')
-
-        const sup = link.closest('sup')
-        sup.insertAdjacentElement('afterend', span)
-
-        sup.remove()
-
-        link.innerHTML = footnoteCounter
-        footnoteCounter += 1
-      })
-
-      if (footnoteCounter === total + 1) {
-        const footnoteDivs = dom.window.document.querySelectorAll('.footnotes')
-        footnoteDivs.forEach(function (div) {
-          div.remove()
         })
       }
 
@@ -204,9 +155,6 @@ async function merge (argv) {
         // If this is not the last file, remove the script tag
         // that loads bundle.js, so it doesn't load multiple times.
         if (fileCounter === filePaths.length) {
-          // Format the footnotes so that Prince can take care of them
-          mergedDom = await moveFootnotes(mergedDom)
-
           console.log('Writing merged HTML to ' + destination)
           fsPromises.writeFile(destination, mergedDom.serialize())
           resolve(true)

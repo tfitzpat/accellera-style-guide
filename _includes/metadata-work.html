@@ -25,6 +25,12 @@ Also, where a value for a variant isn't available,
 we fall back to the value in the work's default.yml.
 {% endcomment %}
 
+{% if work[work-variant].status and work[work-variant].status == "Draft" %}
+    {% capture status %}{{ work[work-variant].status }}{% endcapture %}
+{% elsif work.default.status and work[work-variant].status == "Draft" %}
+    {% capture status %}{{ work.default.status }}{% endcapture %}
+{% endif %}
+
 {% if work[work-variant].title and work[work-variant].title != "" %}
     {% capture title %}{{ work[work-variant].title }}{% endcapture %}
 {% elsif work.default.title and work.default.title != "" %}
@@ -71,6 +77,36 @@ we fall back to the value in the work's default.yml.
     {% capture publisher-url %}{{ work[work-variant].publisher-url }}{% endcapture %}
 {% elsif work.default.publisher-url and work.default.publisher-url != "" %}
     {% capture publisher-url %}{{ work.default.publisher-url }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].society and work[work-variant].society != "" %}
+    {% capture society %}{{ work[work-variant].society }}{% endcapture %}
+{% elsif work.default.society and work.default.society != "" %}
+    {% capture society %}{{ work.default.society }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].committee and work[work-variant].committee != "" %}
+    {% capture committee %}{{ work[work-variant].committee }}{% endcapture %}
+{% elsif work.default.committee and work.default.committee != "" %}
+    {% capture committee %}{{ work.default.committee }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].approved and work[work-variant].approved != "" %}
+    {% capture approved %}{{ work[work-variant].approved }}{% endcapture %}
+{% elsif work.default.approved and work.default.approved != "" %}
+    {% capture approved %}{{ work.default.approved }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].isbn-pdf and work[work-variant].isbn-pdf != "" %}
+    {% capture isbn-pdf %}{{ work[work-variant].isbn-pdf }}{% endcapture %}
+{% elsif work.default.isbn-pdf and work.default.isbn-pdf != "" %}
+    {% capture isbn-pdf %}{{ work.default.isbn-pdf }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].isbn-print and work[work-variant].isbn-print != "" %}
+    {% capture isbn-print %}{{ work[work-variant].isbn-print }}{% endcapture %}
+{% elsif work.default.isbn-print and work.default.isbn-print != "" %}
+    {% capture isbn-print %}{{ work.default.isbn-print }}{% endcapture %}
 {% endif %}
 
 {% if work[work-variant].date and work[work-variant].date != "" %}
@@ -126,6 +162,12 @@ we fall back to the value in the work's default.yml.
     {% capture coverage %}{{ work.default.coverage }}{% endcapture %}
 {% endif %}
 
+{% if work[work-variant].keywords and work[work-variant].keywords != "" %}
+    {% capture keywords %}{{ work[work-variant].keywords }}{% endcapture %}
+{% elsif work.default.keywords and work.default.keywords != "" %}
+    {% capture keywords %}{{ work.default.keywords }}{% endcapture %}
+{% endif %}
+
 {% if work[work-variant].rightsholder and work[work-variant].rightsholder != "" %}
     {% capture rightsholder %}{{ work[work-variant].rightsholder }}{% endcapture %}
 {% elsif work.default.rightsholder and work.default.rightsholder != "" %}
@@ -142,6 +184,12 @@ we fall back to the value in the work's default.yml.
     {% capture image %}{{ work[work-variant].image }}{% endcapture %}
 {% elsif work.default.image and work.default.image != "" %}
     {% capture image %}{{ work.default.image }}{% endcapture %}
+{% endif %}
+
+{% if work[work-variant].version and work[work-variant].version != "" %}
+    {% capture version %}{{ work[work-variant].version }}{% endcapture %}
+{% elsif work.default.version and work.default.version != "" %}
+    {% capture version %}{{ work.default.version }}{% endcapture %}
 {% endif %}
 
 {% comment %} Print-PDF metadata {% endcomment %}
@@ -356,6 +404,7 @@ we fall back to the value in the work's default.yml.
 {% elsif work.default.products.screen-pdf.date and work.default.products.screen-pdf.date != "" %}
     {% capture screen-pdf-date %}{{ work.default.products.screen-pdf.date }}{% endcapture %}
 {% else %}
+    {% comment %} Fall back to project date. {% endcomment %}
     {% capture screen-pdf-date %}{{ date }}{% endcapture %}
 {% endif %}
 
@@ -363,6 +412,9 @@ we fall back to the value in the work's default.yml.
     {% capture screen-pdf-format %}{{ work[work-variant].products.screen-pdf.format }}{% endcapture %}
 {% elsif work.default.products.screen-pdf.format and work.default.products.screen-pdf.format != "" %}
     {% capture screen-pdf-format %}{{ work.default.products.screen-pdf.format }}{% endcapture %}
+
+    {% comment %} Cannot inherit print-PDF format value because
+    they are fundamentally different formats. {% endcomment %}
 {% endif %}
 
 {% if work[work-variant].products.screen-pdf.identifier and work[work-variant].products.screen-pdf.identifier != "" %}
@@ -370,6 +422,8 @@ we fall back to the value in the work's default.yml.
 {% elsif work.default.products.screen-pdf.identifier and work.default.products.screen-pdf.identifier != "" %}
     {% capture screen-pdf-identifier %}{{ work.default.products.screen-pdf.identifier }}{% endcapture %}
 {% else %}
+
+    {% comment %} Fall back to project identifier. {% endcomment %}
     {% capture screen-pdf-identifier %}{{ identifier }}{% endcapture %}
 {% endif %}
 
@@ -378,6 +432,8 @@ we fall back to the value in the work's default.yml.
 {% elsif work.default.products.screen-pdf.image and work.default.products.screen-pdf.image != "" %}
     {% capture screen-pdf-image %}{{ work.default.products.screen-pdf.image }}{% endcapture %}
 {% else %}
+
+    {% comment %} Fall back to project image. {% endcomment %}
     {% capture screen-pdf-image %}{{ image }}{% endcapture %}
 {% endif %}
 

@@ -30,3 +30,4 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "kramdown-parser-gfm"
 
 # For what ~> means, see https://robots.thoughtbot.com/rubys-pessimistic-operator
+

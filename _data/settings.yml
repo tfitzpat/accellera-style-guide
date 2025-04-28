@@ -49,6 +49,11 @@ print-pdf:
   # (You can also set this per markdown file with notes: footnotes,
   # or per endnote by adding .move-to-footnote to it.)
   notes: footnotes
+  # --------------
+  # Heading levels to use for automated TOC
+  # --------------
+  toc:
+    heading-levels: ['h1', 'h2']
 
 # ----------------------------------------------------------
 # Screen-PDF settings
@@ -58,6 +63,16 @@ screen-pdf:
   # (You can also set this per markdown file with notes: footnotes,
   # or per endnote by adding .move-to-footnote to it.)
   notes: footnotes
+  # --------------
+  # Heading levels to use for automated TOC
+  # --------------
+  toc:
+    heading-levels: ['h1', 'h2', 'h3']
+  # Choose what to display as the title for the cover page in the
+  # PDF bookmarks. Default is locales.pdf.cover. Setting this to
+  # title will use the title from default.yml
+  cover:
+    bookmark: title
 
 # ----------------------------------------------------------
 # Web settings
@@ -81,7 +96,7 @@ web:
   # If not set, book-title is default.
   # Note that breadcrumbs slows your Jekyll build significantly.
   masthead:
-    content: breadcrumbs
+    content: "page-title"
   # -----------------
   # Content accordion
   # -----------------
@@ -170,6 +185,11 @@ web:
   # --------------
   page-tags:
     html-title-divider: " &ndash; "
+  # --------------
+  # Heading levels to use for automated TOC
+  # --------------
+  toc:
+    heading-levels: ['h1', 'h2']
 
 # ----------------------------------------------------------
 # Epub settings
@@ -211,6 +231,11 @@ epub:
   # You may also want to exclude js in _config.epub.yml.
   javascript:
     disabled: false
+  # --------------
+  # Heading levels to use for automated TOC
+  # --------------
+  toc:
+    heading-levels: ['h1', 'h2']
 
 # ----------------------------------------------------------
 # App settings
@@ -293,6 +318,11 @@ app:
   # --------------
   page-tags:
     html-title-divider: " &ndash; "
+  # --------------
+  # Heading levels to use for automated TOC
+  # --------------
+  toc:
+    heading-levels: ['h1', 'h2']
 
 # ----------------------------------------------------------
 # External media settings

@@ -1,78 +1,23 @@
-// HEADERS
+// HEADERS AND FOOTERS
 
-@page chapter:left {
+@page {
   @top-center {
-    text-transform: none;
-  }
-}
-@page chapter:right {
-  @top-center {
-    text-transform: none;
-  }
-}
-@page frontmatter:left {
-  @top-center {
-    text-transform: none;
-  }
-}
-@page frontmatter:right {
-  @top-center {
-    text-transform: none;
-  }
-}
-@page contents-page:left {
-  @top-center {
-    text-transform: none;
-  }
-}
-@page contents-page:right {
-  @top-center {
-    text-transform: none;
+    content: $verso-top;
+    font-family: $font-text-secondary;
+    font-size: $footer-font-size;
+    white-space: pre-wrap;
+    text-transform: none !important;
+    line-height: $line-height-default !important;
   }
 }
 
-// FOOTERS
-
-@page chapter:left {
+@page {
   @bottom-center {
-    white-space: pre-wrap;
-    text-transform: none;
-  }
-}
-@page chapter:right {
-  @bottom-center {
-    white-space: pre-wrap;
-    text-transform: none;
-  }
-}
-@page frontmatter:left {
-  @bottom-center {
-    white-space: pre-wrap;
-    text-transform: none;
-  }
-}
-@page frontmatter:right {
-  @bottom-center {
-    white-space: pre-wrap;
-    text-transform: none;
-  }
-}
-@page contents-page:left {
-  @bottom-center {
-    @include footer-style();
-    @include footer-position();
     content: $verso-bottom;
+    font-family: $font-text-secondary;
+    font-size: $footer-font-size;
     white-space: pre-wrap;
-    text-transform: none;
+    text-transform: none !important;
+    line-height: $line-height-default !important;
   }
 }
-@page contents-page:right {
-  @bottom-center {
-    @include footer-style();
-    @include footer-position();
-    content: $recto-bottom;
-    white-space: pre-wrap;
-    text-transform: none;
-  }
-}
-

@@ -1,0 +1,56 @@
+$pdf-page-setup: true !default;
+@if $pdf-page-setup {
+
+	// Set up our basic page margins
+	@page { 
+		size: $page-width $page-height;
+		margin-top: $margin-top;
+		margin-bottom: $margin-bottom;
+		margin-outside: $margin-outside;
+		margin-inside: $margin-inside;
+		margin-left: $margin-outside;
+		margin-right: $margin-inside;
+		padding: 0;
+		marks: $crop-marks;
+		bleed: $bleed;
+		prince-bleed: $bleed;
+		prince-trim: $trim;
+		prince-pdf-page-colorspace: $colorspace;
+	}
+
+	@page:left {
+		margin-left: $margin-outside;
+		margin-right: $margin-inside;
+	}
+
+	@page:right {
+		margin-left: $margin-inside;
+		margin-right: $margin-outside;
+	}
+
+	// Give names to pages
+
+	$named-page-styles: 
+	  cover, 
+	  halftitle-page, 
+	  half-title-page,
+	  title-page,
+	  previous-publications-page,
+	  copyright-page,
+	  dedication-page,
+	  frontispiece-page,
+	  contents-page,
+	  frontmatter,
+	  part-page,
+	  chapter,
+	  $pages-with-sidebar,
+	  $pages-without-sidebar,
+	  no-header,
+	  annex;
+
+	@each $page-style in $named-page-styles {
+		.wrapper.#{$page-style} {
+			page: $page-style;
+		}
+	}
+}

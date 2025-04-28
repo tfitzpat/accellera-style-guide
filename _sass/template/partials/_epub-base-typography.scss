@@ -38,21 +38,10 @@ $epub-base-typography: true !default;
     h2 {
         font-size: $font-size-default * ($font-size-bigger * 0.75);
         line-height: 1;
-        margin: ($line-height-default) 0 ($line-height-default * 0.5) 0;
+        margin: $line-height-default 0 $line-height-default 0;
     }
-    h3 {}
-    h4 {
-        font-style: italic;
-        font-weight: inherit;
-    }
-    h5 {
-        font-family: $font-text-main;
-        font-style: italic;
-        font-weight: inherit;
-    }
-    h6 {
-        font-family: $font-text-main;
-        font-weight: inherit;
+    h3, h4, h5, h6 {
+        margin: 0 0 $line-height-default 0; // t r b l
     }
     p {
         margin: 0;

@@ -18,7 +18,16 @@ to ensure that it's emphasised in epub readers
 as body text despite CSS rules for em size.
 {% endcomment %}
 
+{% include image
+   file=image
+   class="title-page-logo"
+   class="height-10"
+%}
+
 {% if site.output == "print-pdf" or site.output == "screen-pdf" %}
+   {% comment %} Add label 'Title page' to the PDF bookmarks without displaying it on the main page {% endcomment %}
+   <h1 style="font-size: 0;">Title page</h1>
+
    <p class="title-page-title">
       {{ title }}
    </p>
@@ -28,19 +37,31 @@ as body text despite CSS rules for em size.
    </h1>
 {% endif %}
 
+{% if subtitle && subtitle != "" %}
 <p class="title-page-subtitle">
    {{ subtitle }}
 </p>
+{% endif %}
 
+<p class="title-page-version">
+   {{ version }}
+</p>
+
+<!--
 <p class="title-page-author">
    {{ creator }}
 </p>
 
+
 <p class="title-page-contributor">
    {{ contributor }}
 </p>
+-->
 
-{% include image
-   file=project-logo
-   class="title-page-logo"
-   folder="assets" %}
+<p class="title-page-date">
+   {{ date | date: "%B %Y" }}
+</p>
+
+<p class="titlepage-copyright">
+  Copyright © {{ date | date: "%Y" }} {{ rightsholder }}. {{ rights }}{% if status == "Draft" %}&#xa;This is an unapproved {{ rightsholder }} Standards Draft, subject to change.{% endif %}
+</p>

@@ -40,21 +40,10 @@ $web-base-typography: true !default;
     h2 {
         font-size: $font-size-default * ($font-size-bigger * 0.75);
         line-height: 1;
-        margin: ($line-height-default * 2) 0 ($line-height-default) 0;
+        margin: $line-height-default 0 ($line-height-default) 0;
     }
-    h3 {}
-    h4 {
-        font-style: italic;
-        font-weight: inherit;
-    }
-    h5 {
-        font-family: $font-text-main;
-        font-style: italic;
-        font-weight: inherit;
-    }
-    h6 {
-        font-family: $font-text-main;
-        font-weight: inherit;
+    h3, h4, h5, h6 {
+        margin: 0 0 $line-height-default 0; // t r b l
     }
     p {
         margin: 0;
@@ -80,7 +69,12 @@ $web-base-typography: true !default;
 
     ol, ul {
         list-style-position: outside;
-        margin: 0 0 $line-height-default $paragraph-indent;
+
+        // We have to use a large left margin to prevent
+        // markers from disappearing off the browser window.
+        // Lists inherit zero padding from the body element.
+        // See https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Consistent_list_indentation
+        margin: 0 0 $line-height-default ($paragraph-indent * 2);
     }
     ol {
         list-style-type: decimal;

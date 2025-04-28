@@ -23,7 +23,10 @@ const {
   renderIndexComments,
   renderIndexLinks,
   renderMathjax,
-  runPrince
+  renderNumbering,
+  runPagedJS,
+  runPrince,
+  epubHTMLTransformations
 } = require('../helpers.js')
 const merge = require('../merge')
 
@@ -33,6 +36,9 @@ async function web (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
+    if (argv['section-numbering'] > 0) {
+      await renderNumbering(argv)
+    }
     await jekyll(argv)
   } catch (error) {
     console.log(error)
@@ -45,12 +51,19 @@ async function pdf (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
+    if (argv['section-numbering'] > 0) {
+      await renderNumbering(argv)
+    }
     await jekyll(argv)
     await renderIndexComments(argv)
     await renderIndexLinks(argv)
     await merge(argv)
     await renderMathjax(argv)
-    await runPrince(argv)
+    if (argv['pdf-engine'] === 'pagedjs') {
+      await runPagedJS(argv)
+    } else {
+      await runPrince(argv)
+    }
     openOutputFile(argv)
   } catch (error) {
     console.log(error)
@@ -63,7 +76,11 @@ async function epub (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
+    if (argv['section-numbering'] > 0) {
+      await renderNumbering(argv)
+    }
     await jekyll(argv)
+    await epubHTMLTransformations(argv)
     await renderIndexComments(argv)
     await renderIndexLinks(argv)
     await convertXHTMLLinks(argv)
@@ -152,6 +169,9 @@ async function app (argv) {
 
   try {
     await fs.emptyDir(process.cwd() + '/_site')
+    if (argv['section-numbering'] > 0) {
+      await renderNumbering(argv)
+    }
     await jekyll(argv)
     await fsPromises.mkdir(process.cwd() + '/_site/app/www')
     await assembleApp()

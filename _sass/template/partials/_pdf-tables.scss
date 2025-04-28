@@ -1,0 +1,68 @@
+$pdf-tables: true !default;
+@if $pdf-tables {
+
+	// Tables
+
+	table {
+		border-collapse: collapse;
+		margin: $line-height-default 0;
+		font-size: $font-size-table !important;
+		width: 100%;
+		max-width: $page-width - $margin-inside - $margin-outside;
+	}
+	thead, th, .table-subhead {
+		font-weight: bold;
+		page-break-after: avoid;
+	}
+	tr {
+		page-break-inside: avoid;
+	}
+	th, td {
+		border-top: $rule-thickness solid $color-mid;
+		border-bottom: $rule-thickness solid $color-mid;
+		border-left: 0;
+		border-right: 0;
+		line-height: $line-height-table;
+		padding: ($line-height-default * 0.3) ($line-height-default * 0.4);
+		vertical-align: top;
+		page-break-inside: avoid;
+		p, ul, ol, dl {
+			margin: 0;
+			padding: 0;
+			text-align: left;
+		}
+	}
+	.table-row-stub {
+		font-weight: bold;
+	}
+	.table-caption {
+		page-break-after: avoid;
+		font-style: italic;
+		text-indent: 0;
+		margin: $line-height-default 0 0 0;
+		& em {
+			font-style: normal;
+		}
+	}
+	.table-no-padding {
+		padding: 0!important;
+		th, td {
+			padding: 0!important;
+		}
+	}
+	.table-columns-fixed {
+		table-layout: fixed;
+	}
+	.table-no-border {
+		border: none!important;
+		border-spacing: 0;
+		padding: 0;
+		th, td {
+			border: none!important;
+			padding: ($line-height-default * 0.3) ($line-height-default * 0.4);
+		}
+	}
+	.table-text-center {
+		text-align: center;
+	}
+}
